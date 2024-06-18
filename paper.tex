@@ -236,6 +236,8 @@ coinduction models infinite behaviours, it is also a good way to model
 non-termination without giving up on computability of a dialect's
 semantics, thus addressing a current short-coming of LeanMLIR.
 
+
+
 \section{Related work}\label{related-work}
 
 First, we'll review the literature on verified compilation, which
@@ -245,18 +247,17 @@ naturally leads us to the literature on coinductive types.
 
 CompCert is the
 seminal work when it comes to verified compilation: an end-to-end
-verified to not miscompile compiler for the C language. \cite{leroyCompCertFormallyVerified}
+verified to not miscompile compiler for the C language.~\cite{leroyCompCertFormallyVerified}
 However, exactly
 because it's an end-to-end verified monolith, CompCert is not
 competitive compared to traditional non-verified compilers. Outside of
 certain high-risk domains, where traditionally optimizations would be
-turned off entirely \cite{kastnerCompCertPracticalExperience}, the
+turned off entirely,~\cite{kastnerCompCertPracticalExperience} the
 vast majority of C code is thus still compiled with non-verified
-compilers, which studies have shown to be prone to miscompilations
-\cite{yangFindingUnderstandingBugs2011}.
+compilers, which studies have shown to be prone to miscompilations.~\cite{yangFindingUnderstandingBugs2011}
 
 Lopes et al.~propose \emph{translation validation} as a way to scale
-formal verification. \cite{lopesAlive2BoundedTranslation2021}
+formal verification.~\cite{lopesAlive2BoundedTranslation2021}
 Their implementation, called Alive, has found wide adoption in the
 development of LLVM. Given a declarative description of an optimization
 as a source and target pattern in LLVM IR, the tool uses an SMT solver
@@ -297,27 +298,25 @@ in computer science.
 
 For us, the main difference of interest is that inductive datastructures
 are finite, while coinductive datastructures capture infinite
-behaviours.
-\cite{sangiorgiIntroductionBisimulationCoinduction2011} In
-particular, since Lean requires us to prove that recursive functions are
+behaviours.~\cite{sangiorgiIntroductionBisimulationCoinduction2011}
+In particular, since Lean requires us to prove that recursive functions are
 terminating, we need corecursion to correctly model things like infinite
 loops and other non-terminating behaviours that are common in compiler
 IRs.
 
 For example, Xia et al.~used interaction trees, a coinductive type, in
-their Coq formalization of recursive and impure programs.
-\cite{xiaInteractionTreesRepresenting2020} Similarly, MLIR has an
-``fsm'' dialect \footnote{https://circt.llvm.org/docs/Dialects/FSM/}
+their Coq formalization of recursive and impure programs.~\cite{xiaInteractionTreesRepresenting2020} Similarly, MLIR has an
+``fsm'' dialect~\footnote{https://circt.llvm.org/docs/Dialects/FSM/}
 centred on finite state machines. Such automata are understood to be
 coinductive in nature, so mechanizing the semanantics of this dialect in
 Lean will likely require coinduction.
 
 Consequently, we need a user-friendly way to define coinductive
 structures and to formalize coinductive proof methods in Lean. Key prior
-work in this area include my own master's thesis
-\cite{keizerImplementingDefinitionalCo}, which is based on earlier
+work in this area include my own master's thesis (\cite{keizerImplementingDefinitionalCo}), 
+which is based on earlier
 work by Avigad et al that models coinductive as quotients of polynomial
-functors (QPFs)\cite{avigadDataTypesQuotients2019}.
+functors (QPFs).~\cite{avigadDataTypesQuotients2019}
 
 Crucially, this prior work builds coinductive types using constructions
 already supported by Lean today. This allows us to provide coinductive
@@ -327,17 +326,15 @@ greatly aided by Lean's excellent meta-programming capabilities
 mentioned previously.
 
 When looking at coinductive types in other theorem provers, we
-distinguish between languages like Isabelle
-\cite{traytelCategoryTheoryBased}, which follow the same
-coinduction-as-a-library approach, and languages like Coq
-\cite{gimenezTutorialRecursiveTypes1998}\cite{gimenezApplicationCoinductiveTypes1996}
+distinguish between languages like Isabelle~\cite{traytelCategoryTheoryBased}, which follow the same
+coinduction-as-a-library approach, and languages like Coq~\cite{gimenezTutorialRecursiveTypes1998,gimenezApplicationCoinductiveTypes1996}
 or Agda which have modified their trusted kernels to support
 coinduction.
 
 Isabelle, in particular, is relevant because it's construction of
 coinductive types, in terms of \emph{bounded natural functors} is
-closely related to our construction in terms of QPFs.
-\cite{furerQuotientsBoundedNatural2022} There are still new
+closely related to our construction in terms of QPFs.~\cite{furerQuotientsBoundedNatural2022} 
+There are still new
 challenges, however, because Lean's dependent types mean we have to
 worry about the distinction between definitional equality (which is a
 decidable, but weaker notion of equality) and propositional equality
@@ -353,8 +350,7 @@ compromise the logical soundness of the entire system. In fact, the
 original implementation of coinduction, called \emph{positive}
 coinduction, is nowadays discouraged in favour of an alternative
 implementation, since positive coinduction breaks the subject reduction
-property \footnote{ The subject reduction property states that reducing
-  a program does not change its type}.~\cite{sozeauCorrectCompleteType}
+property\footnote{The subject reduction property states that reducing a program does not change its type}.~\cite{sozeauCorrectCompleteType}
 Our coinductives-as-a-library approach requires no new axioms nor
 changes to the kernel, and is thus guaranteed not to change any meta
 properties of Lean.
