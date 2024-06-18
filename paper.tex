@@ -8,7 +8,7 @@
   \def\paperversion{draft}
 \fi
 
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{scrartcl}
 
 \usepackage{colortbl}
 
@@ -134,9 +134,9 @@
 
 % listings don't write "Listing" in autoref without this.
 \providecommand*{\listingautorefname}{Listing}
-\renewcommand{\sectionautorefname}{Section}
-\renewcommand{\subsectionautorefname}{Section}
-\renewcommand{\subsubsectionautorefname}{Section}
+\newcommand{\sectionautorefname}{Section}
+\newcommand{\subsectionautorefname}{Section}
+\newcommand{\subsubsectionautorefname}{Section}
 
 \begin{document}
 
@@ -148,32 +148,8 @@
 using coinductive reasoning.}                                      
 \subtitle{First Year Report}
 
-%% Author information
-%% Contents and number of authors suppressed with 'anonymous'.
-%% Each author should be introduced by \author, followed by
-%% \authornote (optional), \orcid (optional), \affiliation, and
-%% \email.
-%% An author may have multiple affiliations and/or emails; repeat the
-%% appropriate command.
-%% Many elements are not rendered, but should be provided for metadata
-%% extraction tools.
-\author{Alex Keizer}
-% \authornote{ack55}          %% \authornote is optional;
-                                      %% can be repeated if necessary
-% \orcid{nnnn-nnnn-nnnn-nnnn}             %% \orcid is optional
-% \affiliation{
-%   \position{Position1}
-%   \department{Department1}              %% \department is recommended
-%   \institution{Institution1}            %% \institution is required
-%   \streetaddress{Street1 Address1}
-%   \city{City1}
-%   \state{State1}
-%   \postcode{Post-Code1}
-%   \country{Country1}
-% }
-\email{ack55@cam.ac.uk}          %% \email is recommended
-
-%        %% \email is recommended
+\author{Alex Keizer \small{(ack55)}}
+\date{}
 
 % \begin{abstract}
 % % An abstract should consist of six main sentences:
@@ -186,14 +162,7 @@ using coinductive reasoning.}
 
 % % (http://www.easterbrook.ca/steve/2010/01/how-to-write-a-scientific-abstract-in-six-easy-steps/)
 
-% \lipsum[1]
 % \end{abstract}
-
-
-%% \maketitle
-%% Note: \maketitle command must come after title commands, author
-%% commands, abstract environment, Computing Classification System
-%% environment and commands, and keywords command.
 \maketitle
 
 
@@ -211,8 +180,7 @@ especially compelling topic, as it promises to enhance the dependability
 of the entire software development lifecycle.
 
 Now, formal verification has been done before. Most notable is the
-CompCert project: a fully verified end-to-end C compiler.
-{[}{[}@leroyCompCertFormallyVerified{]}{]} Yet, the vast majority of
+CompCert project: a fully verified end-to-end C compiler.~\cite{leroyCompCertFormallyVerified} Yet, the vast majority of
 code today is still being compiled with non-verified compilers. We ask,
 thus, how do we formally verify not \emph{a} compiler, but, how do we
 scale formal verification to \emph{mainstream} compilers.
@@ -222,7 +190,7 @@ to compile, e.g., C, C++, Fortran, Rust, and Swift. Verifying the entire
 LLVM codebase, comprising of a few million lines of C++ code, is
 infeasible. Instead, we follow the same approach as Lopez et al and
 focus on verifying that individual rewrites on a compiler IR preserve
-semantics. {[}{[}@lopesAlive2BoundedTranslation2021{]}{]}
+semantics.~\cite{lopesAlive2BoundedTranslation2021}
 
 Although LLVM is indeed used by the standard compilers for Rust and
 Swift, both also use other, language-specific, IRs to be able to do
@@ -252,9 +220,9 @@ variable to be used \emph{before} it is defined --- hence, turning the
 def-use chain into a general graph. Generally, the semantics of such
 dialects are statefull, and cycles are broken by looking at the value of
 a variable at a previous state. For example, graph regions are used by
-dialects that model hardware {[}{[}@eldridgeMLIRHardwareCompiler{]}{]},
+dialects that model hardware,
 where variables model wires and cycles represent physical cycles in the
-circuit.
+circuit.~\cite{eldridgeMLIRHardwareCompiler}
 
 Since the exact semantics of graph regions may differ between dialects,
 we need some general framework to reason about stateful behaviours in
@@ -267,28 +235,27 @@ coinduction models infinite behaviours, it is also a good way to model
 non-termination without giving up on computability of a dialect's
 semantics, thus addressing a current short-coming of LeanMLIR.
 
-\hypertarget{related-work}{%
-\section{Related work}\label{related-work}}
+\section{Related work}\label{related-work}
 
 First, we'll review the literature on verified compilation, which
 naturally leads us to the literature on coinductive types.
 
-\hypertarget{verified-compilation}{%
-\subsection{Verified Compilation}\label{verified-compilation}}
+\subsection{Verified Compilation}\label{verified-compilation}
 
-{[}{[}@leroyCompCertFormallyVerified\textbar CompCert{]}{]} is the
+CompCert is the
 seminal work when it comes to verified compilation: an end-to-end
-verified to not miscompile compiler for the C language. However, exactly
+verified to not miscompile compiler for the C language. \cite{leroyCompCertFormallyVerified}
+However, exactly
 because it's an end-to-end verified monolith, CompCert is not
 competitive compared to traditional non-verified compilers. Outside of
 certain high-risk domains, where traditionally optimizations would be
-turned off entirely {[}{[}@kastnerCompCertPracticalExperience{]}{]}, the
+turned off entirely \cite{kastnerCompCertPracticalExperience}, the
 vast majority of C code is thus still compiled with non-verified
 compilers, which studies have shown to be prone to miscompilations
-{[}{[}@yangFindingUnderstandingBugs2011{]}{]}.
+\cite{yangFindingUnderstandingBugs2011}.
 
 Lopes et al.~propose \emph{translation validation} as a way to scale
-formal verification. {[}{[}@lopesAlive2BoundedTranslation2021{]}{]}
+formal verification. \cite{lopesAlive2BoundedTranslation2021}
 Their implementation, called Alive, has found wide adoption in the
 development of LLVM. Given a declarative description of an optimization
 as a source and target pattern in LLVM IR, the tool uses an SMT solver
@@ -307,22 +274,19 @@ design, extensible, so a translation validation tool for MLIR also needs
 to be easily extensible to cover new dialects.
 
 Our group has been developing
-{[}\protect\hyperlink{leanmlir}{LeanMLIR}{]}, a framework for giving
-semantics to MLIR-style compiler IRs in the Lean theorem prover
-{[}{[}@demouraLeanTheoremProver2015{]}{]}. As a theorem prover, Lean is
+LeanMLIR, a framework for giving
+semantics to MLIR-style compiler IRs in the Lean theorem prover.~\cite{demouraLeanTheoremProver2015} As a theorem prover, Lean is
 much more expressible than SMT solvers. Among theorem provers, Lean is
 particularly suited for this purpose because of it's community of
-mathematicians developing a comprehensive mathematical library
-{[}{[}@themathlibcommunityLeanMathematicalLibrary2020{]}{]}, and because
-of it's highly extensive syntax and meta-programming capabilities
-{[}{[}@ullrichNotationsHygienicMacro2022{]}{]}{[}{[}@paulinoMetaprogrammingLean{]}{]}.
+mathematicians developing a comprehensive mathematical library,~\cite{themathlibcommunityLeanMathematicalLibrary2020} 
+and because of it's highly extensive syntax and meta-programming capabilities~\cite{ullrichNotationsHygienicMacro2022, paulinoMetaprogrammingLean}.
 
 However, using a theorem prover means we don't get as much automation
 out of the box, and one area where Lean is still lacking is in its lack
 of support for coinductive types.
 
-\hypertarget{coinductive-types}{%
-\subsection{Coinductive Types}\label{coinductive-types}}
+
+\subsection{Coinductive Types}\label{coinductive-types}
 
 Lean, like most theorem provers, is built with around a native concept
 of inductive types. This is no surprise, given that most mathematical
@@ -333,7 +297,7 @@ in computer science.
 For us, the main difference of interest is that inductive datastructures
 are finite, while coinductive datastructures capture infinite
 behaviours.
-{[}{[}@sangiorgiIntroductionBisimulationCoinduction2011{]}{]} In
+\cite{sangiorgiIntroductionBisimulationCoinduction2011} In
 particular, since Lean requires us to prove that recursive functions are
 terminating, we need corecursion to correctly model things like infinite
 loops and other non-terminating behaviours that are common in compiler
@@ -341,7 +305,7 @@ IRs.
 
 For example, Xia et al.~used interaction trees, a coinductive type, in
 their Coq formalization of recursive and impure programs.
-{[}{[}@xiaInteractionTreesRepresenting2020{]}{]} Similarly, MLIR has an
+\cite{xiaInteractionTreesRepresenting2020} Similarly, MLIR has an
 ``fsm'' dialect \footnote{https://circt.llvm.org/docs/Dialects/FSM/}
 centred on finite state machines. Such automata are understood to be
 coinductive in nature, so mechanizing the semanantics of this dialect in
@@ -350,9 +314,9 @@ Lean will likely require coinduction.
 Consequently, we need a user-friendly way to define coinductive
 structures and to formalize coinductive proof methods in Lean. Key prior
 work in this area include my own master's thesis
-{[}{[}@keizerImplementingDefinitionalCo{]}{]}, which is based on earlier
+\cite{keizerImplementingDefinitionalCo}, which is based on earlier
 work by Avigad et al that models coinductive as quotients of polynomial
-functors (QPFs){[}{[}@avigadDataTypesQuotients2019{]}{]}.
+functors (QPFs)\cite{avigadDataTypesQuotients2019}.
 
 Crucially, this prior work builds coinductive types using constructions
 already supported by Lean today. This allows us to provide coinductive
@@ -363,16 +327,16 @@ mentioned previously.
 
 When looking at coinductive types in other theorem provers, we
 distinguish between languages like Isabelle
-{[}{[}@traytelCategoryTheoryBased{]}{]}, which follow the same
+\cite{traytelCategoryTheoryBased}, which follow the same
 coinduction-as-a-library approach, and languages like Coq
-{[}{[}@gimenezTutorialRecursiveTypes1998{]}{]}{[}{[}@gimenezApplicationCoinductiveTypes1996{]}{]}
+\cite{gimenezTutorialRecursiveTypes1998}\cite{gimenezApplicationCoinductiveTypes1996}
 or Agda which have modified their trusted kernels to support
 coinduction.
 
 Isabelle, in particular, is relevant because it's construction of
 coinductive types, in terms of \emph{bounded natural functors} is
 closely related to our construction in terms of QPFs.
-{[}{[}@furerQuotientsBoundedNatural2022{]}{]} There are still new
+\cite{furerQuotientsBoundedNatural2022} There are still new
 challenges, however, because Lean's dependent types mean we have to
 worry about the distinction between definitional equality (which is a
 decidable, but weaker notion of equality) and propositional equality
@@ -389,21 +353,21 @@ original implementation of coinduction, called \emph{positive}
 coinduction, is nowadays discouraged in favour of an alternative
 implementation, since positive coinduction breaks the subject reduction
 property \footnote{ The subject reduction property states that reducing
-  a program does not change its type}{[}{[}@sozeauCorrectCompleteType{]}{]}.
+  a program does not change its type}.~\cite{sozeauCorrectCompleteType}
 Our coinductives-as-a-library approach requires no new axioms nor
 changes to the kernel, and is thus guaranteed not to change any meta
 properties of Lean.
 
-\hypertarget{progress-report}{%
-\section{Progress Report}\label{progress-report}}
+
+\section{Progress Report}\label{progress-report}
 
 The bulk of my time has been spent on developing, in collaboration with
 other members of our research group, the LeanMLIR framework, culminating
 in our ITP 2024 paper \emph{``Verifying Peephole Rewriting In SSA
 Compiler IRs''}. As part of this development, we
 
-\hypertarget{lean-mlir}{%
-\subsection{Lean MLIR}\label{lean-mlir}}
+
+\subsection{Lean MLIR}\label{lean-mlir}
 
 LeanMLIR is a framework for giving semantics to MLIR dialects in Lean.
 On top of this framework, we've built a peephole rewriter, and proved
@@ -426,8 +390,8 @@ generalisation still has a lot of rough edges, and further work is
 needed before we can claim our framework is versatile enough to deal
 with side-effects cleanly.
 
-\hypertarget{bitvectors}{%
-\subsection{Bitvectors}\label{bitvectors}}
+
+\subsection{Bitvectors}\label{bitvectors}
 
 As mentioned, a big reason for us to use Lean is it's community. As
 such, I've been heavily involved in the redesign of Lean's API for
@@ -451,11 +415,11 @@ whose semantics use bitvectors, while also still having the full
 expressivity needed for dialects that use more complex mathematical
 objects. Thus, addressing the main drawback of using a theorem prover.
 
-\hypertarget{future-plans}{%
-\section{Future plans}\label{future-plans}}
 
-\hypertarget{bitvectors-1}{%
-\subsection{Bitvectors}\label{bitvectors-1}}
+\section{Future plans}\label{future-plans}
+
+
+\subsection{Bitvectors}\label{bitvectors-1}
 
 \begin{quote}
 June '24 - January '25
@@ -469,10 +433,10 @@ to investigate what exactly the cost is of the extra assurance that a
 verified implementation gives. This is particularly relevant, since,
 just like compilers, SMT solvers are highly complicated pieces of
 software in which bugs are known to exist
-{[}{[}@brummayerFuzzingDeltadebuggingSMT2009{]}{]}.
+\cite{brummayerFuzzingDeltadebuggingSMT2009}.
 
-\hypertarget{arbitrary-widths}{%
-\subsubsection{Arbitrary widths}\label{arbitrary-widths}}
+
+\subsubsection{Arbitrary widths}\label{arbitrary-widths}
 
 LeanSAT is, however, not a silver bullet. Just like SMT solvers, it can
 only reason about bitvector expressions where the width of the
@@ -487,8 +451,8 @@ more performant than SAT solving, and thus relevant even if the end-user
 isn't necessarily interested in proving their property for all possible
 widths.
 
-\hypertarget{amazon-internship}{%
-\subsubsection{Amazon Internship}\label{amazon-internship}}
+
+\subsubsection{Amazon Internship}\label{amazon-internship}
 
 \begin{quote}
 July '24 - November '24
@@ -501,15 +465,14 @@ in automatically reasoning about ARM assembly code, which closely aligns
 with our goal of automating bitvector reasoning to then use for
 verifying (low-level) MLIR dialects.
 
-\hypertarget{coinduction}{%
-\subsection{Coinduction}\label{coinduction}}
+\subsection{Coinduction}\label{coinduction}
 
 The next big theme to tackle will be to make the Lean library for
 coinductive types ready for serious use, which mainly involves
 high-level support for corecursive functions.
 
-\hypertarget{productivity-checking}{%
-\subsubsection{Productivity Checking}\label{productivity-checking}}
+
+\subsubsection{Productivity Checking}\label{productivity-checking}
 
 \begin{quote}
 June '24 - Aug '24 (Supervising Internship)
@@ -556,17 +519,17 @@ will be implementing support for corecursive functions using a
 will only allow only functions where each corecursive call occurs behind
 a constructor. This check is known to incomplete, and more complicated
 schemes have been studied
-({[}{[}@blanchetteFriendsBenefitsImplementing2017{]}{]}), but a
+(\cite{blanchetteFriendsBenefitsImplementing2017}), but a
 guardedness easier to implement and will most likely be sufficient for
 now --- the initial implementation of corecursion in Coq also allowed
-only guarded corecursion {[}{[}@gimenezTutorialRecursiveTypes1998{]}{]}.
+only guarded corecursion \cite{gimenezTutorialRecursiveTypes1998}.
 Of course, if there is still time left in the internship after this goal
 has been reached, we will attempt to implement more complicated schemes
 as well.
 
-\hypertarget{runtime-behaviour}{%
-\subsubsection{Runtime behaviour}\label{runtime-behaviour}}
 
+
+\subsubsection{Runtime behaviour}\label{runtime-behaviour}
 \begin{quote}
 Jan '25 - May '25
 \end{quote}
@@ -594,13 +557,14 @@ machines. I would thus like to explore the possibility of building the
 QPF constructions on a representation of non-wellfounded trees in terms
 of state machines (or, more generally, coalgebras).
 
-\hypertarget{leanmlir}{%
-\subsection{LeanMLIR}\label{leanmlir}}
+
+
+\subsection{LeanMLIR}\label{leanmlir}
 
 Finally, we return to the main objective: formalizing compiler IRs.
 
-\hypertarget{non-termination}{%
-\subsubsection{Non-termination}\label{non-termination}}
+
+\subsubsection{Non-termination}\label{non-termination}
 
 \begin{quote}
 Apr '25 - June '25
@@ -620,13 +584,14 @@ implementation for an interpreter.
 Therefore, I'd like to use my library for coinductive types to define a
 coinductive monad which supports computable infinite behaviours, drawing
 inspiration from the interaction tree library for coq.
-{[}{[}@xiaInteractionTreesRepresenting2020{]}{]} This addresses a
+\cite{xiaInteractionTreesRepresenting2020} This addresses a
 weakness in LeanMLIR while simultaneously giving a nice case study for
 the usability of the coinduction library.
 
-\hypertarget{graph-regions-parametric-coinduction}{%
+
+
 \subsubsection{Graph Regions \& Parametric
-Coinduction}\label{graph-regions-parametric-coinduction}}
+Coinduction}\label{graph-regions-parametric-coinduction}
 
 \begin{quote}
 June '25 - Sep '25
@@ -660,18 +625,17 @@ Graph regions are thus inherently stateful, and modelling them is a
 particularly good use-case for coinductive types and coinductive
 reasoning. To facilitate easy verification of coinductive properties in
 this setting, I would like to investigate supporting parametrized
-coinductive proofs {[}{[}@hurPowerParameterizationCoinductive{]}{]} in
+coinductive proofs~\cite{hurPowerParameterizationCoinductive} in
 the coinductive types framework.
 
-\hypertarget{stretch-goal-iris}{%
-\subsection{Stretch Goal: Iris}\label{stretch-goal-iris}}
+\subsection{Stretch Goal: Iris}\label{stretch-goal-iris}
 
 \begin{quote}
 {[}!TODO{]} Talk about how denotational semantics are cool, and how the
 aforementioned improvements will let us define dialects with
 side-effects, but reasoning about them will still be a bit painful. We'd
 really like to reason with program logics instead, in particular, iris:
-{[}{[}@jungIrisMonoidsInvariants2015{]}{]}{[}{[}@jungHigherorderGhostState2016{]}{]}
+\cite{jungIrisMonoidsInvariants2015}\cite{jungHigherorderGhostState2016}
 \end{quote}
 
 
@@ -695,312 +659,8 @@ really like to reason with program logics instead, in particular, iris:
 
 
 %% Bibliography
+\bibliographystyle{plain}
 \bibliography{references}
-
-
-%% Appendix
-% Move \cleardouble and \appendix out of `draftonly` if you are using the
-% appendix
-\begin{draftonly}
-\cleardoublepage
-
-\appendix
-\section{Formatting and Writing Guidelines}
-
-These formatting guidelines aim to standardize our writing. They ensure that
-papers with multiple authors have a consistent look and that commonly occurring
-items are formatted in ways that are known to work well.
-
-\subsection{Figures}
-\label{appendix:figures}
-
-\paragraph{Referencing Figures} When referencing figures from the text we
-ensure the following:
-\begin{description}
-      \item [All figures are referenced] A paper with un-referenced figures
-	      appears incomplete.
-      \item [References to figures are brief and easy to skip]~\\
-                We minimize the number of words needed to refer to a figure. Reducing
-                the number of non-information-carrying words directly increases
-		the density of interesting content. When skipping references
-		becomes easy, reading quickly while ignoring figures remains a
-		smooth experience. The best and briefest reference to a figure
-		is a link in parenthesis that is added after the subject
-		representing the content depicted in a figure:\\
-		{\color{pairedTwoDarkBlue}\textit{Figure
-		X shows the design of A, which consists of ...}}\\
-		$\to$ {\color{pairedFourDarkGreen}
-		\textit{The design of A (Figure X) consists of ...}}
-      \item [The text is always self-contained without figures] ~\\ The reader
-                should be able to read the text without ever looking at any
-                figure. They should still understand the text and get the key
-		message of each figure directly from the text. By not forcing
-		the reader to analyze a figure while reading, we increase
-		readability as the reader can continue reading without having
-		to skip between text and figures. Such writing style also helps
-		to guide the thoughts of the reader, who can (for a moment)
-		trust our summary of the figure and does not need to develop
-		their own interpretation on-the-fly, a task which often yields
-		results that do not fit the flow of our exposition. Readers
-		typically only feel that their reading is interrupted if there
-		is no explanation of a figure at all. Hence, we do not need to
-		discuss all details of a figure, but half a sentence that explains the
-		core idea is typically sufficient for a reader to continue
-		reading.  By making
-		our text self-contained even when ignoring figures the reader
-		experiences a smooth and uninterrupted reading experience.\\
-		{\color{pairedTwoDarkBlue}
-		\textit{The speedups are presented in Figure X. < a new topic> }}\\
-		$\to$ {\color{pairedFourDarkGreen}\textit{Our approach outperforms the state of the art
-		XXX-library (Figure 3) demonstrating more than 4x speedup on
-		test case 1 and 2 and a geometric mean speedup of 1.5x over all
-		20 test cases.}}
-\end{description}
-We reference figures in text using
-\texttt{\symbol{92}autoref\{fig:speedup\}} for a figure with label
-\texttt{fig:speedup}.  The use of autoref ensures that all references
-to figures are formatted consistently, e.g. as \autoref{fig:speedup}.
-
-\paragraph{Color Scheme} 
-
-In Figures we use a color scheme that is print-friendly and also visible
-with red-green blindness. The following colors are all print-friendly
-and red-green save when only using Color 1-4:
-
-\medskip
-{
-	\small
-\newcolumntype{a}{>{\columncolor{pairedOneLightBlue}}c}
-\newcolumntype{b}{>{\columncolor{pairedTwoDarkBlue}}c}
-\newcolumntype{d}{>{\columncolor{pairedThreeLightGreen}}c}
-\newcolumntype{e}{>{\columncolor{pairedFourDarkGreen}}c}
-\newcolumntype{f}{>{\columncolor{pairedFiveLightRed}}c}
-\newcolumntype{g}{>{\columncolor{pairedSixDarkRed}}c}
-
-\begin{tabular}{a b d e f g}
-Color 1 & Color 2 & Color 3 & Color 4 & Color 5 & Color 6\\
-\#a6cee3 & \#1f78b4 & \#b2df8a & \#33a02c & \#fb9a99 & \#e31a1c
-\end{tabular}
-}
-
-We de-emphasize components in figures by using additionally two shades of gray.
-Especially in complex figures, it is often helpful to de-emphasize visual
-elements that we want to represent but that should not be the focus of a
-reader's attention.
-
-\medskip
-{
-	\small
-\newcolumntype{h}{>{\columncolor{pairedNegOneLightGray}}c}
-\newcolumntype{i}{>{\columncolor{pairedNegTwoDarkGray}}c}
-
-\begin{tabular}{h i}
-Color -1 & Color -2\\
-\#cacaca & \#827b7b\\
-\end{tabular}
-}
-
-Single-color graphs are plotted in Color 1 - Light Blue.
-
-\paragraph{Labels in Figures}
-Complex diagrams often benefit from labels inside the diagrams. We suggest to
-use a filled circle (e.g, in light blue) to highlight these numbers and use
-these references, e.g., \circled{1} implemented as \texttt{\textbackslash{}circled\{1\}}, in the text to refer to them.
-
-\paragraph{Captions and Core Message}
-\label{appendix:captions}
-
-Each figure should have a caption that makes a clear statement about this
-figure, as such a statement makes it easier for the reader to (in)validate the
-figure as evidence for the claim we make. Traditionally, figures often have a
-caption indicating its content:\\ {\color{pairedTwoDarkBlue} \textit{$\cdot$
-Speedup of approach A vs approach B on system X}}\\ {\color{pairedTwoDarkBlue}
-\textit{$\cdot$ Architecture diagram of our solution}}\\ While these statements
-clearly state the content of a figure at the meta-level, they often lack
-information about the precise content and the claim a figure is meant to
-evidence. While knowing that a figure is an architecture diagram is useful for
-the reader when looking at the figure the reader automatically asks two
-questions: (a) what properties set this architecture apart and (b) does its
-implementation deliver the claimed properties? Or, in more general terms, what
-claims do we aim to evidence with this figure and does the figure provide the
-needed evidence to support our claims? In theory, this information could be
-contained in the text of the paper, but to optimize for readers who skim the
-figures first, we want to offer them as part of the caption. Nevertheless, it
-makes often sense to word the caption strategically to still document the
-meta-level content of a figure.\\ $\to$ {\color{pairedFourDarkGreen}
-\textit{$\cdot$ Approach A is consistently faster than approach B, except for
-inputs that are not used in practice}}\\ $\to$ {\color{pairedFourDarkGreen}
-\textit{$\cdot$ The architecture of our design increases reusability by making
-components A, B, \& C independent of the core.}} For example, after reading the
-last caption the reader can validate if the architecture design indeed enables
-the promised independence, and we can double-check while drafting the paper that
-our figure is visualized to facilitate checking if it works as evidence. ! This
-does not mean we should mislead with our figure but rather make things easy to
-check. If our figure or data would not support our claim, it should be similarly
-easy to invalidate our claim!
-
-\subsubsection{Plots} We use matplotlib to create performance
-plots such as \autoref{fig:speedup}. We use the following
-formatting guidelines:
-\begin{itemize}
-  \item Use a vertical y-label to make it easier to read.
-  \item Remove top and right frames to reduce visual noise
-	and allow the reader to focus on the data in the
-	figure.
-  \item Provide the concrete data at the top of each bar.
-\end{itemize}
-
-\noindent
-We also suggest to follow these technical remarks:
-\begin{itemize}
-  \item Create pdf plots and do not use bitmap formats (e.g., png) to
-	ensure high quality when zooming in.
-  \item Avoid Type-3 bitmap fonts by
-	setting fonttype to 42.
-\end{itemize}
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{plots/speedup}
-\caption{Improved running speed after 4 weeks of training.
-}
-\label{fig:speedup}
-\end{figure}
-
-\subsubsection{Tables} We optimize our tables for readability by removing as
-much clutter as possible, while highlighting the key structure. Markus Püschel
-(see doc/paper-writing/guide-tables.pdf) wrote a nice guide on how to make nice
-tables. \autoref{tab:simple_table} illustrates this with a simple
-table.
-
-\begin{table}
-\ra{1.2}
-\centering
-\begin{tabular}{l l l r}
-  \toprule
-  \textbf{Animal} & \textbf{Size} & \textbf{Biotope} & \textbf{Age}\\
-  \midrule
-  Dog & Medium & Ground & 20\\
-  Cat & Medium & Ground &20 \\
-  Ant & Small & Ground & 30 \\
-  Elephant & Large & Ground & 70\\
-  Whale & Large & Water & 100\\
-  Salmon & Medium & Water & 13 \\
-  Eagle & Large & Air & 35 \\
-  \bottomrule
-\end{tabular}
-\vspace{1em}
-\caption{A table with heigh lines and emphasized header.}
-\label{tab:simple_table}
-\end{table}
-
-\subsubsection{Listings} We aim to use minted to create listings as much as
-possible, as this allows us to edit code quickly. We use syntax highlighting
-to make the parts of the code that matter most stand out. Hence, we keep
-most code black, comments gray, and highlight just the MLIR operands that
-we care about most.
-
-\begin{listing}[H]
-% We cannot put '{' on a line after % in draftonly mode, as the hack we used to
-% not include the draft section will interpret the listing as normal
-% latex where '%' is a comment and {} need to match, which they will
-% not if only one is commented.
-\begin{mlir}
-// This is a comment
-def @foo(%0 : !dialect.type)
-{
-  %a = dialect.op(%0) : !dialect.type // $\color{black}\circled{a}$
-}
-\end{mlir}
-\caption{A simple MLIR code example with markers. Markers can also be placed in
-	captions and refer to labels, e.g. \circled[lst:example]{a}.}
-\label{lst:example}
-\end{listing}
-
-\begin{listing}[H]
-\begin{lean4}
-theorem funext {f₁ f₂ : ∀ (x : α), β x}
-  (h : ∀ x, f₁ x = f₂ x) : f₁ = f₂ := by
-  show extfunApp (Quotient.mk' f₁) = 
-       extfunApp (Quotient.mk' f₂)
-  apply congrArg
-  apply Quotient.sound
-  exact h
-\end{lean4}
-\caption{A simple Lean4 code example, taken from
-  \url{https://lean-lang.org/lean4/doc/syntax\_highlight\_in\_latex.html\#example-with-minted}.}
-\end{listing}
-
-The syntax highlighting also works for xDSL-like IRs. Notice that different
-minted styles can be used for different environments. The xDSL environment uses
-the murphy-style in this case, whereas the MLIR version applies the
-colorful-style.
-
-\begin{xdsl}
-func.func() [sym_name = "main", function_type = !fun<[
-              !iterators.columnar_batch<!tuple<[!i64]>>
-                 ], []>] {
-  ^bb0(%0 : !iterators.columnar_batch<!tuple<[!i64]>>):
-    %t : !iterators.stream<!llvm.struct<[!i64]>> =
-      iterators.scan_columnar_batch(%0 : ...)
-    %filtered : !iterators.stream<!llvm.struct<[!i64]>> =
-          iterators.filter(%input : …) [predicateRef = @s0]
-    iterators.sink(%filtered : !iterators.stream<!tuple<[!i64]>>)
-    func.return()
-}
-
-func.func() [sym_name = "s0", function_type = !fun<[
-    !llvm.struct<[!i64]>], [!i1]>] {
-  ^bb0(%struct : !llvm.struct<[!i64]>):
-    %id : !i64 = llvm.extractvalue(%struct : ...)
-              [position = [0 : !index]]
-    %five  : !i64 = arith.constant() [value = 5 : !i64]
-    %cmp : !i1 = arith.cmpi(%id : !i64, %five : !i64)
-              [predicate = 4 : !i64]
-    func.return(%cmp : !i1)
-}
-\end{xdsl}
-
-\section{Writing}
-
-A couple of hints with respect to how we write text.
-
-\subsection{Citations}
-\label{appendix:citations}
-
-\subsubsection{Do not use numerical citations as nouns}
-Especially when working with numerical citations (e.g., [1]) the use of
-citations as nouns reduces readability. Hence, we do not use numerical citations
-as nouns and instead expand these citations with \texttt{\textbackslash{}citet} to the
-authornames.
-\\
-{\color{pairedTwoDarkBlue}
-\textit{[1] showed that .. $\dots$}}\\
-$\to$ {\color{pairedFourDarkGreen}\textit{Author et al. [1] showed}}
-
-\subsubsection{Prefer meaningful text over citations as textual content}
-While acknowledging authors of work is important, maximizing the amount of technical
-content (outside of a historic perspective) typically makes text more direct and
-concrete. Hence, we avoid the discussion of who did what in text if the
-historic context does not add meaning or empty words can be replaced by an immediate
-citation. E.g, in the following the words `introduced in` are not carrying
-information and can be dropped.\\
-{\color{pairedTwoDarkBlue}
-\textit{we extend PreviousIdea introduced in [1] $\dots$ by}}\\
-$\to$ {\color{pairedFourDarkGreen}\textit{we extend PreviousIdea [1] by}}
-
-
-\subsubsection{Managing acronyms automatically}
-Managing acronyms manually can lead to situations where the specific term is not properly expanded upon first use or when it is introduced.
-The \texttt{acronym} package is useful to avoid such situations and provides full control over acronyms.
-For example, assume we have defined an acronym with \texttt{\textbackslash{}newacronym\{ir\}\{IR\}\{Intermediate Representation\}}:
-\begin{itemize}
-  \item Upon first use of \texttt{\textbackslash{}ac\{ir\}} we get: \ac{ir}.
-  \item On the second reference: \ac{ir}.
-  \item If we need to force expansion for a figure or a background section where the term is first described, we can use \texttt{\textbackslash{}acf\{ir\}} which gives: \acf{ir}.
-  \item We can obtain plural form using \texttt{\textbackslash{}acp\{ir\}} giving: \acp{ir}.
-\end{itemize}
-
-\end{draftonly}
 
 
 \end{document}
