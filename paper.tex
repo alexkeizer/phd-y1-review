@@ -39,6 +39,7 @@
 \usepackage{marginnote}
 \usepackage{etoolbox}
 \usepackage[acronym,shortcuts]{glossaries}
+\usepackage{hyperref}
 
 \input{tex/setup.tex}
 % \input{tex/acm.tex}
@@ -134,9 +135,9 @@
 
 % listings don't write "Listing" in autoref without this.
 \providecommand*{\listingautorefname}{Listing}
-\newcommand{\sectionautorefname}{Section}
-\newcommand{\subsectionautorefname}{Section}
-\newcommand{\subsubsectionautorefname}{Section}
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
 
 \begin{document}
 
@@ -612,11 +613,11 @@ Here, \texttt{y} is obtained as the bitwise and of the argument
 sense, but this style of definition is common in hardware
 representations, where this is interpreted as: ``the value of \texttt{y}
 in the \emph{current} clock cycle is computed by taking the bitwise and
-of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''
-\footnote{This example is simplified, in reality you'd have to specify a
+of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''.~\footnote{
+  This example is simplified, in reality you'd have to specify a
   register instruction to control when a value is stored across clock
-  cycles. See https://circt.llvm.org/ for more details}. To formally
-model this, we could denote variables as infinite streams of bitvectors,
+  cycles. See https://circt.llvm.org/ for more details}
+To formally model this, we could denote variables as infinite streams of bitvectors,
 which gives us the value at every possible future clock cycle. Another
 example of a dialect with graph regions is the FSM, or Finite State
 Machine, dialect.
