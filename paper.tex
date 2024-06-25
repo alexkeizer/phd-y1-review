@@ -41,6 +41,8 @@
 \usepackage[acronym,shortcuts]{glossaries}
 \usepackage{hyperref}
 
+% \usepackage[numbers]{natbib} % for \citeauthor
+
 \input{tex/setup.tex}
 % \input{tex/acm.tex}
 
@@ -139,6 +141,8 @@
 \renewcommand{\subsectionautorefname}{Section}
 \renewcommand{\subsubsectionautorefname}{Section}
 
+\newcommand*{\etal}{~\emph{et al.}}
+
 \begin{document}
 
 %% Title information
@@ -170,28 +174,26 @@ using coinductive reasoning.}
 \section{Introduction}
 
 Formal verification is crucial in ensuring the reliability and
-correctness of software systems. In the context of compiler design, this
-importance is magnified as compilers are responsible for translating
-high-level code into machine-executable instructions. Reasoning about
-compiler optimizations is notoriously difficult, and even minor bugs in
-widely used compilers can lead to subtle, hard-to-debug miscompilations
-with far-reaching consequences. This challenge makes the formal
-verification of compiler intermediate representations (IRs) an
-especially compelling topic, as it promises to enhance the dependability
-of the entire software development lifecycle.
+correctness of software systems. 
+Reasoning about compiler optimizations, in particular, is notoriously difficult, 
+and even minor bugs in widely-used compilers can lead to subtle, hard-to-debug miscompilations
+with far-reaching consequences. 
+This challenge makes the formal verification of compiler intermediate representations (IRs) a
+particularly compelling topic, 
+as it promises to enhance the dependability of the entire software development lifecycle.
 
 Now, formal verification has been done before. Most notable is the
-CompCert project: a fully verified end-to-end C compiler.~\cite{leroyCompCertFormallyVerified} Yet, the vast majority of
+CompCert project: a fully verified end-to-end C compiler~\cite{leroyCompCertFormallyVerified}. Yet, the vast majority of
 code today is still being compiled with non-verified compilers. We ask,
-thus, how do we formally verify not \emph{a} compiler, but, how do we
+thus, how do we formally verify not just \emph{a} compiler, but, how do we
 scale formal verification to \emph{mainstream} compilers.
 
 Take, for example, LLVM, a widely-used open-source compiler that is used
 to compile, e.g., C, C++, Fortran, Rust, and Swift. Verifying the entire
 LLVM codebase, comprising of a few million lines of C++ code, is
-infeasible. Instead, we follow the same approach as Lopez et al and
-focus on verifying that individual rewrites on a compiler IR preserve
-semantics.~\cite{lopesAlive2BoundedTranslation2021}
+infeasible. Instead, we follow the same approach as Lopes\etal{} by
+focussing on verifying that individual rewrites on a compiler IR preserve
+semantics~\cite{lopesAlive2BoundedTranslation2021}.
 
 Although LLVM is indeed used by the standard compilers for Rust and
 Swift, both also use other, language-specific, IRs to be able to do
@@ -223,7 +225,7 @@ dialects are statefull, and cycles are broken by looking at the value of
 a variable at a previous state. For example, graph regions are used by
 dialects that model hardware,
 where variables model wires and cycles represent physical cycles in the
-circuit.~\cite{eldridgeMLIRHardwareCompiler}
+circuit~\cite{eldridgeMLIRHardwareCompiler}.
 
 Since the exact semantics of graph regions may differ between dialects,
 we need some general framework to reason about stateful behaviours in
@@ -247,17 +249,17 @@ naturally leads us to the literature on coinductive types.
 
 CompCert is the
 seminal work when it comes to verified compilation: an end-to-end
-verified to not miscompile compiler for the C language.~\cite{leroyCompCertFormallyVerified}
+verified to not miscompile compiler for the C language~\cite{leroyCompCertFormallyVerified}.
 However, exactly
 because it's an end-to-end verified monolith, CompCert is not
 competitive compared to traditional non-verified compilers. Outside of
 certain high-risk domains, where traditionally optimizations would be
 turned off entirely,~\cite{kastnerCompCertPracticalExperience} the
 vast majority of C code is thus still compiled with non-verified
-compilers, which studies have shown to be prone to miscompilations.~\cite{yangFindingUnderstandingBugs2011}
+compilers, which studies have shown to be prone to miscompilations~\cite{yangFindingUnderstandingBugs2011}.
 
 Lopes et al.~propose \emph{translation validation} as a way to scale
-formal verification.~\cite{lopesAlive2BoundedTranslation2021}
+formal verification~\cite{lopesAlive2BoundedTranslation2021}.
 Their implementation, called Alive, has found wide adoption in the
 development of LLVM. Given a declarative description of an optimization
 as a source and target pattern in LLVM IR, the tool uses an SMT solver
@@ -277,11 +279,12 @@ to be easily extensible to cover new dialects.
 
 Our group has been developing
 LeanMLIR, a framework for giving
-semantics to MLIR-style compiler IRs in the Lean theorem prover.~\cite{demouraLeanTheoremProver2015} As a theorem prover, Lean is
+semantics to MLIR-style compiler IRs in the Lean theorem prover~\cite{demouraLeanTheoremProver2015}. 
+As a theorem prover, Lean is
 much more expressible than SMT solvers. Among theorem provers, Lean is
 particularly suited for this purpose because of it's community of
 mathematicians developing a comprehensive mathematical library,~\cite{themathlibcommunityLeanMathematicalLibrary2020} 
-and because of it's highly extensive syntax and meta-programming capabilities~\cite{ullrichNotationsHygienicMacro2022, paulinoMetaprogrammingLean}.
+and because of its highly extensive syntax and meta-programming capabilities~\cite{ullrichNotationsHygienicMacro2022, paulinoMetaprogrammingLean}.
 
 However, using a theorem prover means we don't get as much automation
 out of the box, and one area where Lean is still lacking is in its lack
@@ -290,7 +293,7 @@ of support for coinductive types.
 
 \subsection{Coinductive Types}\label{coinductive-types}
 
-Lean, like most theorem provers, is built with around a native concept
+Lean, like most theorem provers, is built around a native concept
 of inductive types. This is no surprise, given that most mathematical
 constructions are inductive in nature. Coinductive constructions, in
 contrast, are less common in general mathematics, but, they are crucial
@@ -298,14 +301,15 @@ in computer science.
 
 For us, the main difference of interest is that inductive datastructures
 are finite, while coinductive datastructures capture infinite
-behaviours.~\cite{sangiorgiIntroductionBisimulationCoinduction2011}
+behaviours~\cite{sangiorgiIntroductionBisimulationCoinduction2011}.
 In particular, since Lean requires us to prove that recursive functions are
 terminating, we need corecursion to correctly model things like infinite
 loops and other non-terminating behaviours that are common in compiler
 IRs.
 
 For example, Xia et al.~used interaction trees, a coinductive type, in
-their Coq formalization of recursive and impure programs.~\cite{xiaInteractionTreesRepresenting2020} Similarly, MLIR has an
+their Coq formalization of recursive and impure programs~\cite{xiaInteractionTreesRepresenting2020}.
+Similarly, MLIR has an
 ``fsm'' dialect~\footnote{https://circt.llvm.org/docs/Dialects/FSM/}
 centred on finite state machines. Such automata are understood to be
 coinductive in nature, so mechanizing the semanantics of this dialect in
@@ -313,10 +317,10 @@ Lean will likely require coinduction.
 
 Consequently, we need a user-friendly way to define coinductive
 structures and to formalize coinductive proof methods in Lean. Key prior
-work in this area include my own master's thesis (\cite{keizerImplementingDefinitionalCo}), 
+work in this area includes my own master's thesis (\cite{keizerImplementingDefinitionalCo}), 
 which is based on earlier
 work by Avigad et al that models coinductive as quotients of polynomial
-functors (QPFs).~\cite{avigadDataTypesQuotients2019}
+functors (QPFs)~\cite{avigadDataTypesQuotients2019}.
 
 Crucially, this prior work builds coinductive types using constructions
 already supported by Lean today. This allows us to provide coinductive
@@ -333,7 +337,7 @@ coinduction.
 
 Isabelle, in particular, is relevant because it's construction of
 coinductive types, in terms of \emph{bounded natural functors} is
-closely related to our construction in terms of QPFs.~\cite{furerQuotientsBoundedNatural2022} 
+closely related to our construction in terms of QPFs~\cite{furerQuotientsBoundedNatural2022}. 
 There are still new
 challenges, however, because Lean's dependent types mean we have to
 worry about the distinction between definitional equality (which is a
@@ -350,7 +354,7 @@ compromise the logical soundness of the entire system. In fact, the
 original implementation of coinduction, called \emph{positive}
 coinduction, is nowadays discouraged in favour of an alternative
 implementation, since positive coinduction breaks the subject reduction
-property\footnote{The subject reduction property states that reducing a program does not change its type}.~\cite{sozeauCorrectCompleteType}
+property\footnote{The subject reduction property states that reducing a program does not change its type}~\cite{sozeauCorrectCompleteType}.
 Our coinductives-as-a-library approach requires no new axioms nor
 changes to the kernel, and is thus guaranteed not to change any meta
 properties of Lean.
@@ -358,10 +362,10 @@ properties of Lean.
 
 \section{Progress Report}\label{progress-report}
 
-The bulk of my time has been spent on developing, in collaboration with
-other members of our research group, the LeanMLIR framework, culminating
-in our ITP 2024 paper \emph{``Verifying Peephole Rewriting In SSA
-Compiler IRs''}. As part of this development, we
+The bulk of my time has been spent developing the LeanMLIR framework, 
+in collaboration with other members of our research group, 
+culminating in our ITP 2024 paper \emph{``Verifying Peephole Rewriting In SSA
+Compiler IRs''}.
 
 
 \subsection{Lean MLIR}\label{lean-mlir}
@@ -625,15 +629,15 @@ this setting, I would like to investigate supporting parametrized
 coinductive proofs~\cite{hurPowerParameterizationCoinductive} in
 the coinductive types framework.
 
-\subsection{Stretch Goal: Iris}\label{stretch-goal-iris}
+% \subsection{Stretch Goal: Iris}\label{stretch-goal-iris}
 
-\begin{quote}
-{[}!TODO{]} Talk about how denotational semantics are cool, and how the
-aforementioned improvements will let us define dialects with
-side-effects, but reasoning about them will still be a bit painful. We'd
-really like to reason with program logics instead, in particular, iris:
-\cite{jungIrisMonoidsInvariants2015}\cite{jungHigherorderGhostState2016}
-\end{quote}
+% \begin{quote}
+% {[}!TODO{]} Talk about how denotational semantics are cool, and how the
+% aforementioned improvements will let us define dialects with
+% side-effects, but reasoning about them will still be a bit painful. We'd
+% really like to reason with program logics instead, in particular, iris:
+% \cite{jungIrisMonoidsInvariants2015}\cite{jungHigherorderGhostState2016}
+% \end{quote}
 
 
 % \input{y1review.tex}
