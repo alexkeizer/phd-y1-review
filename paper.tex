@@ -191,7 +191,7 @@ scale formal verification to \emph{mainstream} compilers.
 
 Take, for example, LLVM, a widely-used open-source compiler that is used
 to compile, e.g., C, C++, Fortran, Rust, and Swift. Verifying the entire
-LLVM codebase, comprising of a few million lines of C++ code, is
+LLVM codebase, consisting of a few million lines of C++ code, is
 infeasible. Instead, we follow the same approach as Lopes\etal{} by
 focussing on verifying that individual rewrites on a compiler IR preserve
 semantics~\cite{lopesAlive2BoundedTranslation2021}.
@@ -253,7 +253,7 @@ seminal work when it comes to verified compilation: an end-to-end
 verified to not miscompile compiler for the C language~\cite{leroyCompCertFormallyVerified}.
 However, exactly
 because it's an end-to-end verified monolith, CompCert is not
-competitive compared to traditional non-verified compilers. Outside of
+competitive compared to traditional non-verified compilers. Outside
 certain high-risk domains, where traditionally optimizations would be
 turned off entirely~\cite{kastnerCompCertPracticalExperience},
 the vast majority of C code is thus still compiled with non-verified
@@ -267,7 +267,7 @@ as a source and target pattern in LLVM IR, the tool uses an SMT solver
 to automatically determine whether the optimized pattern exhibits only
 behaviours of the original program.
 
-Alive is able to leverate SMT solvers because the semantics of LLVM IR
+Alive is able to leverage SMT solvers because the semantics of LLVM IR
 are given in terms of bitvectors, and SMT solvers understand the
 bitvector domain well. However, the semantics of more high-level
 compiler IRs, for which MLIR was created, can involve complex
@@ -283,7 +283,7 @@ LeanMLIR, a framework for giving
 semantics to MLIR-style compiler IRs in the Lean theorem prover~\cite{demouraLeanTheoremProver2015}. 
 As a theorem prover, Lean is
 much more expressible than SMT solvers. Among theorem provers, Lean is
-particularly suited for this purpose because of it's community of
+particularly suited for this purpose because of its community of
 mathematicians developing a comprehensive mathematical library~\cite{themathlibcommunityLeanMathematicalLibrary2020},
 and because of its highly extensive syntax and meta-programming capabilities~\cite{ullrichNotationsHygienicMacro2022, paulinoMetaprogrammingLean}.
 
@@ -313,14 +313,14 @@ their Coq formalization of recursive and impure programs~\cite{xiaInteractionTre
 Similarly, MLIR has an
 ``fsm'' dialect~\footnote{https://circt.llvm.org/docs/Dialects/FSM/}
 centred on finite state machines. Such automata are understood to be
-coinductive in nature, so mechanizing the semanantics of this dialect in
+coinductive in nature, so mechanizing the semantics of this dialect in
 Lean will likely require coinduction.
 
 Consequently, we need a user-friendly way to define coinductive
 structures and to formalize coinductive proof methods in Lean. Key prior
 work in this area includes my own master's thesis (\cite{keizerImplementingDefinitionalCo}), 
 which is based on earlier
-work by Avigad et al that models coinductive as quotients of polynomial
+work by Avigad\etal{} that models coinductive as quotients of polynomial
 functors (QPFs)~\cite{avigadDataTypesQuotients2019}.
 
 Crucially, this prior work builds coinductive types using constructions
@@ -349,14 +349,14 @@ equalities are decidable.
 
 In contrast, the coinduction-in-the-kernel approach allows us to modify
 the kernel to understand coinduction and ensure the kernel recognizes
-the desired definitonal equalities. However, modifying the trusted
+the desired definitional equalities. However, modifying the trusted
 kernel carries a large burden of proof, since the changes could
 compromise the logical soundness of the entire system. In fact, the
 original implementation of coinduction, called \emph{positive}
 coinduction, is nowadays discouraged in favour of an alternative
 implementation, since positive coinduction breaks the subject reduction
 property\footnote{The subject reduction property states that reducing a program does not change its type}~\cite{sozeauCorrectCompleteType}.
-Our coinductives-as-a-library approach requires no new axioms nor
+Our coinduction-as-a-library approach requires no new axioms nor
 changes to the kernel, and is thus guaranteed not to change any meta
 properties of Lean.
 
@@ -377,25 +377,25 @@ that if a rewrite locally preserves semantics, then applying this
 rewrite in the context of a larger program will preserve the semantics
 of the program as a whole.
 
-However, we've focused on dialects with pure (i.e., side-effect free)
+However, we've focused on dialects with pure (i.e., side effect free)
 semantics. Even though we \emph{are} able to verify a lot of interesting
 rewrites in high-level MLIR dialects, we do need to be able to reason
-about side-effect if we want to capture the low-level dialects as well,
+about side effect if we want to capture the low-level dialects as well,
 as a reviewer of the paper rightly pointed out.
 
-To this end, we've generalised the framework so that a dialect's
+To this end, we've generalized the framework so that a dialect's
 semantics may be given in a user-defined monad, and proven that applying
 a semantics-preserving pure rewrite (i.e., where the operations being
-rewritten are all side-effect free) inside of a side-effecting program
+rewritten are all side effect free) inside a side-effecting program
 preserves semantics of the program as a whole. However, this
-generalisation still has a lot of rough edges, and further work is
+generalization still has a lot of rough edges, and further work is
 needed before we can claim our framework is versatile enough to deal
-with side-effects cleanly.
+with side effects cleanly.
 
 
 \subsection{Bitvectors}\label{bitvectors}
 
-As mentioned, a big reason for us to use Lean is it's community. As
+As mentioned, a big reason for us to use Lean is its community. As
 such, I've been heavily involved in the redesign of Lean's API for
 bitvectors, and the move of bitvectors from Mathlib (the mathematical
 library previously mentioned) to become part of Lean's core library
@@ -411,10 +411,10 @@ Siddharth (another PhD student in our group) and I have been
 contributing to this project by formally proving necessary facts in the
 core library.
 
-This automation is crucial, because with it we can provide push-button
-automation for non-expert users on the same level as Alive, for dialects
-whose semantics use bitvectors, while also still having the full
-expressivity needed for dialects that use more complex mathematical
+This automation is crucial, 
+because it brings the user experience for non-experts to the same level as Alive, 
+for dialects whose semantics use bitvectors, 
+while still having the full expressivity needed for dialects that use more complex mathematical
 objects. Thus, addressing the main drawback of using a theorem prover.
 
 
@@ -442,7 +442,7 @@ which can decide equality of a certain (limited) class of
 arbitrary-width bitvector expressions.
 
 Furthermore, during my earlier work on LeanMLIR, we've already encountered a 
-few other strategies for solving other classes of arbitrary-widt bitvector problems.
+few other strategies for solving other classes of arbitrary-width bitvector problems.
 So, even though deciding these problems in general is undecidable, we can identify
 specific classes of problems that do have decision procedures.
 
@@ -459,7 +459,7 @@ July '24 - November '24
 \end{quote}
 
 Furthermore, I plan to continue this work on bitvector automation in
-Lean during my internship at Amazon \footnote{ Assuming I'll get
+Lean during my internship at Amazon\footnote{Assuming I'll get
   permission to work away, of course}. They are particularly interested
 in automatically reasoning about ARM assembly code, which closely aligns
 with our goal of automating bitvector reasoning to then use for
@@ -499,7 +499,7 @@ Hence, the first subgoal will be to support a high-level way to define
 corecursive functions, following the idiomatic way of defining inductive
 functions in terms of pattern matching, rather than recursion
 principles, which is then compiled into an application of this
-corecursion princple. This will involve some software engineering,
+corecursion principle. This will involve some software engineering,
 dealing with Lean's extensible syntax, plus a good amount of research,
 to know which functions are \emph{productive} in our formalization, and
 to automatically recognize (a well-defined sub-class of) these
@@ -510,7 +510,7 @@ contexts; a corecursive function is said to be productive if, at all
 times, it will produce the next element of our infinite corecursive
 structure in finite time. Ensuring all corecursive functions are
 productive is paramount to our logical system remaining consistent. In
-fact, because of our coinductives-as-a-library approach we are unable to
+fact, because of our coinduction-as-a-library approach we are unable to
 define corecursive functions without proving they are productive, and
 conversely, if we can get the system to accept a corecursive function,
 we know that allowing this function must be productive, and allowing it
@@ -519,13 +519,13 @@ is sound.
 I will be a co-supervising an undergraduate student over the summer who
 will be implementing support for corecursive functions using a
 \emph{guarded} productivity checker. That is, this first implementation
-will only allow only functions where each corecursive call occurs behind
+will only allow functions where each corecursive call occurs behind
 a constructor. This check is known to incomplete, and more complicated
 schemes have been studied
 (\cite{blanchetteFriendsBenefitsImplementing2017}), but a
 guardedness easier to implement and will most likely be sufficient for
 now --- the initial implementation of corecursion in Coq also allowed
-only guarded corecursion \cite{gimenezTutorialRecursiveTypes1998}.
+only guarded corecursion~\cite{gimenezTutorialRecursiveTypes1998}.
 Of course, if there is still time left in the internship after this goal
 has been reached, we will attempt to implement more complicated schemes
 as well.
@@ -541,7 +541,7 @@ December '24 - June '25
 A \emph{Graph Region} in MLIR is, just like a regular region, a sequence
 of instructions with their results bound to variables. However, unlike
 normal regions, in a graph region the \emph{use} of a variable may
-precede it's definition. For example
+precede its definition. For example
 
 \begin{verbatim}
 ^bb(%x : i32)
@@ -553,7 +553,7 @@ Here, \texttt{y} is obtained as the bitwise and of the argument
 sense, but this style of definition is common in hardware
 representations, where this is interpreted as: ``the value of \texttt{y}
 in the \emph{current} clock cycle is computed by taking the bitwise and
-of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''~\footnote{This example is simplified, in reality you'd have to specify a register instruction to control when a value is stored across clock cycles. See https://circt.llvm.org/ for more details}.
+of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''\footnote{This example is simplified, in reality you'd have to specify a register instruction to control when a value is stored across clock cycles. See https://circt.llvm.org/ for more details}.
 To formally model this, we could denote variables as infinite streams of bitvectors,
 which gives us the value at every possible future clock cycle. Another
 example of a dialect with graph regions is the FSM, or Finite State
@@ -566,7 +566,7 @@ this setting, I would like to investigate supporting parametrized
 coinductive proofs~\cite{hurPowerParameterizationCoinductive} in
 the coinductive types framework.
 
-Once we've got this this, I'd like to actually write a paper about the coinduction library, using this work on graph regions as a case study.
+Once we've got this, I'd like to actually write a paper about the coinduction library, using this work on graph regions as a case study.
 The goal would be to submit this to POPL 25.
 
 
@@ -614,7 +614,7 @@ type is basically a (finite) tree, while an element of a coinductive
 type is a non-wellfounded (i.e., possibly infinite) tree.
 
 Finite trees are easily encoded in Lean, but representing a finite tree
-is a bit more tricky. The current construction works by representing an
+is a bit more tricky. The current construction works by representing a
 non-wellfounded tree as a function from a natural number \(n\) to the
 approximation of the non-wellfounded tree up to a maximal depth of
 \(n\), together with a proof that each subsequent approximation agrees

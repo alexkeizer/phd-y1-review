@@ -1,0 +1,2 @@
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QOne such automation effort is the LeanSAT library, which aims to automate proofs about bitvectors of bounded widths, by implementing a verified bitblaster and SAT sovler in Lean.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QThe aim is to submit this to PLDI, which has its call for papers around November.\\E$"}
