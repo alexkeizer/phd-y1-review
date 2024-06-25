@@ -182,8 +182,9 @@ This challenge makes the formal verification of compiler intermediate representa
 particularly compelling topic, 
 as it promises to enhance the dependability of the entire software development lifecycle.
 
-Now, formal verification has been done before. Most notable is the
-CompCert project: a fully verified end-to-end C compiler~\cite{leroyCompCertFormallyVerified}. Yet, the vast majority of
+Now, formally verified compilation has been done before.
+Most notable is the CompCert project: a fully verified end-to-end C compiler~\cite{leroyCompCertFormallyVerified}.
+Yet, the vast majority of
 code today is still being compiled with non-verified compilers. We ask,
 thus, how do we formally verify not just \emph{a} compiler, but, how do we
 scale formal verification to \emph{mainstream} compilers.
@@ -212,17 +213,17 @@ higher-level nature of MLIR dialect, where referential transparency is
 encouraged.
 
 We need the full power of a theorem prover to be able to capture the
-full extensible nature of MLIR. Still, to recover the ease-of-use that
-SMT-solver-based tools provide, we've also been investing in building
-solid automation for bitvector proofs in collaboration with the Lean
-community.
+extensible and high-level nature of MLIR dialects.
+Still, to recover the ease-of-use that SMT-solver-based tools provide, 
+we've also been investing in building solid automation for bitvector proofs in collaboration with the Lean community.
 
 In the next two years, I'd like to look into a feature of MLIR called
 \emph{Graph Regions}. Specific dialects may use such regions to allow a
 variable to be used \emph{before} it is defined --- hence, turning the
 def-use chain into a general graph. Generally, the semantics of such
-dialects are statefull, and cycles are broken by looking at the value of
-a variable at a previous state. For example, graph regions are used by
+dialects are stateful, and cycles are broken by looking at the value of
+a variable at a previous state.
+For example, graph regions are used by
 dialects that model hardware,
 where variables model wires and cycles represent physical cycles in the
 circuit~\cite{eldridgeMLIRHardwareCompiler}.
@@ -423,35 +424,33 @@ objects. Thus, addressing the main drawback of using a theorem prover.
 \subsection{Bitvectors}\label{bitvectors-1}
 
 \begin{quote}
-June '24 - January '25
+June '24 - November '24
 \end{quote}
 
 As mentioned in the progress report, I'm currently contributing to a
-verified bitblasting procedure in Lean, called LeanSAT. Once this is
-implemented, I plan to write a paper contrasting this verified
-bitblaster and SAT solver with popular non-verified SMT solvers like Z3,
-to investigate what exactly the cost is of the extra assurance that a
-verified implementation gives. This is particularly relevant, since,
-just like compilers, SMT solvers are highly complicated pieces of
-software in which bugs are known to exist
-\cite{brummayerFuzzingDeltadebuggingSMT2009}.
+verified bitblasting procedure in Lean, called LeanSAT.
 
 
 \subsubsection{Arbitrary widths}\label{arbitrary-widths}
 
 LeanSAT is, however, not a silver bullet. Just like SMT solvers, it can
 only reason about bitvector expressions where the width of the
-bitvectors involved is bounded. One of the topics I'd like to explore
-more is the connection between bitvectors and 2-adic numbers (which are
+bitvectors involved is bounded --- and even then, only if the bound is not too large.
+One of the topics I'd like to explore more is the connection between bitvectors and 2-adic numbers (which are
 infinite and thus coinductive in nature!) to build a decision procedure
 which can decide equality of a certain (limited) class of
 arbitrary-width bitvector expressions.
 
-Beyond being more satisfying, this arbitrary-width procedure is likely
-more performant than SAT solving, and thus relevant even if the end-user
-isn't necessarily interested in proving their property for all possible
-widths.
+Furthermore, during my earlier work on LeanMLIR, we've already encountered a 
+few other strategies for solving other classes of arbitrary-widt bitvector problems.
+So, even though deciding these problems in general is undecidable, we can identify
+specific classes of problems that do have decision procedures.
 
+I'm planning to write a paper about this work tentatively titled: "\emph{Taming the Bitvector Bestiary: A Characterization of Whitebox Bitvector Proof Strategies}", 
+in which we explore all of these different strategies, 
+classify exactly which class of expressions they solve, 
+and investigate how many real-world problems are already covered by these strategies.
+The aim is to submit this to PLDI, which has its call for papers around November.
 
 \subsubsection{Amazon Internship}\label{amazon-internship}
 
@@ -465,6 +464,9 @@ Lean during my internship at Amazon \footnote{ Assuming I'll get
 in automatically reasoning about ARM assembly code, which closely aligns
 with our goal of automating bitvector reasoning to then use for
 verifying (low-level) MLIR dialects.
+
+This internship will thus provide me with exactly the corpus of real-world bitvector verification problems that I need to evaluate the strategies we'll discuss in the 
+aforementioned paper.
 
 \subsection{Coinduction}\label{coinduction}
 
@@ -529,11 +531,80 @@ has been reached, we will attempt to implement more complicated schemes
 as well.
 
 
+\subsubsection{Graph Regions \& Parametric
+Coinduction}\label{graph-regions-parametric-coinduction}
+
+\begin{quote}
+December '24 - June '25
+\end{quote}
+
+A \emph{Graph Region} in MLIR is, just like a regular region, a sequence
+of instructions with their results bound to variables. However, unlike
+normal regions, in a graph region the \emph{use} of a variable may
+precede it's definition. For example
+
+\begin{verbatim}
+^bb(%x : i32)
+  %y = comb.and %x %y : (i32, i32) -> (i32)
+\end{verbatim}
+
+Here, \texttt{y} is obtained as the bitwise and of the argument
+\texttt{x} and \texttt{y} itself. As a program, this doesn't make much
+sense, but this style of definition is common in hardware
+representations, where this is interpreted as: ``the value of \texttt{y}
+in the \emph{current} clock cycle is computed by taking the bitwise and
+of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''.~\footnote{This example is simplified, in reality you'd have to specify a register instruction to control when a value is stored across clock cycles. See https://circt.llvm.org/ for more details} To formally model this, we could denote variables as infinite streams of bitvectors,
+which gives us the value at every possible future clock cycle. Another
+example of a dialect with graph regions is the FSM, or Finite State
+Machine, dialect.
+
+Graph regions are thus inherently stateful, and modelling them is a
+particularly good use-case for coinductive types and coinductive
+reasoning. To facilitate easy verification of coinductive properties in
+this setting, I would like to investigate supporting parametrized
+coinductive proofs~\cite{hurPowerParameterizationCoinductive} in
+the coinductive types framework.
+
+Once we've got this this, I'd like to actually write a paper about the coinduction library, using this work on graph regions as a case study.
+The goal would be to submit this to POPL 25.
+
+
+\subsection{LeanMLIR}\label{leanmlir}
+
+Finally, I'd like to explore further uses of coinduction in the formalization of compiler IRs.
+
+\subsubsection{Non-termination}\label{non-termination}
+
+\begin{quote}
+June '25 - September  '25
+\end{quote}
+
+In the status report, we discussed how the framework was generalized to
+work in arbitrary monads. But, to actually define the semantics of an
+MLIR dialect which allows for infinite loops, we need a concrete monad
+that can support this behaviour.
+
+We could, of course, model non-termination using the \texttt{Option}
+monad, where divergence is simply modelled as \texttt{Option.none}. Such
+semantics are necessarily non-computable, losing the very nice property
+that the formalization of a dialect in LeanMLIR also gives a reference
+implementation for an interpreter.
+
+However, coinduction is actually a very good fit for this problem as well.
+Therefore, I'd like to use my library for coinductive types to define a
+coinductive monad which supports computable infinite behaviours, drawing
+inspiration from the interaction tree library for coq.~\cite{xiaInteractionTreesRepresenting2020}
+This addresses a
+weakness in LeanMLIR while simultaneously giving a nice case study for
+the usability of the coinduction library.
 
 \subsubsection{Runtime behaviour}\label{runtime-behaviour}
 \begin{quote}
-Jan '25 - May '25
+September '25 - May '25
 \end{quote}
+
+Once we start using this interaction tree datastructure in LeanMLIR, though, 
+we will likely run into performance problems if we try to actually execute our computable semantics.
 
 A cornerstone of the coinduction-as-a-library approach is that we're
 limited to whatever concepts our theorem prover already supports. The
@@ -560,77 +631,10 @@ of state machines (or, more generally, coalgebras).
 
 
 
-\subsection{LeanMLIR}\label{leanmlir}
 
-Finally, we return to the main objective: formalizing compiler IRs.
-
-
-\subsubsection{Non-termination}\label{non-termination}
-
-\begin{quote}
-Apr '25 - June '25
-\end{quote}
-
-In the status report, we discussed how the framework was generalized to
-work in arbitrary monads. But, to actually define the semantics of an
-MLIR dialect which allows for infinite loops, we need a concrete monad
-that can support this behaviour.
-
-We could, of course, model non-termination using the \texttt{Option}
-monad, where divergence is simply modelled as \texttt{Option.none}. Such
-semantics are necessarily non-computable, losing the very nice property
-that the formalization of a dialect in LeanMLIR also gives a reference
-implementation for an interpreter.
-
-Therefore, I'd like to use my library for coinductive types to define a
-coinductive monad which supports computable infinite behaviours, drawing
-inspiration from the interaction tree library for coq.
-\cite{xiaInteractionTreesRepresenting2020} This addresses a
-weakness in LeanMLIR while simultaneously giving a nice case study for
-the usability of the coinduction library.
-
-
-
-\subsubsection{Graph Regions \& Parametric
-Coinduction}\label{graph-regions-parametric-coinduction}
-
-\begin{quote}
-June '25 - Sep '25
-\end{quote}
-
-A \emph{Graph Region} in MLIR is, just like a regular region, a sequence
-of instructions with their results bound to variables. However, unlike
-normal regions, in a graph region the \emph{use} of a variable may
-precede it's definition. For example
-
-\begin{verbatim}
-^bb(%x : i32)
-  %y = comb.and %x %y : (i32, i32) -> (i32)
-\end{verbatim}
-
-Here, \texttt{y} is obtained as the bitwise and of the argument
-\texttt{x} and \texttt{y} itself. As a program, this doesn't make much
-sense, but this style of definition is common in hardware
-representations, where this is interpreted as: ``the value of \texttt{y}
-in the \emph{current} clock cycle is computed by taking the bitwise and
-of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''.~\footnote{
-  This example is simplified, in reality you'd have to specify a
-  register instruction to control when a value is stored across clock
-  cycles. See https://circt.llvm.org/ for more details}
-To formally model this, we could denote variables as infinite streams of bitvectors,
-which gives us the value at every possible future clock cycle. Another
-example of a dialect with graph regions is the FSM, or Finite State
-Machine, dialect.
-
-Graph regions are thus inherently stateful, and modelling them is a
-particularly good use-case for coinductive types and coinductive
-reasoning. To facilitate easy verification of coinductive properties in
-this setting, I would like to investigate supporting parametrized
-coinductive proofs~\cite{hurPowerParameterizationCoinductive} in
-the coinductive types framework.
 
 % \subsection{Stretch Goal: Iris}\label{stretch-goal-iris}
-
+% 
 % \begin{quote}
 % {[}!TODO{]} Talk about how denotational semantics are cool, and how the
 % aforementioned improvements will let us define dialects with
