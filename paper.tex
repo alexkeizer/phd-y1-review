@@ -259,7 +259,7 @@ turned off entirely,~\cite{kastnerCompCertPracticalExperience} the
 vast majority of C code is thus still compiled with non-verified
 compilers, which studies have shown to be prone to miscompilations~\cite{yangFindingUnderstandingBugs2011}.
 
-Lopes et al.~propose \emph{translation validation} as a way to scale
+Lopes\etal{} propose \emph{translation validation} as a way to scale
 formal verification~\cite{lopesAlive2BoundedTranslation2021}.
 Their implementation, called Alive, has found wide adoption in the
 development of LLVM. Given a declarative description of an optimization
@@ -308,7 +308,7 @@ terminating, we need corecursion to correctly model things like infinite
 loops and other non-terminating behaviours that are common in compiler
 IRs.
 
-For example, Xia et al.~used interaction trees, a coinductive type, in
+For example, Xia\etal{} used interaction trees, a coinductive type, in
 their Coq formalization of recursive and impure programs~\cite{xiaInteractionTreesRepresenting2020}.
 Similarly, MLIR has an
 ``fsm'' dialect~\footnote{https://circt.llvm.org/docs/Dialects/FSM/}
@@ -553,7 +553,8 @@ Here, \texttt{y} is obtained as the bitwise and of the argument
 sense, but this style of definition is common in hardware
 representations, where this is interpreted as: ``the value of \texttt{y}
 in the \emph{current} clock cycle is computed by taking the bitwise and
-of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''.~\footnote{This example is simplified, in reality you'd have to specify a register instruction to control when a value is stored across clock cycles. See https://circt.llvm.org/ for more details} To formally model this, we could denote variables as infinite streams of bitvectors,
+of the argument \texttt{x} and the \emph{previous} value of \texttt{y}''~\footnote{This example is simplified, in reality you'd have to specify a register instruction to control when a value is stored across clock cycles. See https://circt.llvm.org/ for more details}.
+To formally model this, we could denote variables as infinite streams of bitvectors,
 which gives us the value at every possible future clock cycle. Another
 example of a dialect with graph regions is the FSM, or Finite State
 Machine, dialect.
@@ -593,7 +594,7 @@ implementation for an interpreter.
 However, coinduction is actually a very good fit for this problem as well.
 Therefore, I'd like to use my library for coinductive types to define a
 coinductive monad which supports computable infinite behaviours, drawing
-inspiration from the interaction tree library for coq.~\cite{xiaInteractionTreesRepresenting2020}
+inspiration from the interaction tree library for Coq~\cite{xiaInteractionTreesRepresenting2020}.
 This addresses a
 weakness in LeanMLIR while simultaneously giving a nice case study for
 the usability of the coinduction library.
