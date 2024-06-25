@@ -255,8 +255,8 @@ However, exactly
 because it's an end-to-end verified monolith, CompCert is not
 competitive compared to traditional non-verified compilers. Outside of
 certain high-risk domains, where traditionally optimizations would be
-turned off entirely,~\cite{kastnerCompCertPracticalExperience} the
-vast majority of C code is thus still compiled with non-verified
+turned off entirely~\cite{kastnerCompCertPracticalExperience},
+the vast majority of C code is thus still compiled with non-verified
 compilers, which studies have shown to be prone to miscompilations~\cite{yangFindingUnderstandingBugs2011}.
 
 Lopes\etal{} propose \emph{translation validation} as a way to scale
@@ -284,7 +284,7 @@ semantics to MLIR-style compiler IRs in the Lean theorem prover~\cite{demouraLea
 As a theorem prover, Lean is
 much more expressible than SMT solvers. Among theorem provers, Lean is
 particularly suited for this purpose because of it's community of
-mathematicians developing a comprehensive mathematical library,~\cite{themathlibcommunityLeanMathematicalLibrary2020} 
+mathematicians developing a comprehensive mathematical library~\cite{themathlibcommunityLeanMathematicalLibrary2020},
 and because of its highly extensive syntax and meta-programming capabilities~\cite{ullrichNotationsHygienicMacro2022, paulinoMetaprogrammingLean}.
 
 However, using a theorem prover means we don't get as much automation
@@ -601,7 +601,7 @@ the usability of the coinduction library.
 
 \subsubsection{Runtime behaviour}\label{runtime-behaviour}
 \begin{quote}
-September '25 - May '25
+September '25 - Jan '26
 \end{quote}
 
 Once we start using this interaction tree datastructure in LeanMLIR, though, 
