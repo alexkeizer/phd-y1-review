@@ -446,11 +446,8 @@ few other strategies for solving other classes of arbitrary-width bitvector prob
 So, even though deciding these problems in general is undecidable, we can identify
 specific classes of problems that do have decision procedures.
 
-I'm planning to write a paper about this work tentatively titled: ``\emph{Taming the Bitvector Bestiary: A Characterization of Whitebox Bitvector Proof Strategies}'', 
-in which we explore all of these different strategies, 
-classify exactly which class of expressions they solve, 
-and investigate how many real-world problems are already covered by these strategies.
-The aim is to submit this to PLDI, which has its call for papers around November.
+This culminated in a paper titled: ``\emph{Taming the Bitvector Bestiary: A Characterization of Whitebox Bitvector Proof Strategies}'', 
+which we submitted to PLDI.
 
 \subsubsection{Amazon Internship}\label{amazon-internship}
 
@@ -458,15 +455,32 @@ The aim is to submit this to PLDI, which has its call for papers around November
 July '24 - November '24
 \end{quote}
 
-Furthermore, I plan to continue this work on bitvector automation in
-Lean during my internship at Amazon\footnote{Assuming I'll get
-  permission to work away, of course}. They are particularly interested
-in automatically reasoning about ARM assembly code, which closely aligns
-with our goal of automating bitvector reasoning to then use for
-verifying (low-level) MLIR dialects.
+At Amazon, I wrote a scalable symbolic simulator for straight-line, memory-free Arm machine code, in the context of LNSym, 
+a toolkit for the verification of cryptographic hash functions and block ciphers written in Arm assembly.
+Before my internship, a prototype symbolic simulator existed, but it was limited in features and did not scale well.
+My reimplemented version tracks more information of the simulated execution, 
+and is capable of simulating more than 400 instructions of the SHA512 litmus test we benchmarked against before hitting Lean's default time-out limits.
+This is about 10x more instructions than the prototype was able to simulate given the same time-out limits.
 
-This internship will thus provide me with exactly the corpus of real-world bitvector verification problems that I need to evaluate the strategies we'll discuss in the 
-aforementioned paper.
+The prototype relied heavily on Lean's builtin simplifier. 
+I replaced this with bespoke metacode, that was able to exploit the specific shape of the problem we were solving.
+Firstly, I wrote preprocessing that allowed us to treat the operational semantic model, where operations are given semantics as functions that write to state, 
+in an axiomatic-semantics way, by having theorems that characterizes operations in terms of reads from the resulting state.
+Secondly, I wrote a bespoke data-structure and used it selectively reflects parts of the proof goal.
+We explicitly decoupled this meta-code needed to scale symbolic simulation from the definition of the semantic model,
+so that the model remains extensible even by people who are not experts in formal verification, which was an explicit design goal.
+
+This project, like some of my other research, was also an experiment in the usability of Lean as a platform to verify software.
+In particular, we generated very large proofs, and exposed, amongst others, a fundamental scalability problem in Lean:
+The time Lean needs to assemble a proof after a tactic executes scales roughly by the length of the proof times the number of binders in the proof.
+In the larger benchmarks, LNSym would generate proofs involving tens of thousands of binders,
+resulting in the majority of time needed to check the proof was actually spent in this proof-assembling step.
+We reported this to the Lean core team, who are actively working on a solution.
+Furthermore, the semantic model of Arm machine code used relies heavily on bitvectors, thus, we also used the proof obligations resulting from the improved symbolic simulator to stress-test LeanSAT. I've reported these problems, and submitted patches for some, contributing to the greater vision of improving the usability of Lean.
+
+Besides the concrete contribution of the code I wrote, I also documented my experience,
+provifing an explanation of the various optimizations I tried, and which worked or didn't worked,
+resulting in a clear roadmap for the LNSym team to iterate on.
 
 \subsection{Coinduction}\label{coinduction}
 
