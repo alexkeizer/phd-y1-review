@@ -15,12 +15,7 @@ To ensure a minimal trusted code base we'll develop our proofs and proof automat
 
 For the optimisation pass, we choose to operate on LLVM IR --- the same compiler IR used by Clang, Swift and Rust. Although others have formalised the semantics of LLVM IR in a proof assistant before ([[@zhaoFormalVerificationSSABased]], [[@zakowskiModularCompositionalExecutable2021]]), those efforts included no proof automation. This will to our knowledge be the first effort to provide fully automated proofs for correctness of LLVM optimisations in a way that doesn't have to trust an external solver (as Alive does [[@lopesAlive2BoundedTranslation2021]]). Removing this dependency is important as SMT solvers are large, complex pieces of software with a history of bugs ([[@brummayerFuzzingDeltadebuggingSMT2009]], [[@mansurDetectingCriticalBugs2020]]). 
 
-The optimisation pass will be instantiated with a set of *peephole optimisations*, consisting of program patterns to match for and corresponding program patterns to rewrite to. Lean-MLIR ([[@bhatVerifyingPeepholeRewriting2024]]), a project in development at my research group which I've contributed to, currently has a prototype of such an optimiser. However, the current version is only able to apply *pure* optimisations. I wish to expand this to an optimiser that can apply optimisations involving side-effect such as memory loads/stores, immediate undefined behaviour, or even potentially non-terminating control flow, and, crucially, provide push-button proof automation for such side-effecting optimisations, using symbolic execution.
-
->[!TODO]
-> Maybe mention InstCombine in LLVM?
->If we do switch to MLIR dialects, here I could add the argument that MLIR dialect promote high-level structure, which makes more transforms possible as local peepholes.
-
+The optimisation pass will be instantiated with a set of *peephole optimisations*, consisting of program patterns to match for and corresponding program patterns to rewrite to. Lean-MLIR ([[@bhatVerifyingPeepholeRewriting2024]]), a project in development at my research group which I've contributed to, currently has a prototype of such an optimiser. However, the current version is only able to apply *pure* optimisations. I wish to expand this to an optimiser that can apply optimisations involving side-effect such as memory loads/stores, undefined behaviour, or potentially non-terminating control flow, and, crucially, provide push-button proof automation for such side-effecting optimisations, using symbolic execution.
 
 After optimisation, the next phase will be to generate assembly from our optimised IR and, crucially, to verify that the generated assembly has the same semantics as the optimised IR. For maximum trust, we'd like to use authoritative models of the ISA semantics of whichever platform we are compiling for to give semantics to the assembly program. Sail ([[@armstrongISASemanticsARMv8a2019]]) provides such models: the Sail model for Arm-A is automatically derived from the official ASL reference, and their RISC-V model has been adopted by the RISC-V Foundation. We'll phrase the code generator in a similar way: by having fragments of compiler IR to match for, and corresponding fragments of assembly to rewrite them with. Still, code generation presents some unique challenges. Firstly, although the transformations themselves should be simpler, the Sail semantic model will be much larger than our handwritten LLVM semantics. Secondly, we have to deal with semantics of different languages (the compiler IR and the assembly language). It is likely that proof automation for code generation will thus need a slightly different design than proof automation for peephole optimisations.
 
@@ -69,13 +64,13 @@ A crucial property of LLVM IR, is that it is in static single assignment (SSA) f
 Now, although LLVM is a bit higher level than assembly, it's still low-level and, e.g., features unstructured control flow. The LLVM community realised that having more structure available would enable even more optimisations to be done purely locally (i.e., as peephole rewrites). Thus, MLIR (Multi Level Intermediate Representation) was born: a framework to define compiler IRs at various levels of abstraction. MLIR mandates that IRs are in SSA form, and takes care of syntactic overhead. We can instantiate the dialect with a specific set of operations, called a dialect. Generally, a copmiler IR is made up of a combination of such dialects. For this chapter, we shall focus on an IR that contains bitvector arithmetic (`arith` dialect) memory manipulations (`memref` and `ptr` dialects) and structured control flow (i.e., for and while loops, `scf` dialect). This is still fairly low level, but the use of structured control flow puts us just above the level of abstraction of LLVM IR.
 
 >[!TODO]
->- [ ] Tobias mentioned the [`ptr`](https://mlir.llvm.org/docs/Dialects/PtrOps/) dialect also, but the documentation for that dialect is rather sparse, and in particular doesn't mention it's operations? Tobias mentioned the difference is that memref has tensors and such, whereas pointer deals with raw pointers. I can't really see this in the memref docs, though, I wonder if it's something like memref contains the basic operations, but not the types, so there is `memref+tensor` or `memref+ptr`, i.e., `ptr` doesn't have operations because it's not meant to be used by itself?
->- [ ] I wonder if there's a lowering from `memref`/`ptr` to LLVM IR that can clear this up
+>* The ptr dialect upstream is only an initial version, see the [RFC](https://discourse.llvm.org/t/rfc-ptr-dialect-modularizing-ptr-ops-in-the-llvm-dialect/75142) for more details. ptr is meant to be used standalone. The semantics of the proposed ptr ops should be 1:1 taken from existing LLVM ops.
+>- [ ] Should I mention here that we ignore floating point? Probably
 
 
 ### Lean-MLIR Today
 
-Lean-mlir is a framework for modelling the *semantics* of MLIR dialect in Lean, developed by my research group [[@bhatVerifyingPeepholeRewriting2024]], focusing on the *pure* (i.e., side-effect-free) fragment of MLIR dialect. 
+Lean-mlir is a framework for modelling the *semantics* of MLIR dialect in Lean, developed by my research group [[@bhatVerifyingPeepholeRewriting2024]], focusing on the *pure* (i.e., side-effect-free) fragment of MLIR dialects. 
 
 In particular, lean-mlir currently has a model of just the bitvector arithmetic operations of LLVM IR, and a verified peephole rewriter that can apply a pure peephole rewrite (i.e., neither the program fragment being matched on nor the fragment being rewritten to contain side-effecting operations) and, assuming the local correctness of every rewrite, we've shown the rewriter preserves the global semantics.
 
@@ -119,9 +114,55 @@ More broadly, CompCert ([[@leroyCompCertFormallyVerified]]) and CakeML ([[@kumar
 Katamaran [[@keuchelVerifiedSymbolicExecution2022]] is a symbolic simulation tool written in a different ITP. However, this project focusses on being able to run the simulator outside of the ITP environment, hence eschewing meta-programming. Our main purpose is modular proof automation, so being tied to Lean is no problem for us, allowing us to make different implementation choices.
 
 
+>[!TODO]
+>Should I add a section about justifying our chosen semantics? Currently we do cosimulation for the bv fragment of LLVM in the lean-mlir repo, but there were some concerns about how this will work with UB. Interestingly, VeLLVM has an executable semantics, so I could do cosimulation testing against that.
+>Of course, I'm operating on arith+ptr+scf MLIR dialects, rather than LLVM IR, but this is justified as these dialects are intended as simply chopping up parts of LLVM; their intended semantics should be 1:1 translations of specific fragments of LLVM.
+
+
+## Translation Validation for Code Generation
+
+After performing optimisations on the level of our compiler IR, we need to lower this representation to assembly. We'll do this in a very similar way, by phrasing instruction selection as rewrites that match for a compiler IR program fragment and rewrite it to an assembly program fragment. By following a similar approach, we can hopefully reuse some of the infrastructure we developed in the previous chapter.
+
+### The RISC-V Dialect
+
+Lopoukhine et al \[CITATION NEEDED] have developed a set of MLIR dialects that together model RISC-V assembly. Representing our target for code generation as an MLIR dialect allows us to use Lean-MLIR, enabling reuse of the core datastructures provided by the framework, but the benefits extend much further! Namely, depending on which of the dialects provided by Lopoukhine et al. we choose, we can model  assembly: (a) in its traditional form, operating on registers and including unstructured branching, (b) as an assembly-like SSA IR, effectively having a representation of RISC-V assembly before register allocation, or (c) as an IR for RISC-V assembly with structured control (i.e., explicit for and while loops).
+
+>[!TODO]
+>Reword the preceding sentence to make it clear that (b) and (c) are separate dimensions: we can have SSA+SCF, or Registers+SCF, or SSA+UCF (or indeed Register+UCF, which is option (a)).
+
+We'll use these progressively lower level IRs as targets for our code generator, explicitly separating the instruction selection pass, which we'll implement via a simple rewriter, from the register allocation pass. Finally, recall that we chose to stick to structured control flow in the optimisation pass to preserve structure. We'll do the same in the code generator, postponing the lowering from structured into unstructured control flow to the last moment.
+
+>[!TODO]
+>Come up with some cute conclusion sentence of the last paragraph, touting the benefits of using such a progressive lowering architecture
+
+### Semantics for RISC-V
+
+So far, we've eliminated any reliance on SMT solvers in pursuit of a smaller trusted code base. But recall that the semantics model of whichever language we choose to prove things about are also a crucial part of the trust story. In the end, if we run our compiler on actual hardware, then a proof of correctness is only good so long as the actual hardware behaves the same as our model of the instruction set architecture (ISA).
+
+One could attempt to formally verify the hardware as well, but that is well beyond the scope of my PhD. Instead, I'd like to use Sail models as an authoritative source of truth for ISA semantics [[@armstrongISASemanticsARMv8a2019]]. Sail is a domain specific language for modelling ISA semantics. Various models exists, but in particular, the Arm-v8 Sail model has been automatically derived from the Arm-internal specification [[@reidTrustworthySpecificationsARM]] and the RISC-V model has been adopted by RISC-V International [[@sammlerIslarisVerificationMachine2022]]. Using these models as the source of our semantics gives us trust that any discrepancy between our formalization and actual hardware likely is a bug in the hardware!
+
+The Sail project currently provides a translation from Sail to Coq, which has been used previously to formally reason about ISAs. Luckily, a translation from Sail to Lean is currently being developed, following a similar strategy to add a backend to sail that emits Lean code---as opposed to embedding a model of Sail in Lean.
+
+Of course, the Sail semantics will operate on traditional assembly, with registers allocated and unstructured branches. This should not be a problem, as lowering a single instruction at any of the progressive levels of abstraction down to regular assembly should not be difficult.
+
+>[!TODO]
+> Figure out if/how I want to mention Isla or Islaris here
 
 
 
+
+### Translation Validation
+
+Again, the core contribution will be proof automation. By treating instruction selection as a sequence of rewrites, we merely need to verify that each of these rewrites individually preserves semantics. 
+
+This seems like much the same problem that we tackled in the previous chapters, but there are some subtleties. For one, the rewrites themselves should be simpler, with many rewrites having only a single instruction as source and target. However, a Sail-derived semantics model will be much larger than the hand-written model we'll be using for the compiler IR, necessitating many more reasoning steps to simplify the semantics for a single instruction. Many of the details that make the Sail model so large might be irrelevant in our context, so I'll investigate ways to simplify the model under specific assumptions. For example, by assuming we're only compiling user-level programs, we might be able to simplify away any complexity to do with kernel-level instructions in the model.
+
+
+#### LNSym
+
+>[!TODO]
+>Talk about LNSym here.
+>"The core design of the symbolic simulator will be inspired by my experience with LNSym", also, mention that if Sail proves problematic, I can fallback to an LNSym-style hand-written semantics.
 
 
 
@@ -212,13 +253,6 @@ We'll limit ourselves to single-threaded executions, which should make dealing w
 
 
 
-
-
-
-> [!TODO]
-> - [ ] Make the transition from ch 1 to ch 2 smoother, or at least, make the connection between these chapters clearer,
-> - [ ] Explicate the "grand vision" that connects together ch. 1 and ch. 2 (ch. 3 is fine, there is a justification for why we need coinduction) in the introduction,
-> - [ ] Flesh out ch 3 more
 
 
 
