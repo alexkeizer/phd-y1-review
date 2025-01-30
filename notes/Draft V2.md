@@ -166,20 +166,20 @@ This seems like much the same problem that we tackled in the previous chapters, 
 
 
 
-### Coinduction
+## Coinduction
 
 In previous chapters, we've glossed over how, exactly, I'll give semantics to the side-effectful version of our compiler IR. Zakowski et al. have written about the the benefits of an interaction tree (ITree) based semantics [[@zakowskiModularCompositionalExecutable2021]], [[@xiaInteractionTreesRepresenting2020]], so I'd like to use ITrees also. Sadly, Lean does not have support coinductive types. I'd like to address this, and build an ergonomic Lean library for ITrees.
 
-#### Quotients of Polynomial Functors
+### Quotients of Polynomial Functors
 
 Luckily, we can encode coinductives in Lean's existing logic, using so-called *quotients of polynomial functors* (QPFs). Avigad et al. have written about the low-level construction [[@avigadDataTypesQuotients2019]], upon which I expanded in my Master's thesis by building a higher-level framework for defining coinductive types, called QPFTypes. This framework is far from perfect, and I'll spend some time fixing bugs in the framework. Still, the main goal will be simply to define interaction trees; not to perfectly polish the framework.
 
-#### Corecursive Functions
+### Corecursive Functions
 
 The QPFTypes framework currently only has facilities for defining types; to define corecursive functions that operate over ITrees we only have the low-level corecursion principle to work with. However, in their original development of ITrees, Xia et al in fact provide a set of three combinators which they claim make working with ITrees more tractable, and remove the need for users to work directly with Coq's implementation of corecursive function (which they claim is not compositional). As it turns out, these combinators are rather similar to the corecursion principle we have available, and the generic abstractions that William developed on top of the corecursion principle. So, for our ITree library in Lean, we don't have to worry about general corecursive functions; it suffices to implement the three basic combinators that Xia et al. provide.
 
 
-#### Coinduction in other ITPs
+### Coinduction in other ITPs
 
 The QPF construction encodes coinductive types as a *library*, instead of having to modify the logical system of Lean to support coinduction natively --- an approach that is greatly aided by Lean's excellent meta-programming capabilities. When looking at coinductive types in other theorem provers, we distinguish between languages like Isabelle [[@traytelCategoryTheoryBased]], which follow the same coinduction-as-a-library approach, and languages like Coq [[@gimenezTutorialRecursiveTypes1998]][[@gimenezApplicationCoinductiveTypes1996]] or Agda which have modified their trusted kernels to support coinduction.
 
@@ -188,13 +188,15 @@ Isabelle, in particular, is relevant because it's construction of coinductive ty
 In contrast, the coinduction-in-the-kernel approach would modify the kernel to understand coinduction and ensure the kernel recognizes the desired definitional equalities. However, modifying the trusted kernel carries a large burden of proof, since the changes could compromise the logical soundness of the entire system. In fact, the original implementation of coinduction, called *positive* coinduction, is nowadays discouraged in favour of an alternative implementation, since positive coinduction breaks the subject reduction property ^[ The subject reduction property states that reducing a program does not change its type ][[@sozeauCorrectCompleteType]]. The coinductives-as-a-library approach requires no new axioms nor changes to the kernel, and is thus guaranteed not to change any meta properties of Lean.
 
 
-### Timeplan / tasks
+## Timeplan / tasks
 
 * Fix bugs in QPFTypes (2 months)
 * Define `ITree` type + combinators (2 months)
 * Define `ptr` dialect with semantics in terms of `ITree`s, in terms of traces (2 month)
 * 
 * Expand `scf` dialect semantics to including potentially infinite while loops (1 month)
+
+
 
 
 >[!WARNING]
