@@ -183,11 +183,10 @@ often rely on SMT solvers to achieve their push-button automation,
 making them unsuited in our quest for a minimal trusted code base. I
 wish to investigate a middle road: can we verify the core transformation
 algorithm separately from specific transformation instances, and then
-develop proof automation for fully automatically showing local
-correctness of a transformation in a way that composes into a proof of
-global correctness?
+develop proof automation to show local
+correctness of a transformation, without needing input from a formal methods export?
 
-Specifically, I'll develop two core components of a verified compiler:
+I'll investigate two core components of a verified compiler:
 an optimization pass based on peephole optimizations and a code
 generator that lowers the compiler IR (Intermediate Representation)
 produced by the optimizer into assembly. Of course, a fully end-to-end
@@ -215,7 +214,7 @@ platform for verified compilation.
 For the optimization pass, we choose to operate on a compiler IR with the same semantics as LLVM.
 Although others have formalized the semantics of LLVM IR in a proof assistant before
 \cite{zhaoFormalVerificationSSABased, zakowskiModularCompositionalExecutable2021}, those efforts
-included no proof automation. This will to our knowledge be the first
+included no proof automation. This will, to my knowledge, be the first
 effort to provide fully automated proofs for correctness of LLVM
 optimizations in a way that doesn't have to trust an external solver (as
 Alive~\cite{lopesAlive2BoundedTranslation2021} and even AliveInLean~\cite{leeAliveInLeanVerifiedLLVM2019} do). Removing
@@ -238,12 +237,11 @@ software with a history of bugs~\cite{brummayerFuzzingDeltadebuggingSMT2009, man
 
 After optimization, the next phase will be to generate assembly from our
 optimized IR and, crucially, to verify that the generated assembly has
-the same semantics as the optimized IR. For maximum trust, we'd like to
+compatible semantics. For maximum trust, we'd like to
 use authoritative models of the ISA semantics of whichever platform we
-are compiling for to give semantics to the assembly program. Sail
-(\cite{armstrongISASemanticsARMv8a2019}) provides such models: the
+are compiling for to give semantics to the assembly program. Sail~\cite{armstrongISASemanticsARMv8a2019} provides such models: the
 Sail model for Arm-A is automatically derived from the official ASL
-reference, and their RISC-V model has been adopted by the RISC-V
+reference, and the RISC-V model has been adopted by the RISC-V
 Foundation. We'll phrase the code generator similarly: by having
 fragments of compiler IR to match for, and corresponding fragments of
 assembly to rewrite them with. Still, code generation presents some
@@ -263,7 +261,7 @@ Unfortunately, interaction trees are \emph{coinductive} in nature, to
 capture possibly non-terminating programs, and Lean currently lacks
 support for coinductive type. Therefore, I'd like to continue the work
 that I started in my own master's thesis~\cite{keizerImplementingDefinitionalCodatatype}, which is based on earlier
-work by Avigad et al.~\cite{avigadDataTypesQuotients2019}, and
+work by Avigad\etal{}~\cite{avigadDataTypesQuotients2019}, and
 continue development of a Lean library for coinductive types.
 
 \subsubsection*{Research Questions}
@@ -297,16 +295,16 @@ We'll evaluate our instruction selector by building such a complete set of lower
 Ideally, there should be no proof obligation that is specfic to a particular lowering,
 this should all be taken care of automatically.
 
-Finally, we ask \textsc{RQ3} because we need interaction trees to define the semantics
+Finally, I ask \textsc{RQ3} because we need interaction trees to define the semantics
 of potentially infinite loops. 
 We'll consider our interaction tree library successful if
-we can provide a similar basic API, and in particular, if we can define such semantics
-without referring to details of the underlying QPF construction directly.
+we can provide a similar basic API, and in particular, if we can define the 
+semantics we need without referring to details of the underlying QPF construction directly.
 
 \subsubsection*{Verified Compilation and Lean's Extensibility}
 
 Note that the benefits of a verified compilation pipeline go far beyond
-simply reducing the chance of bugs. We believe it will lead to a culture
+simply reducing the chance of bugs. It could lead to a culture
 shift in the way software is written. Traditionally, writing compiler
 optimizations was a domain reserved for the wise elders who we could
 trust to perform the appropriate ``black magic''. Reasoning about the
@@ -366,13 +364,13 @@ control flow (i.e., for and while loops, \texttt{scf} dialect).
 The arithmetic and pointer operations of these dialects have exactly the same semantics as in LLVM, 
 but using \emph{structured} control flow puts us just above the level of abstraction of LLVM IR.
 
-\subsection{Lean-MLIR Today}\label{lean-mlir-today}
+\subsection{Lean-MLIR Today}\label{Lean-MLIR-today}
 
-Lean-mlir is a framework for modelling the \emph{semantics} of MLIR
+Lean-MLIR is a framework for modelling the \emph{semantics} of MLIR
 dialects in Lean, developed by my research group~\cite{bhatVerifyingPeepholeRewriting2024}, focusing on the
 \emph{pure} (i.e., side-effect-free) fragment of MLIR dialects.
 
-In particular, lean-mlir currently has a model of just the bitvector
+In particular, Lean-MLIR currently has a model of just the bitvector
 arithmetic operations of LLVM IR, and a verified peephole rewriter that
 can apply a pure peephole rewrite (i.e., neither the program fragment
 being matched on nor the fragment being rewritten to contain
@@ -381,7 +379,7 @@ rewrite, we've shown the rewriter preserves the global semantics.
 
 Furthermore, the Lean FRO has, in collaboration with my research group
 and me, been developing proof automation for deciding the equality
-of fixed-width bitvector expressions\cite{bovingTamingBitvectorBestiary}. In
+of fixed-width bitvector expressions~\cite{bovingTamingBitvectorBestiary}. In
 particular, this proof automation allows us to fully automatically
 decide the local correctness of \emph{pure} optimizations. Note that
 although this tactic employs an external (certificate-producing) SAT
@@ -397,10 +395,10 @@ SMT solver.
 \subsection{Proof Automation for Side
 Effects}\label{proof-automation-for-side-effects}
 
-My contributions to lean-mlir are primarily focussed on expanding the framework to 
+My contributions to Lean-MLIR are primarily focussed on expanding the framework to 
 include support for impure operations with side effects. 
 I wish to continue this effort by modelling all operations of the
-dialects mentioned before, in particular the dialect dealing with memory.
+dialects mentioned before. In particular, the dialect dealing with memory.
 The bitvector arithmetic fragment of the previous section is basically the same as \texttt{arith}, and the
 framework also already models part of \texttt{scf} (in particular, it
 models counting for-loops, but not while-loops with arbitrary conditions
@@ -411,7 +409,9 @@ The main innovation in this project will be to build proof automation in
 Lean for translation validation on this compiler IR. That is, given a
 source and target program (potentially including holes), the tool will
 automatically decide the correctness of the transformation. To do this
-in the presence of side effects, I'll build a symbolic simulator.
+in the presence of side effects, I'll build a symbolic simulator in Lean, 
+which will rely on the previously mentioned bitvector solver to discharge pure
+bitvector proof obligations.
 
 \subsection{Refinement and Undefined
 Behaviour}\label{refinement-and-undefined-behaviour}
@@ -429,8 +429,8 @@ is called \emph{refinement}.
 We can broadly categorize earlier efforts to apply formal methods to
 LLVM into those that formalize the semantics of LLVM, but perform manual
 proofs (e.g., VeLLVM~\cite{zhaoFormalVerificationSSABased, zhaoFormalizingLLVMIntermediate2012} 
-or work by Zakowski et al.~\cite{zakowskiModularCompositionalExecutable2021}) and tools
-like Alive (\cite{lopesAlive2BoundedTranslation2021}) that perform
+or work by Zakowski\etal{}~\cite{zakowskiModularCompositionalExecutable2021}) and tools
+like Alive~\cite{lopesAlive2BoundedTranslation2021} that perform
 fully automated translation validation, but rely on SMT solvers.
 
 AliveInLean is a prototype reimplementation of Alive in Lean that shows how to increase trust without
@@ -452,9 +452,8 @@ environment, hence eschewing meta-programming. Our main purpose is
 modular proof automation, so being tied to Lean is no problem for us,
 allowing us to make different implementation choices.
 
-\section{Scaling High-Assurance Translation Validation to
-Authoritative ISA
-Models}\label{scaling-high-assurance-translation-validation-to-authoritative-isa-models}
+\section{Automatically Verified Instruction Selection using
+Authoritative ISA Models}\label{scaling-high-assurance-translation-validation-to-authoritative-isa-models}
 
 After performing optimizations on the level of our compiler IR, we need
 to lower this representation to assembly. We'll do this in a very
@@ -464,21 +463,21 @@ fragment. By following a similar approach, we can hopefully reuse some
 of the infrastructure we developed in the previous chapter.
 
 By building proof automation in Lean that can automatically verify the correctness of
-such lowering, I'll answer research question \textsc{RQ2}.
+such lowerings, I'll answer research question \textsc{RQ2}.
 
 \subsection{The RISC-V Dialect}\label{the-risc-v-dialect}
 
-Lopoukhine et al have developed a set of MLIR
+Lopoukhine\etal{}have developed a set of MLIR
 dialects that together model RISC-V assembly~\cite{lopoukhineMultiLevelCompilerBackend}. Representing our target
 for code generation as an MLIR dialect allows us to use Lean-MLIR,
 enabling reuse of the core datastructures provided by the framework, but
 the benefits extend much further! Namely, depending on which of the
-dialects provided by Lopoukhine et al.~we use, our representation of
-assembly can (a) be either register allocated, or as an assembly-like
+dialects provided by Lopoukhine\etal{}~we use, our representation of
+assembly can (a) be either register allocated, or an assembly-like
 SSA IR, and (b) use either structured (for/while loops) or unstructured
 control flow (branches).
 
-We'll use these progressively lower level IRs as targets for our code
+We'll use these progressively lower level RISC-V IRs as targets for our code
 generator, explicitly separating the instruction selection pass, which
 we'll implement via a simple rewriter, from a register allocation pass.
 Finally, recall that we chose to stick to structured control flow in the
@@ -517,11 +516,12 @@ opposed to embedding a model of Sail in Lean.
 Of course, the Sail semantics will operate on traditional assembly, with
 registers allocated and unstructured branches. This should not be a
 problem, as lowering a single instruction at any of the progressive
-levels of abstraction down to regular assembly should not be difficult.
+levels of abstraction provided by the RISC-V dialect down to regular 
+assembly should not be difficult.
 
 \subsection{Translation Validation}\label{translation-validation}
 
-Again, the core contribution will be proof automation. By treating
+The core contribution will be proof automation. By treating
 instruction selection as a sequence of rewrites, we merely need to
 verify that each of these rewrites individually preserves semantics.
 
@@ -534,8 +534,8 @@ the compiler IR, necessitating many more reasoning steps to simplify the
 semantics for a single instruction. Many of the details that make the
 Sail model so large might be irrelevant in our context, so I'll
 investigate ways to simplify the model under specific assumptions. For
-example, by assuming we're only compiling user-level programs, we might
-be able to simplify away any complexity to do with kernel-level
+example, we could assume we're only compiling user-level programs, which might
+allow us to simplify away any complexity to do with kernel-level
 instructions in the model.
 
 \subsection{LNSym}\label{lnsym}
@@ -546,7 +546,7 @@ of the ARM ISA semantics. My internship focused primarily on making this
 symbolic simulator scale to being able to simulate hundreds of
 instructions within a reasonable timeframe. I'll be using this symbolic
 simulator as a basis for the translation validation tool I aim to
-develop, adapting it to the slightly different design constraints in
+develop in this project, adapting it to the slightly different design constraints in
 this context. 
 
 \subsection{Related Work}\label{related-work}
@@ -559,10 +559,14 @@ However, Isla relies on an SMT solver to produce this trace.
 Islaris is a Coq development, which builds upon Isla and Iris separation logic to 
 prove properties about assembly programs using the power and expressivity of a 
 theorem prover~\cite{sammlerIslarisVerificationMachine2022}. Their strategy starts by using Isla to transform a program into a trace, and then proving properties about this trace.
-To remove the need to trust the SMT solver from, Sammler et al also investigated
+To remove the need to trust the SMT solver, Sammler\etal{} also investigated
 the use of automated translation validation, which certifies that the trace produced
 by Isla agrees with the lowering of the Sail semantics to Coq. This approach 
 worked well for RISC-V, but unfortunately did not scale to the much larger Arm model.
+
+Although I'll focus specifically on RISC-V, I'll still choose to reimplement 
+the symbolic simulator in Lean, rather than reusing Isla in the same way, 
+in the hopes that this approach might prove more scalable.
 
 
 \section{A Codatatypes Library for
@@ -573,16 +577,17 @@ semantics to the side-effectful version of our compiler IR. Zakowski et
 al.~have written about the benefits of an interaction tree (ITree)
 based semantics~\cite{zakowskiModularCompositionalExecutable2021, xiaInteractionTreesRepresenting2020}, so I'd like to use
 ITrees also. Sadly, ITrees are coinductive, to properly capture infinite loops, 
-and Lean does not support coinductive types. 
-I'd like to address this, and build an ergonomic Lean library for ITrees,
+and Lean does not support coinductive types.
+This is why I'll initially be building a semantics for a fragment of the IR with
+trivially terminating for-loops. 
+In the current chapter I'll address this shortcoming, by building a Lean library for ITrees and using it to define semantics for potentially infinite loops,
 answering research question \textsc{RQ3} in the process.
 
 \subsection{Quotients of Polynomial
 Functors}\label{quotients-of-polynomial-functors}
 
 Luckily, we can encode coinductives in Lean's existing logic, using
-so-called \emph{quotients of polynomial functors} (QPFs). Avigad et
-al.~have written about the low-level construction~\cite{avigadDataTypesQuotients2019}, 
+so-called \emph{quotients of polynomial functors} (QPFs). Avigad\etal{} have written about the low-level construction~\cite{avigadDataTypesQuotients2019}, 
 upon which I expanded in my Master's thesis by prototyping a higher-level framework for defining
 coinductive types, called QPFTypes. This framework is far from perfect,
 and I'll spend some time fixing bugs in the framework. Still, the main
@@ -594,15 +599,14 @@ the framework.
 The QPFTypes framework currently only has facilities for defining types;
 to define corecursive functions that operate over ITrees we only have
 the low-level corecursion principle to work with. However, in their
-original development of ITrees, Xia et al. in fact provide a set of three
+original development of ITrees, Xia\etal{} in fact provide a set of three
 combinators which they claim make working with ITrees more tractable,
 and remove the need for users to work directly with Coq's implementation
 of corecursive function (which they claim is not compositional). As it
 turns out, these combinators are rather similar to the corecursion
 principle we do have available. So, for our ITree library
 in Lean, we don't have to worry about general corecursive functions; it
-suffices to implement the three basic combinators that Xia et
-al.~provide.
+suffices to implement the three basic combinators that Xia\etal{} provide.
 
 \subsection{Related Work}\label{related-work-1}
 
@@ -616,7 +620,7 @@ coinduction-as-a-library approach, and languages like Coq~\cite{gimenezTutorialR
 or Agda which have modified their trusted kernels to support
 coinduction.
 
-Isabelle, in particular, is relevant because it's construction of
+Isabelle, in particular, is relevant because its construction of
 coinductive types, in terms of \emph{bounded natural functors} is
 closely related to our construction in terms of QPFs~\cite{furerQuotientsBoundedNatural2022}. There are still new
 challenges, however, because Lean's dependent types mean we have to
@@ -669,7 +673,11 @@ window is between October 2026 and September 2027, or between 21 and 33
 months from now. Picking the lower end of that timeframe gives exactly 7
 months per chapter, leaving the final year for writing up the thesis.
 
-Furthermore, I plan to translate each of the technical chapters described in this proposal into a paper, to be submitted at the designated venue.
+Furthermore, I plan to translate each of the technical chapters described in this proposal into a paper, to be submitted at the designated venue. 
+
+As mentioned, I'll work on the instruction selection project last.
+I'll list the 3 chapters in order that I'll work on them, which differs from the
+chapter order presented so far.
 
 \subsection*{High-Assurance Translation Validation for Compiler Optimizations}
 Targeted publication venue: PLDI
@@ -702,9 +710,8 @@ Targeted publication venue: ITP
   Paper writing (1 month)
 \end{itemize}
 
-\subsection*{Scaling High-Assurance Translation Validation to
-Authoritative ISA
-Models}\label{scaling-high-assurance-translation-validation-to-authoritative-isa-models-1}
+\subsection*{Automatically Verified Instruction Selection using
+Authoritative ISA Models}\label{scaling-high-assurance-translation-validation-to-authoritative-isa-models-1}
 
 Targeted publication venue: PLDI
 
