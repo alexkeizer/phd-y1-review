@@ -266,22 +266,44 @@ that I started in my own master's thesis~\cite{keizerImplementingDefinitionalCod
 work by Avigad et al.~\cite{avigadDataTypesQuotients2019}, and
 continue development of a Lean library for coinductive types.
 
-\subsubsection*{Contributions}
+\subsubsection*{Research Questions}
 
-My core contributions are as follows: 
-\begin{itemize}
-  \item A proof-producing
-  translation validation tool for compiler optimizations, which works on a
-  higher-level IR with relatively straightforward formalized semantics,
-  but is able to analyse complex transformations, including side effects.
+My research will aim to answer the following questions:
+\begin{enumerate}
+  \item[\textsc{RQ1}]\label{research-question-1}
+    How do we fully automatically verify optimizations involving memory side effects on a mid-level compiler IR, 
+    while retaining a minimal trusted code base?
 
-  \item  A proof-producing translation validation tool for code generation
-  using large-scale authoritative ISA models. Here the transformations are
-  relatively simple, but the complexity of the instruction semantics
-  presents unique challenges.
+  \item[\textsc{RQ2}]
+    How do we fully automatically verify lowerings from a mid-level compiler IR
+  to a low-level assembly language, using large-scale, authoritative ISA semantics models?
 
-  \item An ergonomic interaction tree library in Lean.
-\end{itemize}
+  \item[\textsc{RQ3}] 
+    How do we recover the modularity that interaction trees provide,
+      in a theorem prover that does not support coinduction?
+\end{enumerate}
+
+\subsubsection*{Criteria For Success}
+
+Question \textsc{RQ1} can be rephrased as: 
+how do we reproduce Alive2 in a way that does not trust an SMT solver. 
+Luckily, Alive2 has a pretty comprehensive test suite.
+I'll evaluate my tool against this same test suite; it should pass all tests,
+besides those that use unstructured control flow.
+
+For \textsc{RQ2}, the set of all desired rewrites is known up front: we simply 
+need a lowering for each instruction of the mid-level IR.
+We'll evaluate our instruction selector by building such a complete set of lowerings.
+Ideally, there should be no proof obligation that is specfic to a particular lowering,
+this should all be taken care of automatically.
+
+Finally, we ask \textsc{RQ3} because we need interaction trees to define the semantics
+of potentially infinite loops. 
+We'll consider our interaction tree library successful if
+we can provide a similar basic API, and in particular, if we can define such semantics
+without referring to details of the underlying QPF construction directly.
+
+\subsubsection*{Verified Compilation and Lean's Extensibility}
 
 Note that the benefits of a verified compilation pipeline go far beyond
 simply reducing the chance of bugs. We believe it will lead to a culture
@@ -301,7 +323,7 @@ Lean, again, presents a very interesting opportunity because of it's
 powerful meta-programming API. In fact, a lot of features that are
 considered part of Lean's core are actually implemented using the same
 meta-programming facilities that are available to libraries (we'll use
-this extensively in~\ref{a-codatatypes-library-for-lean}). However, we imagine a future where this
+this extensively in~\autoref{a-codatatypes-library-for-lean}). However, we imagine a future where this
 extensibility could extend to the backend of the compiler also, such
 that a library writer might implement an algorithm in a functional style
 that is easy to reason about, but also provide an optimized assembly
@@ -314,13 +336,14 @@ instead we get to have fearless bespoke optimizations!
 \section{High-Assurance Translation Validation for Compiler
 Optimizations}\label{high-assurance-translation-validation-for-compiler-optimizations}
 
+To answer research question \textsc{RQ1}, I'll build proof automation, in Lean,
+which will decide equivalence of program fragments in a compiler IR based on LLVM IR.
+
 LLVM IR is an intermediate representation that sits just above the level
 of abstraction of assembly, and has proven a successful platform to
 perform optimizations on before finally lowering to platform-specific
 assembly. LLVM has been used as a back-end for many mainstream
-compilers, such as Clang, Rust and Swift.
-
-A crucial property of LLVM IR, is that it is in static single assignment
+compilers, such as Clang, Rust and Swift. A crucial property of LLVM IR, is that it is in static single assignment
 (SSA) form: rather than operating on a fixed set of registers, LLVM IR
 has variables that are assigned exactly once. This form makes it easier
 to apply peephole rewrites, as we can simply match for a pattern along
@@ -440,10 +463,13 @@ for a compiler IR program fragment and rewrite it to an assembly program
 fragment. By following a similar approach, we can hopefully reuse some
 of the infrastructure we developed in the previous chapter.
 
+By building proof automation in Lean that can automatically verify the correctness of
+such lowering, I'll answer research question \textsc{RQ2}.
+
 \subsection{The RISC-V Dialect}\label{the-risc-v-dialect}
 
-Lopoukhine et al {[}CITATION NEEDED{]} have developed a set of MLIR
-dialects that together model RISC-V assembly. Representing our target
+Lopoukhine et al have developed a set of MLIR
+dialects that together model RISC-V assembly~\cite{lopoukhineMultiLevelCompilerBackend}. Representing our target
 for code generation as an MLIR dialect allows us to use Lean-MLIR,
 enabling reuse of the core datastructures provided by the framework, but
 the benefits extend much further! Namely, depending on which of the
@@ -456,7 +482,7 @@ We'll use these progressively lower level IRs as targets for our code
 generator, explicitly separating the instruction selection pass, which
 we'll implement via a simple rewriter, from a register allocation pass.
 Finally, recall that we chose to stick to structured control flow in the
-optimization pass to preserve structure. We'll do the same in the code
+optimization pass to preserve structure. We'll initially do the same in the code
 generator, postponing the lowering from structured into unstructured
 control flow to the last moment. 
 
@@ -521,15 +547,23 @@ symbolic simulator scale to being able to simulate hundreds of
 instructions within a reasonable timeframe. I'll be using this symbolic
 simulator as a basis for the translation validation tool I aim to
 develop, adapting it to the slightly different design constraints in
-this context.
+this context. 
 
 \subsection{Related Work}\label{related-work}
 
-\textbf{TODO}
-\begin{quote}
-{[}!TODO{]} Related work: Isla/Islaris? Probably introduce Sail
-properly?
-\end{quote}
+Isla is a symbolic simulator for Sail, which takes in a program in assembly 
+together with a Sail model for that assembly language, and outputs a trace of the
+execution in Isla Trace Language~\cite{armstrongIslaIntegratingFullScale2021}.
+However, Isla relies on an SMT solver to produce this trace.
+
+Islaris is a Coq development, which builds upon Isla and Iris separation logic to 
+prove properties about assembly programs using the power and expressivity of a 
+theorem prover~\cite{sammlerIslarisVerificationMachine2022}. Their strategy starts by using Isla to transform a program into a trace, and then proving properties about this trace.
+To remove the need to trust the SMT solver from, Sammler et al also investigated
+the use of automated translation validation, which certifies that the trace produced
+by Isla agrees with the lowering of the Sail semantics to Coq. This approach 
+worked well for RISC-V, but unfortunately did not scale to the much larger Arm model.
+
 
 \section{A Codatatypes Library for
 Lean}\label{a-codatatypes-library-for-lean}
@@ -540,7 +574,8 @@ al.~have written about the benefits of an interaction tree (ITree)
 based semantics~\cite{zakowskiModularCompositionalExecutable2021, xiaInteractionTreesRepresenting2020}, so I'd like to use
 ITrees also. Sadly, ITrees are coinductive, to properly capture infinite loops, 
 and Lean does not support coinductive types. 
-I'd like to address this, and build an ergonomic Lean library for ITrees.
+I'd like to address this, and build an ergonomic Lean library for ITrees,
+answering research question \textsc{RQ3} in the process.
 
 \subsection{Quotients of Polynomial
 Functors}\label{quotients-of-polynomial-functors}
@@ -604,6 +639,28 @@ positive coinduction breaks the subject reduction property
 coinductives-as-a-library approach requires no new axioms nor changes to
 the kernel, and is thus guaranteed not to change any meta properties of
 Lean.
+
+\section{Risks and Mitigations}
+
+A mayor risk is that my proposed plan relies on a translation from Sail to Lean 
+which is being worked on, but does not yet exist today. Luckily, this translation
+is following the footprints of the existing Sail to Coq translation, 
+and Lean and Coq are similar enough that there is no reason to expect mayor difficulties.
+Furthermore, the SailToLean project currently has a lot of interest.
+Still, to allow as much time as possible, I've pushed back work on the chapter that needs this
+translation to the end of my PhD. If the translation still does not work as needed by that time,
+I can always fall back to a handwritten ISA semantics, as we used in LNSym.
+
+Another risk is that Lean is a relatively less mature theorem prover.
+In particular, the style of program verification proofs that will be generated by the proof automation
+I propose might be rather different from the type of proofs that most users of Lean
+today generate; and thus we might encounter some performance problems inherent to Lean.
+In fact, we encountered, and reported, exactly such performance problems while working on LNSym, and this experience means I now know how to debug and mitigate similar
+problems.
+If my proposed automation does run into limitations of Lean itself,
+I'll reduce the scope of what I aim to prove automatically, and 
+evaluate and report exactly where the bottlenecks lie.
+
 
 \section{Time plan}\label{timeplan}
 
