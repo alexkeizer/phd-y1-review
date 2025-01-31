@@ -6,12 +6,7 @@ A fully end-to-end verified *mainstream* compiler with a small trusted code base
 
 Specifically, I'll develop two core components of a verified compiler: an optimisation pass based on peephole optimisations and a code generator that lowers the compiler IR (Intermediate Representation) produced by the optimiser into assembly. Of course, a fully end-to-end compiler would need many more components, such as a verified front-end that parses source code and transforms it into semantically equivalent compiler IR, however such components will be out-of-scope for my PhD.
 
-To ensure a minimal trusted code base we'll develop our proofs and proof automation in Lean. Besides a modern theorem prover, Lean is also aiming to be a general purpose functional programming language. It is certainly not the first theorem prover that allows its users to extract executable code from a formalization, but Lean goes several steps further: the Lean compiler is itself in large parts written in Lean. Furthermore, proof automation for Lean is also written in Lean itself. Combined, this makes it a compelling platform for verified compilation. On the one hand, Lean's rich logic enable us to finely model the semantics of programs. On the other, Lean itself aims to be a language that is suited for large-scale software, which necessitates a modern optimising compiler backend, but, Lean also has a feature that enables the use of *compiled* decision procedures in proofs. Using this feature makes the optimiser part of the trusted codebase for our proofs, and it is thus crucial for the logical soundness of our system that mis-compilations do not occur.
-
->[!TODO]
-> Add a sentence to the above to conclude, e.g., by saying that we imagine a future where Lean has a fully verified compiler backend written in Lean.
-> Also, do we want to move this paragraph lower down, as it might be more relevant to expand on the mayor goals first, before talking about our choice of ITP.
-
+To ensure a minimal trusted code base we'll develop our proofs and proof automation in Lean. Besides a modern theorem prover, Lean is also aiming to be a general purpose functional programming language. It is certainly not the first theorem prover that allows its users to extract executable code from a formalization, but Lean goes several steps further: the Lean compiler is itself in large parts written in Lean. Furthermore, proof automation for Lean is also written in Lean itself. On the one hand, Lean's rich logic enable us to finely model the semantics of programs. On the other, Lean itself aims to be a language that is suited for large-scale software, which necessitates a modern optimising compiler backend, but, Lean also has a feature that enables the use of *compiled* decision procedures in proofs. Using this feature makes the optimiser part of the trusted codebase for our proofs, and it is thus crucial for the logical soundness of our system that mis-compilations do not occur. Combined, this makes Lean a compelling platform for verified compilation.
 
 For the optimisation pass, we choose to operate on LLVM IR --- the same compiler IR used by Clang, Swift and Rust. Although others have formalised the semantics of LLVM IR in a proof assistant before ([[@zhaoFormalVerificationSSABased]], [[@zakowskiModularCompositionalExecutable2021]]), those efforts included no proof automation. This will to our knowledge be the first effort to provide fully automated proofs for correctness of LLVM optimisations in a way that doesn't have to trust an external solver (as Alive does [[@lopesAlive2BoundedTranslation2021]]). Removing this dependency is important as SMT solvers are large, complex pieces of software with a history of bugs ([[@brummayerFuzzingDeltadebuggingSMT2009]], [[@mansurDetectingCriticalBugs2020]]). 
 
@@ -19,15 +14,10 @@ The optimisation pass will be instantiated with a set of *peephole optimisations
 
 After optimisation, the next phase will be to generate assembly from our optimised IR and, crucially, to verify that the generated assembly has the same semantics as the optimised IR. For maximum trust, we'd like to use authoritative models of the ISA semantics of whichever platform we are compiling for to give semantics to the assembly program. Sail ([[@armstrongISASemanticsARMv8a2019]]) provides such models: the Sail model for Arm-A is automatically derived from the official ASL reference, and their RISC-V model has been adopted by the RISC-V Foundation. We'll phrase the code generator in a similar way: by having fragments of compiler IR to match for, and corresponding fragments of assembly to rewrite them with. Still, code generation presents some unique challenges. Firstly, although the transformations themselves should be simpler, the Sail semantic model will be much larger than our handwritten LLVM semantics. Secondly, we have to deal with semantics of different languages (the compiler IR and the assembly language). It is likely that proof automation for code generation will thus need a slightly different design than proof automation for peephole optimisations.
 
->[!TODO]
->How do actual compilers do code gen? Is it just peephole-like transformations, or do they do something more sophisticated
-
-
 Finally, to model the semantics of LLVM IR in a modular way, we'd like to follow Zakowski et al. ([[@zakowskiModularCompositionalExecutable2021]]) and use interaction trees ([[@xiaInteractionTreesRepresenting2020]]). Unfortunately, interaction trees are *coinductive* in nature, to capture possibly non-terminating programs, and Lean currently lacks support for coinductive type. Therefore, I'd like to continue the work that I started in own master's thesis [[@keizerImplementingDefinitionalCo]], which is based on earlier work by Avigad et al. ([[@avigadDataTypesQuotients2019]]), and develop a Lean library for coinductive types.
 
-
-My core contribution is as follows:
-* A proof-producing translation validation tool for compiler optimizations, which works on a higher-level IR with relatively straightforward formalized semantics, but is able to analyse complex transformations.
+**My core contributions are as follows**:
+* A proof-producing translation validation tool for compiler optimizations, which works on a higher-level IR with relatively straightforward formalized semantics, but is able to analyse complex transformations, including side effects.
 * A proof-producing translation validation tool for code generation using large-scale authoritative ISA models. Here the transformations are relatively simple, but the complexity of the instruction semantics presents unique challenges.
 * Finally, we develop technical infrastructure needed for both of these tools in the form of coinductive types support in Lean.
 
@@ -41,32 +31,13 @@ Lean, again, presents a very interesting opportunity because of it's *extensibil
 
 
 
-
-
->[!TODO]
->How much more do I need?
->Of course, there is the month-by-month workplan, but what else?
->Presumably, a more thorough overview of related work?
->Do I need more technical detail on a chapter by chapter basis.
-
-
-
-
-
-
-
-## Translation Validation for MLIR (a.k.a. the optimisation pass)
+## HIgh-Assurance Translation Validation for Compiler Optimizations
 
 LLVM IR is an intermediate representation that sits just above the level of abstraction of assembly, and has proven a successful platform to perform optimisations on before finally lowering to platform-specific assembly. LLVM has been used as a back-end for many mainstream compilers, such as Clang, Rust and Swift.
 
 A crucial property of LLVM IR, is that it is in static single assignment (SSA) form: rather than operating on a fixed set of registers, LLVM IR has variables that are assigned exactly once. This form makes it easier to apply peephole rewrites, as we can simply match for a pattern along what is called the def-use chain, even if there are unrelated instructions in between.
 
-Now, although LLVM is a bit higher level than assembly, it's still low-level and, e.g., features unstructured control flow. The LLVM community realised that having more structure available would enable even more optimisations to be done purely locally (i.e., as peephole rewrites). Thus, MLIR (Multi Level Intermediate Representation) was born: a framework to define compiler IRs at various levels of abstraction. MLIR mandates that IRs are in SSA form, and takes care of syntactic overhead. We can instantiate the dialect with a specific set of operations, called a dialect. Generally, a copmiler IR is made up of a combination of such dialects. For this chapter, we shall focus on an IR that contains bitvector arithmetic (`arith` dialect) memory manipulations (`memref` and `ptr` dialects) and structured control flow (i.e., for and while loops, `scf` dialect). This is still fairly low level, but the use of structured control flow puts us just above the level of abstraction of LLVM IR.
-
->[!TODO]
->* The ptr dialect upstream is only an initial version, see the [RFC](https://discourse.llvm.org/t/rfc-ptr-dialect-modularizing-ptr-ops-in-the-llvm-dialect/75142) for more details. ptr is meant to be used standalone. The semantics of the proposed ptr ops should be 1:1 taken from existing LLVM ops.
->- [ ] Should I mention here that we ignore floating point? Probably
-
+Now, although LLVM is a bit higher level than assembly, it's still low-level and, e.g., features unstructured control flow. The LLVM community realised that having more structure available would enable even more optimisations to be done purely locally (i.e., as peephole rewrites). Thus, MLIR (Multi Level Intermediate Representation) was born: a framework to define compiler IRs at various levels of abstraction. MLIR mandates that IRs are in SSA form, and takes care of syntactic overhead. We can instantiate the dialect with a specific set of operations, called a dialect. Generally, a copmiler IR is made up of a combination of such dialects. For this chapter, we shall focus on an IR that contains bitvector arithmetic (a fragment of the `arith` dialect) memory manipulations (`ptr` dialect) and structured control flow (i.e., for and while loops, `scf` dialect). This is still fairly low level, but the use of structured control flow puts us just above the level of abstraction of LLVM IR.
 
 ### Lean-MLIR Today
 
@@ -82,59 +53,26 @@ I wish to expand upon this first by modelling all operations of the dialect ment
 
 The main innovation in this project will be to build proof automation in Lean for translation validation on this compiler IR. That is, given a source and target program (potentially including holes), will automatically decide the correctness of the transformation. To do this in the presence of side-effects, I'll build a symbolic simulator.
 
-
->[!TODO]
->Do I mention my work on LNSym here?
-
-
-
->[!TODO]
->- [ ]  Read/skim through Alive. I should briefly contrast what I propose to do here with Alive's approach (which is not applicable because it uses SMT solvers).
->- [ ]  How much detail do I need to give about how I propose to build a symbolic simulator (e.g., whether it's proof-producing metacode vs a verified simulator a la katamaran)
-
-
-
 ### Refinement and Undefined Behaviour
 
 So far, we've talked about semantic equivalence as the condition for correctness of an optimisation, but in reality it's a bit more complicated because of the notion of undefined behaviour (UB). In short, if a program has UB, it's legal to change the program to anything. Conversely, if a source program is fully defined, then it's illegal to introduce UB in the target. The corresponding relation between programs is called *refinement*.
-
->[!TODO]
-> Does `arith` have the same UB/poison semantics as LLVM IR? Does it matter, or can we just formalize it as if it did?
-
->[!TODO]
->I wanted to talk about changing the verified peephole rewriter to work with refinement in this section, rather than straight equivalence, but maybe that's not relevant since we've not talked about changing it to work with side-effects either.
-
-
 ### Related Work
 
-We can broadly categorise earlier efforts to apply formal methods to LLVM into those that formalise the semantics of LLVM, but perform manual proofs (e.g., VeLLVM [[@zhaoFormalVerificationSSABased]], [[@zhaoFormalizingLLVMIntermediate2012]] or work by Zakowski et al. [[@zakowskiModularCompositionalExecutable2021]]) and tools like Alive ([[@lopesAlive2BoundedTranslation2021]]) that perform fully automated translation validation, but rely on SMT solvers. 
+We can broadly categorise earlier efforts to apply formal methods to LLVM into those that formalise the semantics of LLVM, but perform manual proofs (e.g., VeLLVM [[@zhaoFormalVerificationSSABased]], [[@zhaoFormalizingLLVMIntermediate2012]] or work by Zakowski et al. [[@zakowskiModularCompositionalExecutable2021]]) and tools like Alive ([[@lopesAlive2BoundedTranslation2021]]) that perform fully automated translation validation, but rely on SMT solvers. AliveInLean is a prototype that shows how to increase trust without sacrificing automation, but this project still trusts the SMT solver, and does not support reasoning about memory [[@leeAliveInLeanVerifiedLLVM2019]].
 
 More broadly, CompCert ([[@leroyCompCertFormallyVerified]]) and CakeML ([[@kumarCakeMLVerifiedImplementation2014]]) are examples of fully end-to-end verified compilers. More recent work by Mullen et al. [[@mullenVerifiedPeepholeOptimizations2016]] argues for peephole rewriting as a way to lower proof burden in CompCert development, but they still prove these rewrites manually.
 
 Katamaran [[@keuchelVerifiedSymbolicExecution2022]] is a symbolic simulation tool written in a different ITP. However, this project focusses on being able to run the simulator outside of the ITP environment, hence eschewing meta-programming. Our main purpose is modular proof automation, so being tied to Lean is no problem for us, allowing us to make different implementation choices.
 
-
->[!TODO]
->Should I add a section about justifying our chosen semantics? Currently we do cosimulation for the bv fragment of LLVM in the lean-mlir repo, but there were some concerns about how this will work with UB. Interestingly, VeLLVM has an executable semantics, so I could do cosimulation testing against that.
->Of course, I'm operating on arith+ptr+scf MLIR dialects, rather than LLVM IR, but this is justified as these dialects are intended as simply chopping up parts of LLVM; their intended semantics should be 1:1 translations of specific fragments of LLVM.
-
-
-## Translation Validation for Code Generation
+## Scaling High-Assurance Translation Validation to Authoritative ISA Models
 
 After performing optimisations on the level of our compiler IR, we need to lower this representation to assembly. We'll do this in a very similar way, by phrasing instruction selection as rewrites that match for a compiler IR program fragment and rewrite it to an assembly program fragment. By following a similar approach, we can hopefully reuse some of the infrastructure we developed in the previous chapter.
 
 ### The RISC-V Dialect
 
-Lopoukhine et al \[CITATION NEEDED] have developed a set of MLIR dialects that together model RISC-V assembly. Representing our target for code generation as an MLIR dialect allows us to use Lean-MLIR, enabling reuse of the core datastructures provided by the framework, but the benefits extend much further! Namely, depending on which of the dialects provided by Lopoukhine et al. we choose, we can model  assembly: (a) in its traditional form, operating on registers and including unstructured branching, (b) as an assembly-like SSA IR, effectively having a representation of RISC-V assembly before register allocation, or (c) as an IR for RISC-V assembly with structured control (i.e., explicit for and while loops).
+Lopoukhine et al \[CITATION NEEDED] have developed a set of MLIR dialects that together model RISC-V assembly. Representing our target for code generation as an MLIR dialect allows us to use Lean-MLIR, enabling reuse of the core datastructures provided by the framework, but the benefits extend much further! Namely, depending on which of the dialects provided by Lopoukhine et al. we use, our representation of assembly can (a) be either register allocated, or as an assembly-like SSA IR, and (b) use either structured (for/while loops) or unstructured control flow (branches).
 
->[!TODO]
->Reword the preceding sentence to make it clear that (b) and (c) are separate dimensions: we can have SSA+SCF, or Registers+SCF, or SSA+UCF (or indeed Register+UCF, which is option (a)).
-
-We'll use these progressively lower level IRs as targets for our code generator, explicitly separating the instruction selection pass, which we'll implement via a simple rewriter, from the register allocation pass. Finally, recall that we chose to stick to structured control flow in the optimisation pass to preserve structure. We'll do the same in the code generator, postponing the lowering from structured into unstructured control flow to the last moment.
-
->[!TODO]
->Come up with some cute conclusion sentence of the last paragraph, touting the benefits of using such a progressive lowering architecture
-
+We'll use these progressively lower level IRs as targets for our code generator, explicitly separating the instruction selection pass, which we'll implement via a simple rewriter, from a register allocation pass. Finally, recall that we chose to stick to structured control flow in the optimisation pass to preserve structure. We'll do the same in the code generator, postponing the lowering from structured into unstructured control flow to the last moment.
 ### Semantics for RISC-V
 
 So far, we've eliminated any reliance on SMT solvers in pursuit of a smaller trusted code base. But recall that the semantics model of whichever language we choose to prove things about are also a crucial part of the trust story. In the end, if we run our compiler on actual hardware, then a proof of correctness is only good so long as the actual hardware behaves the same as our model of the instruction set architecture (ISA).
@@ -145,12 +83,6 @@ The Sail project currently provides a translation from Sail to Coq, which has be
 
 Of course, the Sail semantics will operate on traditional assembly, with registers allocated and unstructured branches. This should not be a problem, as lowering a single instruction at any of the progressive levels of abstraction down to regular assembly should not be difficult.
 
->[!TODO]
-> Figure out if/how I want to mention Isla or Islaris here
-
-
-
-
 ### Translation Validation
 
 Again, the core contribution will be proof automation. By treating instruction selection as a sequence of rewrites, we merely need to verify that each of these rewrites individually preserves semantics. 
@@ -160,13 +92,15 @@ This seems like much the same problem that we tackled in the previous chapters, 
 
 #### LNSym
 
+During my internship at Amazon, I developed a symbolic simulator for a simplified fragment of Arm assembly programs, using a hand-written model of the ARM ISA semantics. My internship focused primarily on making this symbolic simulator scale to being able to simulate hundreds of instructions within a reasonable timeframe. I'll be using this symbolic simulator as a basis for the translation validation tool I aim to develop, adapting it to the slightly different design constraints in this context.
+
+
+### Related Work
+
 >[!TODO]
->Talk about LNSym here.
->"The core design of the symbolic simulator will be inspired by my experience with LNSym", also, mention that if Sail proves problematic, I can fallback to an LNSym-style hand-written semantics.
+>Related work: Isla/Islaris? Probably introduce Sail properly?
 
-
-
-## Coinduction
+## A Codatatypes Library for Lean
 
 In previous chapters, we've glossed over how, exactly, I'll give semantics to the side-effectful version of our compiler IR. Zakowski et al. have written about the the benefits of an interaction tree (ITree) based semantics [[@zakowskiModularCompositionalExecutable2021]], [[@xiaInteractionTreesRepresenting2020]], so I'd like to use ITrees also. Sadly, Lean does not have support coinductive types. I'd like to address this, and build an ergonomic Lean library for ITrees.
 
@@ -179,7 +113,7 @@ Luckily, we can encode coinductives in Lean's existing logic, using so-called *q
 The QPFTypes framework currently only has facilities for defining types; to define corecursive functions that operate over ITrees we only have the low-level corecursion principle to work with. However, in their original development of ITrees, Xia et al in fact provide a set of three combinators which they claim make working with ITrees more tractable, and remove the need for users to work directly with Coq's implementation of corecursive function (which they claim is not compositional). As it turns out, these combinators are rather similar to the corecursion principle we have available, and the generic abstractions that William developed on top of the corecursion principle. So, for our ITree library in Lean, we don't have to worry about general corecursive functions; it suffices to implement the three basic combinators that Xia et al. provide.
 
 
-### Coinduction in other ITPs
+### Related Work
 
 The QPF construction encodes coinductive types as a *library*, instead of having to modify the logical system of Lean to support coinduction natively --- an approach that is greatly aided by Lean's excellent meta-programming capabilities. When looking at coinductive types in other theorem provers, we distinguish between languages like Isabelle [[@traytelCategoryTheoryBased]], which follow the same coinduction-as-a-library approach, and languages like Coq [[@gimenezTutorialRecursiveTypes1998]][[@gimenezApplicationCoinductiveTypes1996]] or Agda which have modified their trusted kernels to support coinduction.
 
@@ -188,105 +122,29 @@ Isabelle, in particular, is relevant because it's construction of coinductive ty
 In contrast, the coinduction-in-the-kernel approach would modify the kernel to understand coinduction and ensure the kernel recognizes the desired definitional equalities. However, modifying the trusted kernel carries a large burden of proof, since the changes could compromise the logical soundness of the entire system. In fact, the original implementation of coinduction, called *positive* coinduction, is nowadays discouraged in favour of an alternative implementation, since positive coinduction breaks the subject reduction property ^[ The subject reduction property states that reducing a program does not change its type ][[@sozeauCorrectCompleteType]]. The coinductives-as-a-library approach requires no new axioms nor changes to the kernel, and is thus guaranteed not to change any meta properties of Lean.
 
 
-## Timeplan / tasks
+## Timeplan
 
-* Fix bugs in QPFTypes (2 months)
-* Define `ITree` type + combinators (2 months)
-* Define `ptr` dialect with semantics in terms of `ITree`s, in terms of traces (2 month)
-* 
-* Expand `scf` dialect semantics to including potentially infinite while loops (1 month)
+My PhD clock started in Michealmas term 2023, meaning my submission window is between October 2026 and September 2027, or between 21 to 33 months from now.  Picking the lower end of that timeframe gives exactly 7 months per chapter, leaving the final year for writing up the thesis.
+### High-Assurance Translation Validation for Compiler Optimizations
+Targeted publication venue: PLDI
 
+* Translation Validation for arithmetic & bounded, structured control flow (2 months)
+* Translation Validation for memory side-effects (2 months)
+* Stress-test and improve scalability of proof automation (2 months)
+* Paper writing (1 month)
 
+### A Codatatypes Library for Lean
+Targeted publication venue: ITP
 
+- Bugfix framework to accept ITree definition (2 months)
+- Define basic ITree API, including combinators (2 months)
+- Evaluate ITrees by expanding compiler IR semantics to infinite loops (2 months)
+- Paper writing (1 month)
 
->[!WARNING]
->Old notes ahead
+### Scaling High-Assurance Translation Validation to Authoritative ISA Models
+Targeted publication venue: PLDI
 
-
-
-
-
-
-
-
-## Translation Validation for LLVM
-* (Properly introduce LLVM IR, motivate why it's cool)
-* LLVM IR has been formalized in a theorem prover before, in Vellvm, but that project crucially only gave a semantics and verified concrete transformation passes; they did no proof automation at all!
-
->[!NOTE]
->Matthieu made an interesting point, that a combination of higher-level MLIR dialect like memref+scf+arith might make for a more compelling target, since it would eliminate the need to reason about jumps/branches. I'll have to implement this for Arm later on anyway, but maybe picking a structured target in this chapter here might make for a more interesting/diverse story.
-
-
-### SSA
-* (Briefly introduce SSA-form)
-* (Introduce MLIR)
-* (Explain basic setup of LeanMLIRs datastructures)
-* (Introduce **poison**, as a value-level/SSA-obeying construct for *deferred* UB)
-
-### Side-effects: memory read/writes and branches
->[!TODO] Task
->Define the right monads we can use to talk about LLVM IR's side-effects:
->* Memory
->* Immediate UB
->* Control flow: jumps & branches
-
-* LeanMLIR models side-effect as monadic effects)
-* We will only model a sequential memory model: reads/writes modify a `StateM Memory` monadic state 
-* Similarly, we can model unstructured control flow as side-effect (see [[Terminators and the Goto Monad]]).
-* Also: immediate UB is a side-effect!
-
-### Proof Automation: The Pure Case
-* (Talk about the tactics we have to eliminate framework syntactics overhead into pure expressions)
-* (Talk about `bv_decide` & friends to decide said pure expressions)
-
-### Symbolic Simulation
->[!TODO] Task
->Implement [[Symbolic simulation for LLVM IR]]:
->- [ ] First, expand our model of LLVM IR to include immediate UB as a monadic effect
->	- [ ] Write a tactic that can derive an expression which describes exactly when a program has UB
->		* This will allow us to hoist out the UB-checks from all individual operations to the top-level and rewrite the program semantics to  `if /- program has UB -/ then throw_UB_effect else /- pure bitvector semantics, with UB checks simplified out -/`
-* To automate reasoning about side-effecting programs, we employ symbolic simulation
-* The goal is to be competitive with Alive in performance, but we'll need to actually justify all of the performance optimizations we do.
-* Alive uses some very clever, but non-obvious tricks to squeeze more performance out of the SMT solver. Our translation validation will thus not only eliminate the need to trust in the SMT solvers implementation, it will also increase the confidence that the tricks Alive uses are justified.
-* Furthermore, it allows us to go beyond what pure automation can do by gracefully introducing manual input. For example, Alive only handles loops that can be proven to terminate after a limited number of unrollings. Meanwhile, we could enhance our symbolic simulator to translate an infinite loop into a *coinductive* trace (see ch. 3 for more details).
-* (Talk about LNSym as a codebase that this effort will be based on)
-
-
-## Symbolic Simulation for Arm
-> Mention LNSym, talk about Isla/Islaris
-
-The [[Islaris]] project aims to enable foundational reasoning about low-level programs in Coq by utilizing authoritative ISA models from the [[Sail]] ecosystem. A critical component of the workflow is Isla, an SMT solver-based symbolic simulator that takes in a program and an ISA semantics, and produces a trace that models the behaviour of the original program. 
-
-Given that SMT solvers are large, complex programs prone to bugs [[@brummayerFuzzingDeltadebuggingSMT2009]] [[@mansurDetectingCriticalBugs2020]], Islaris includes proof automation to perform translation validation, which attempts to prove that the trace produced by Isla is correct. Unfortunately, this translation validation was found infeasible for Armv8-A, as "the size of the model means it cannot be manipulated efficiently in Coq" [[@sammlerIslarisVerificationMachine2022]].
-
-To enable high-confidence end-to-end proofs even for Armv8-A, I thus want to investigate writing a proof-producing symbolic simulator for Sail.
-
-### Rough Plan
-
-The desired goal is to be able to symbolically simulate Arm programs, using the authoritative semantics, without having to trust an SMT solver. 
-
-However, this is a rather large goal, so we'll focus on a simpler fragment of programs (e.g., user-mode only, or programs that use only a limited set of instructions). Then, we evaluate by comparing performance of IsLean with Isla on a set of benchmark programs in the fragment. From this point, I can iterate by expanding the fragment of supported stuff and optimizing, each time comparing performance against Isla. 
-
-
-### Risks
-
-This project heavily depends on the translation from Sail to Lean, which is still very much in development. There's enough interest from enough parties that it is highly likely this effort will succeed, but the exact timeline of when it is possible to translate the full Armv8-A model into Lean is not clear to me at the moment.
-
-### Non Goals
-
-We'll limit ourselves to single-threaded executions, which should make dealing with memory accesses considerably simpler.
-
-
-
-## Coinductive Types
-
-* To properly model infinite traces of events, we need coinductive types
-* Lean currently lacks coinductive types
-* [[QpfTypes]] to the rescue!
-
-
-
-
-
-
-Working Title: "Scalable and Modular Verified Compilation Via Proof Producing Symbolic Simulation"
+- Define lowering from compiler IR to assembly (2 months)
+- Translation validation for unstructured control flow (2 months)
+- Evaluate and improve scalability of SailToLean-generated ISA model (2 months)
+- Paper writing (1 month)
