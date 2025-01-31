@@ -301,35 +301,6 @@ We'll consider our interaction tree library successful if
 we can provide a similar basic API, and in particular, if we can define the 
 semantics we need without referring to details of the underlying QPF construction directly.
 
-\subsubsection*{Verified Compilation and Lean's Extensibility}
-
-Note that the benefits of a verified compilation pipeline go far beyond
-simply reducing the chance of bugs. It could lead to a culture
-shift in the way software is written. Traditionally, writing compiler
-optimizations was a domain reserved for the wise elders who we could
-trust to perform the appropriate ``black magic''. Reasoning about the
-correctness of a transformation was simply too hard, so we had to rely
-on interpersonal trust. Tools like Alive have already caused a shift in
-this approach: nowadays PRs that propose adding a new peephole
-optimization to LLVM can include a link to Alive's online interface
-showing the correctness, meaning no further discussion or review is
-required. However, this effect is still limited to making reviews for
-proposed additions to LLVM easier.
-
-Lean, again, presents a very interesting opportunity because of it's
-\emph{extensibilty}: Lean already has an extensible syntax and a
-powerful meta-programming API. In fact, a lot of features that are
-considered part of Lean's core are actually implemented using the same
-meta-programming facilities that are available to libraries (we'll use
-this extensively in~\autoref{a-codatatypes-library-for-lean}). However, we imagine a future where this
-extensibility could extend to the backend of the compiler also, such
-that a library writer might implement an algorithm in a functional style
-that is easy to reason about, but also provide an optimized assembly
-\emph{and} a proof that the assembly is equivalent. Traditionally,
-hard-coded assembly in a library has been cause for increased scrutiny.
-Optimizing is hard, do we really trust the author of this library to
-have done it correctly? Verification means we no longer have to trust,
-instead we get to have fearless bespoke optimizations!
 
 \section{High-Assurance Translation Validation for Compiler
 Optimizations}\label{high-assurance-translation-validation-for-compiler-optimizations}
@@ -729,9 +700,105 @@ Targeted publication venue: PLDI
 
 
 
+\section{Progress Report}\label{progress-report}
+
+So far, I've worked on laying the foundations for my proposed research, in the form of the Lean-MLIR framework and bitvector decision procedures in Lean.
+
+
+\subsection{Lean-MLIR}\label{lean-mlir}
+
+As mentioned before, Lean-MLIR is a framework for giving semantics to MLIR dialects in Lean.
+On top of this framework, we've built a peephole rewriter, and proved
+that if a rewrite locally preserves semantics, then applying this
+rewrite in the context of a larger program will preserve the semantics
+of the program as a whole.
+
+However, we've focused on dialects with pure (i.e., side effect free)
+semantics. Even though we \emph{are} able to verify a lot of interesting
+rewrites in high-level MLIR dialects, we do need to be able to reason
+about side effect if we want to capture the low-level dialects as well.
+
+To this end, I've\footnote{The framework is a collaborative effort; the handling of side effect is one of my contributions.} generalized the framework so that a dialects
+semantics may be given in a user-defined monad, and proven that applying
+a semantics-preserving pure rewrite (i.e., where the operations being
+rewritten are all side effect free) inside a side-effecting program
+preserves semantics of the program as a whole. 
+
+
+\subsection{Bitvectors}\label{bitvectors}
+
+As mentioned, a big reason for us to use Lean is its community. As
+such, I've been heavily involved in the redesign of Lean's API for
+bitvectors, and the move of bitvectors from Mathlib to become part of Lean's core library
+(i.e., the library that is by default included in every Lean program).
+By ensuring our representation of bitvectors is aligned with the rest of
+the community, we ensure we can easily reap the benefits of, e.g.,
+tactics to automate bitvector proofs made by others.
+
+One such effort is the verified bitblaster and SAT solver integration written by the Lean FRO.
+Siddharth (another PhD student in our group) and I have contributed to this project by 
+formally proving equivalences between bitvector operations and bitblast-able circuits.
+
+As the semantics of both LLVM IR and assembly heavily involves bitvectors, much of 
+the automation I propose will be built on top of this bitvector decision procedure.
+
+\subsection{Amazon Internship}\label{amazon-internship}
+
+At Amazon, I wrote a scalable symbolic simulator for straight-line, memory-free Arm machine code, in the context of LNSym, 
+a toolkit for the verification of cryptographic hash functions and block ciphers written in Arm assembly.
+Before my internship, a prototype symbolic simulator existed, but it was limited in features and did not scale well.
+My reimplemented version tracks more information of the simulated execution, 
+and is capable of simulating more than 400 instructions of the SHA512 litmus test we benchmarked against before hitting Lean's default time-out limits.
+This is about 10x more instructions than the prototype was able to simulate given the same time-out limits.
+
+The prototype relied heavily on Lean's builtin simplifier. 
+I replaced this with bespoke metacode, that was able to exploit the specific shape of the problem we were solving.
+Firstly, I wrote preprocessing that allowed us to treat the operational semantic model, where operations are given semantics as functions that write to state, 
+in an axiomatic-semantics way, by having theorems that characterizes operations in terms of reads from the resulting state.
+Secondly, I wrote a bespoke data-structure and used it selectively reflects parts of the proof goal.
+We explicitly decoupled this meta-code needed to scale symbolic simulation from the definition of the semantic model,
+so that the model remains extensible even by people who are not experts in formal verification, which was an explicit design goal.
+
+This project, like some of my other research, was also an experiment in the usability of Lean as a platform to verify software.
+In particular, we generated very large proofs, and exposed, amongst others, a fundamental scalability problem in Lean:
+The time Lean needs to assemble a proof after a tactic executes scales roughly by the length of the proof times the number of binders in the proof.
+In the larger benchmarks, LNSym would generate proofs involving tens of thousands of binders,
+resulting in the majority of time needed to check the proof was actually spent in this proof-assembling step.
+We reported this to the Lean core team, who are actively working on a solution.
+Furthermore, the semantic model of Arm machine code used relies heavily on bitvectors, thus, we also used the proof obligations resulting from the improved symbolic simulator to stress-test the bitvector decision procedure. I've reported these problems, and submitted patches for some, contributing to the greater vision of improving the usability of Lean.
 
 
 
+
+\section{Conclusion}
+
+Implementation a verified compilation pipeline as described in this proposal could 
+have an impact far beyond simply reducing the chance of bugs. It could lead to a culture
+shift in the way software is written. Traditionally, writing compiler
+optimizations was a domain reserved for the wise elders who we could
+trust to perform the appropriate ``black magic''. Reasoning about the
+correctness of a transformation was simply too hard, so we had to rely
+on interpersonal trust. Tools like Alive have already caused a shift in
+this approach: nowadays PRs that propose adding a new peephole
+optimization to LLVM can include a link to Alive's online interface
+showing the correctness, meaning no further discussion or review is
+required. However, this effect is still limited to making reviews for
+proposed additions to LLVM easier.
+
+Lean, again, presents a very interesting opportunity because of it's
+\emph{extensibilty}: Lean already has an extensible syntax and a
+powerful meta-programming API. In fact, a lot of features that are
+considered part of Lean's core are actually implemented using the same
+meta-programming facilities that are available to libraries (we'll use
+this extensively in~\autoref{a-codatatypes-library-for-lean}). However, we imagine a future where this
+extensibility could extend to the backend of the compiler also, such
+that a library writer might implement an algorithm in a functional style
+that is easy to reason about, but also provide an optimized assembly
+\emph{and} a proof that the assembly is equivalent. Traditionally,
+hard-coded assembly in a library has been cause for increased scrutiny.
+Optimizing is hard, do we really trust the author of this library to
+have done it correctly? Verification means we no longer have to trust,
+instead we get to have fearless bespoke optimizations!
 
 %% Bibliography
 \bibliographystyle{plain}
