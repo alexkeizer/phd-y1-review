@@ -184,7 +184,7 @@ making them unsuited in our quest for a minimal trusted code base. I
 wish to investigate a middle road: can we verify the core transformation
 algorithm separately from specific transformation instances, and then
 develop proof automation to show local
-correctness of a transformation, without needing input from a formal methods export?
+correctness of a transformation, without needing a formal methods expert?
 
 I'll investigate two core components of a verified compiler:
 an optimization pass based on peephole optimizations and a code
@@ -214,7 +214,7 @@ platform for verified compilation.
 For the optimization pass, we choose to operate on a compiler IR with the same semantics as LLVM.
 Although others have formalized the semantics of LLVM IR in a proof assistant before
 \cite{zhaoFormalVerificationSSABased, zakowskiModularCompositionalExecutable2021}, those efforts
-included no proof automation. This will, to my knowledge, be the first
+did not provide automated optimization verification. This will, to my knowledge, be the first
 effort to provide fully automated proofs for correctness of LLVM
 optimizations in a way that doesn't have to trust an external solver (as
 Alive~\cite{lopesAlive2BoundedTranslation2021} and even AliveInLean~\cite{leeAliveInLeanVerifiedLLVM2019} do). Removing
@@ -254,9 +254,8 @@ slightly different design than proof automation for peephole
 optimizations.
 
 Finally, to model the semantics of LLVM IR in a modular way, we'd like
-to follow Zakowski et
-al.~(\cite{zakowskiModularCompositionalExecutable2021}) and use
-interaction trees (\cite{xiaInteractionTreesRepresenting2020}).
+to follow Zakowski\etal{}~\cite{zakowskiModularCompositionalExecutable2021} and use
+interaction trees~\cite{xiaInteractionTreesRepresenting2020}.
 Unfortunately, interaction trees are \emph{coinductive} in nature, to
 capture possibly non-terminating programs, and Lean currently lacks
 support for coinductive type. Therefore, I'd like to continue the work
@@ -266,7 +265,7 @@ continue development of a Lean library for coinductive types.
 
 \subsubsection*{Research Questions}
 
-My research will aim to answer the following questions:
+My research aims to answer the following questions:
 \begin{enumerate}
   \item[\textsc{RQ1}]\label{research-question-1}
     How do we fully automatically verify optimizations involving memory side effects on a mid-level compiler IR, 
@@ -330,7 +329,7 @@ syntactic overhead. We can instantiate the framework with a specific set
 of operations, called a dialect. Generally, a compiler IR is made up of
 a combination of such dialects. For this chapter, we shall focus on an
 IR that contains bitvector arithmetic (a fragment of the \texttt{arith}
-dialect) memory manipulations (\texttt{ptr} dialect) and structured
+dialect), memory manipulations (\texttt{ptr} dialect) and structured
 control flow (i.e., for and while loops, \texttt{scf} dialect). 
 The arithmetic and pointer operations of these dialects have exactly the same semantics as in LLVM, 
 but using \emph{structured} control flow puts us just above the level of abstraction of LLVM IR.
@@ -414,9 +413,9 @@ CakeML~\cite{kumarCakeMLVerifiedImplementation2014} are examples
 of fully end-to-end verified compilers. More recent work by Mullen et
 al.~\cite{mullenVerifiedPeepholeOptimizations2016} argues for
 peephole rewriting as a way to lower proof burden in CompCert
-development, but they still prove these rewrites manually.
+development, but they still require manual effort to prove these rewrites.
 
-Katamaran \cite{keuchelVerifiedSymbolicExecution2022} is a
+Katamaran~\cite{keuchelVerifiedSymbolicExecution2022} is a
 symbolic simulation tool written in Coq. However, this
 project focusses on being able to run the simulator outside the ITP
 environment, hence eschewing meta-programming. Our main purpose is
@@ -772,7 +771,7 @@ Furthermore, the semantic model of Arm machine code used relies heavily on bitve
 
 \section{Conclusion}
 
-Implementation a verified compilation pipeline as described in this proposal could 
+Implementing a verified compilation pipeline as described in this proposal could 
 have an impact far beyond simply reducing the chance of bugs. It could lead to a culture
 shift in the way software is written. Traditionally, writing compiler
 optimizations was a domain reserved for the wise elders who we could
