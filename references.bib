@@ -1,3 +1,153 @@
+@article{5SyntaxSemantics,
+  title = {5. {{Syntax}} and Semantics of {{CCS}}},
+  pages = {19},
+  langid = {english},
+  keywords = {CCS,Program Algebra},
+  file = {/home/alex/Zotero/storage/P9RNDSIR/5. Syntax and semantics of CCS.pdf}
+}
+
+@inproceedings{abbottRepresentingNestedInductive2004,
+  title = {Representing {{Nested Inductive Types Using W-Types}}},
+  booktitle = {Automata, {{Languages}} and {{Programming}}},
+  author = {Abbott, Michael and Altenkirch, Thorsten and Ghani, Neil},
+  editor = {D{\'i}az, Josep and Karhum{\"a}ki, Juhani and Lepist{\"o}, Arto and Sannella, Donald},
+  year = {2004},
+  pages = {59--71},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-540-27836-8_8},
+  abstract = {We show that strictly positive inductive types, constructed from polynomial functors, constant exponentiation and arbitrarily nested inductive types exist in any Martin-L{\"o}f category (extensive locally cartesian closed category with W-types) by exploiting our work on container types. This generalises a result by Dybjer (1997) who showed that non-nested strictly positive inductive types can be represented using W-types. We also provide a detailed analysis of the categorical infrastructure needed to establish the result.},
+  isbn = {978-3-540-27836-8},
+  langid = {english},
+  keywords = {Elimination Rule,Inductive Type,Left Adjoint,Natural Transformation,Type Theory},
+  file = {/home/alex/Zotero/storage/76IEAZQL/Abbott et al. - 2004 - Representing Nested Inductive Types Using W-Types.pdf}
+}
+
+@article{AbstractingDenotationalInterpreters,
+  title = {Abstracting {{Denotational Interpreters}}},
+  volume = {1},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/ENWXJEAH/Abstracting Denotational Interpreters.pdf}
+}
+
+@book{ahmedProgrammingLanguagesSystems2018,
+  title = {Programming {{Languages}} and {{Systems}}},
+  editor = {Ahmed, Amal},
+  year = {2018},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  volume = {10801},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-319-89884-1},
+  urldate = {2022-10-29},
+  isbn = {978-3-319-89883-4 978-3-319-89884-1},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/A6FEUPP3/Ahmed - 2018 - Programming Languages and Systems.pdf}
+}
+
+@article{altenkirchIndexedContainers2015,
+  title = {Indexed Containers},
+  author = {Altenkirch, Thorsten and Ghani, Neil and Hancock, Peter and Mcbride, Conor and Morris, Peter},
+  year = {2015},
+  journal = {Journal of Functional Programming},
+  volume = {25},
+  pages = {e5},
+  issn = {0956-7968, 1469-7653},
+  doi = {10.1017/S095679681500009X},
+  urldate = {2024-12-02},
+  abstract = {Abstract             We show that the syntactically rich notion of strictly positive families can be reduced to a core type theory with a fixed number of type constructors exploiting the novel notion of indexed containers. As a result, we show indexed containers provide normal forms for strictly positive families in much the same way that containers provide normal forms for strictly positive types. Interestingly, this step from containers to indexed containers is achieved without having to extend the core type theory. Most of the construction presented here has been formalized using the Agda system.},
+  copyright = {https://www.cambridge.org/core/terms},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/M6YMRCY3/Altenkirch et al. - 2015 - Indexed containers.pdf}
+}
+
+@incollection{armandModularIntegrationSAT2011,
+  title = {A {{Modular Integration}} of {{SAT}}/{{SMT Solvers}} to {{Coq}} through {{Proof Witnesses}}},
+  booktitle = {Certified {{Programs}} and {{Proofs}}},
+  author = {Armand, Michael and Faure, Germain and Gr{\'e}goire, Benjamin and Keller, Chantal and Th{\'e}ry, Laurent and Werner, Benjamin},
+  editor = {Jouannaud, Jean-Pierre and Shao, Zhong},
+  year = {2011},
+  volume = {7086},
+  pages = {135--150},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-25379-9_12},
+  urldate = {2024-07-02},
+  abstract = {We present a way to enjoy the power of SAT and SMT provers in Coq without compromising soundness. This requires these provers to return not only a yes/no answer, but also a proof witness that can be independently rechecked. We present such a checker, written and fully certified in Coq. It is conceived in a modular way, in order to tame the proofs' complexity and to be extendable. It can currently check witnesses from the SAT solver ZChaff and from the SMT solver veriT. Experiments highlight the efficiency of this checker. On top of it, new reflexive Coq tactics have been built that can decide a subset of Coq's logic by calling external provers and carefully checking their answers.},
+  copyright = {http://www.springer.com/tdm},
+  isbn = {978-3-642-25378-2 978-3-642-25379-9},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/8TAGIGBR/Armand et al. - 2011 - A Modular Integration of SATSMT Solvers to Coq th.pdf}
+}
+
+@article{armstrongDetailedModelsInstruction,
+  title = {Detailed {{Models}} of {{Instruction Set Architectures}}: {{From Pseudocode}} to {{Formal Semantics}}},
+  author = {Armstrong, Alasdair and Bauereiss, Thomas and Campbell, Brian and Flur, Shaked and Gray, Kathryn E and Mundkur, Prashanth and Norton, Robert M and Pulte, Christopher and Reid, Alastair and Sewell, Peter and Stark, Ian and Wassell, Mark},
+  abstract = {Processor instruction set architectures (ISAs) are typically specified using a mixture of prose and pseudocode. We present ongoing work on expressing such specifications rigorously and automatically translating them to interactive theorem prover definitions, making them amenable to mechanised proof. Our ISA descriptions are written in Sail---a custom ISA specification language designed to support idioms from various processor vendor's pseudocode, with lightweight dependent typing for bitvectors, targeting a variety of use cases including sequential and concurrent ISA semantics. From Sail we aim to portably generate usable theorem prover definitions for multiple provers, including Isabelle, HOL4, and Coq. We are focusing on the full ARMv8.3-A specification, CHERI-MIPS, and RISC-V, together with fragments of IBM POWER and x86.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/URVL7XY4/Armstrong et al. - Detailed Models of Instruction Set Architectures .pdf}
+}
+
+@article{armstrongISASemanticsARMv8a2019,
+  title = {{{ISA}} Semantics for {{ARMv8-a}}, {{RISC-v}}, and {{CHERI-MIPS}}},
+  author = {Armstrong, Alasdair and Bauereiss, Thomas and Campbell, Brian and Reid, Alastair and Gray, Kathryn E. and Norton, Robert M. and Mundkur, Prashanth and Wassell, Mark and French, Jon and Pulte, Christopher and Flur, Shaked and Stark, Ian and Krishnaswami, Neel and Sewell, Peter},
+  year = {2019},
+  month = jan,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {3},
+  number = {POPL},
+  pages = {1--31},
+  issn = {2475-1421},
+  doi = {10.1145/3290384},
+  urldate = {2025-01-13},
+  abstract = {Architecture specifications notionally define the fundamental interface between hardware and software: the envelope of allowed behaviour for processor implementations, and the basic assumptions for software development and verification. But in practice, they are typically prose and pseudocode documents, not rigorous or executable artifacts, leaving software and verification on shaky ground.             In this paper, we present rigorous semantic models for the sequential behaviour of large parts of the mainstream ARMv8-A, RISC-V, and MIPS architectures, and the research CHERI-MIPS architecture, that are complete enough to boot operating systems, variously Linux, FreeBSD, or seL4. Our ARMv8-A models are automatically translated from authoritative ARM-internal definitions, and (in one variant) tested against the ARM Architecture Validation Suite.             We do this using a custom language for ISA semantics, Sail, with a lightweight dependent type system, that supports automatic generation of emulator code in C and OCaml, and automatic generation of proof-assistant definitions for Isabelle, HOL4, and (currently only for MIPS) Coq. We use the former for validation, and to assess specification coverage. To demonstrate the usability of the latter, we prove (in Isabelle) correctness of a purely functional characterisation of ARMv8-A address translation. We moreover integrate the RISC-V model into the RMEM tool for (user-mode) relaxed-memory concurrency exploration. We prove (on paper) the soundness of the core Sail type system.             We thereby take a big step towards making the architectural abstraction actually well-defined, establishing foundations for verification and reasoning.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/D9EZWR57/Armstrong et al. - 2019 - ISA semantics for ARMv8-a, RISC-v, and CHERI-MIPS.pdf}
+}
+
+@inproceedings{armstrongIslaIntegratingFullScale2021,
+  title = {Isla: {{Integrating Full-Scale ISA Semantics}} and {{Axiomatic Concurrency Models}}},
+  shorttitle = {Isla},
+  booktitle = {Computer {{Aided Verification}}},
+  author = {Armstrong, Alasdair and Campbell, Brian and Simner, Ben and Pulte, Christopher and Sewell, Peter},
+  editor = {Silva, Alexandra and Leino, K. Rustan M.},
+  year = {2021},
+  pages = {303--316},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-030-81685-8_14},
+  abstract = {Architecture specifications such as Armv8-A and RISC-V are the ultimate foundation for software verification and the correctness criteria for hardware verification. They should define the allowed sequential and relaxed-memory concurrency behaviour of programs, but hitherto there has been no integration of full-scale instruction-set architecture (ISA) semantics with axiomatic concurrency models, either in mathematics or in~tools. These ISA semantics can be surprisingly large and intricate, e.g.~100k+ lines for Armv8-A.},
+  isbn = {978-3-030-81685-8},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/D4P2YWFJ/Armstrong et al. - 2021 - Isla Integrating Full-Scale ISA Semantics and Axiomatic Concurrency Models.pdf}
+}
+
+@inproceedings{atkeySyntaxFreeRepresenting2009,
+  title = {Syntax for {{Free}}: {{Representing Syntax}} with {{Binding Using Parametricity}}},
+  shorttitle = {Syntax for {{Free}}},
+  booktitle = {Typed {{Lambda Calculi}} and {{Applications}}},
+  author = {Atkey, Robert},
+  editor = {Curien, Pierre-Louis},
+  year = {2009},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  pages = {35--49},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-02273-9_5},
+  abstract = {We show that, in a parametric model of polymorphism, the type {$\forall$}\,{$\alpha$}. (({$\alpha\rightarrow\alpha$}) {$\rightarrow\alpha$}) {$\rightarrow$}({$\alpha\rightarrow\alpha\rightarrow\alpha$}) {$\rightarrow\alpha$} is isomorphic to closed de Bruijn terms. That is, the type of closed higher-order abstract syntax terms is isomorphic to a concrete representation. To demonstrate the proof we have constructed a model of parametric polymorphism inside the Coq proof assistant. The proof of the theorem requires parametricity over Kripke relations. We also investigate some variants of this representation.},
+  isbn = {978-3-642-02273-9},
+  langid = {english},
+  keywords = {Abstract Syntax,Denotational Semantic,Free Variable,Inductive Type,Type Environment},
+  file = {/home/alex/Zotero/storage/KB4KNX66/Atkey - 2009 - Syntax for Free Representing Syntax with Binding .pdf}
+}
+
+@misc{AutomatedReasoningHardware,
+  title = {Automated Reasoning about Hardware Data Types Using Bit-Vectors of Symbolic Lengths {\textbar} {{Guide}} Books},
+  urldate = {2024-07-19},
+  howpublished = {https://dl.acm.org/doi/10.5555/997322},
+  file = {/home/alex/Zotero/storage/9LRX6I35/Automated reasoning about hardware data types usin.pdf}
+}
+
 @inproceedings{avigadDataTypesQuotients2019,
   title = {Data {{Types}} as {{Quotients}} of {{Polynomial Functors}}},
   booktitle = {10th {{International Conference}} on {{Interactive Theorem Proving}} ({{ITP}} 2019)},
@@ -17,6 +167,73 @@
   file = {/home/alex/Zotero/storage/FL3P6RZR/Avigad et al. - 2019 - Data Types as Quotients of Polynomial Functors.pdf;/home/alex/Zotero/storage/Q2N47BF6/11061.html}
 }
 
+@misc{avigadTheoremProvingLean,
+  title = {Theorem {{Proving}} in {{Lean}} 4},
+  author = {Avigad, Jeremy and {de Moura}, Leonardo and Kong, Soonho and Ullrich, Sebastian},
+  urldate = {2022-11-25},
+  howpublished = {\url{https://leanprover.github.io/theorem_proving_in_lean4/}},
+  keywords = {Lean},
+  note = {Online Documentation},
+  file = {/home/alex/Zotero/storage/4XVPNMJL/theorem_proving_in_lean4.html}
+}
+
+@book{awodeyCategoryTheory2010,
+  title = {Category Theory},
+  author = {Awodey, Steve},
+  year = {2010},
+  series = {Oxford Logic Guides},
+  edition = {2nd},
+  number = {52},
+  publisher = {Oxford University Press},
+  address = {Oxford; New York},
+  isbn = {978-0-19-958736-0 978-0-19-923718-0},
+  langid = {english},
+  lccn = {QA169 .A96 2010},
+  keywords = {Categories (Mathematics)},
+  file = {/home/alex/Zotero/storage/X8Y2L3KB/Awodey - 2010 - Category theory.pdf}
+}
+
+@article{baanenHitchhikersGuideLogical,
+  title = {The {{Hitchhiker}}'s {{Guide}} to {{Logical Verification}}},
+  author = {Baanen, Anne and Bentkamp, Alexander and Blanchette, Jasmin and H{\"o}lzl, Johannes and Limperg, Jannis},
+  pages = {319},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/3EHPHVQX/Baanen et al. - The Hitchhiker's Guide to Logical Verification.pdf}
+}
+
+@article{bartheFormalVerificationConstanttime2019,
+  title = {Formal Verification of a Constant-Time Preserving {{C}} Compiler},
+  author = {Barthe, Gilles and Blazy, Sandrine and Gr{\'e}goire, Benjamin and Hutin, R{\'e}mi and Laporte, Vincent and Pichardie, David and Trieu, Alix},
+  year = {2019},
+  month = dec,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {4},
+  number = {POPL},
+  pages = {7:1--7:30},
+  doi = {10.1145/3371075},
+  urldate = {2024-06-05},
+  abstract = {Timing side-channels are arguably one of the main sources of vulnerabilities in cryptographic implementations. One effective mitigation against timing side-channels is to write programs that do not perform secret-dependent branches and memory accesses. This mitigation, known as "cryptographic constant-time", is adopted by several popular cryptographic libraries. This paper focuses on compilation of cryptographic constant-time programs, and more specifically on the following question: is the code generated by a realistic compiler for a constant-time source program itself provably constant-time? Surprisingly, we answer the question positively for a mildly modified version of the CompCert compiler, a formally verified and moderately optimizing compiler for C. Concretely, we modify the CompCert compiler to eliminate sources of potential leakage. Then, we instrument the operational semantics of CompCert intermediate languages so as to be able to capture cryptographic constant-time. Finally, we prove that the modified CompCert compiler preserves constant-time. Our mechanization maximizes reuse of the CompCert correctness proof, through the use of new proof techniques for proving preservation of constant-time. These techniques achieve complementary trade-offs between generality and tractability of proof effort, and are of independent interest.},
+  keywords = {CompCert compiler,timing side-channels,verified compilation},
+  file = {/home/alex/Zotero/storage/BLLNX6YQ/Barthe et al_2019_Formal verification of a constant-time preserving C compiler.pdf}
+}
+
+@article{bartheFormalVerificationSSABased2014,
+  title = {Formal {{Verification}} of an {{SSA-Based Middle-End}} for {{CompCert}}},
+  author = {Barthe, Gilles and Demange, Delphine and Pichardie, David},
+  year = {2014},
+  month = mar,
+  journal = {ACM Transactions on Programming Languages and Systems},
+  volume = {36},
+  number = {1},
+  pages = {1--35},
+  issn = {0164-0925, 1558-4593},
+  doi = {10.1145/2579080},
+  urldate = {2023-07-13},
+  abstract = {CompCert is a formally verified compiler that generates compact and efficient code for a large subset of the C language. However, CompCert foregoes using SSA, an intermediate representation employed by many compilers that enables writing simpler, faster optimizers. In fact, it has remained an open problem to verify formally an SSA-based compiler. We report on a formally verified, SSA-based middle-end for CompCert. In addition to providing a formally verified SSA-based middle-end, we address two problems raised by Leroy in [2009]: giving an intuitive formal semantics to SSA, and leveraging its global properties to reason locally about program optimizations.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/E2TZYA2P/Barthe et al. - 2014 - Formal Verification of an SSA-Based Middle-End for.pdf}
+}
+
 @phdthesis{basoldMixedInductiveCoinductiveReasoning2018,
   title = {Mixed {{Inductive-Coinductive Reasoning Types}}, {{Programs}} and {{Logic}}},
   author = {Basold, H.},
@@ -28,6 +245,127 @@
   school = {Radboud Universiteit},
   annotation = {Accepted: 2018-04-13T20:35:11Z},
   file = {/home/alex/Zotero/storage/LF7T8NIY/Basold_2018_Mixed Inductive-Coinductive Reasoning Types, Programs and Logic.pdf}
+}
+
+@inproceedings{basoldTypeTheoryBased2016,
+  title = {Type {{Theory}} Based on {{Dependent Inductive}} and {{Coinductive Types}}},
+  booktitle = {Proceedings of the 31st {{Annual ACM}}/{{IEEE Symposium}} on {{Logic}} in {{Computer Science}}},
+  author = {Basold, Henning and Geuvers, Herman},
+  year = {2016},
+  month = jul,
+  pages = {327--336},
+  publisher = {ACM},
+  address = {New York NY USA},
+  doi = {10.1145/2933575.2934514},
+  urldate = {2023-01-16},
+  isbn = {978-1-4503-4391-6},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/DDPKZ7CS/Basold_Geuvers_2016_Type Theory based on Dependent Inductive and Coinductive Types.pdf}
+}
+
+@incollection{bergerSequentialityPCalculus2001,
+  title = {Sequentiality and the {$\pi$}-{{Calculus}}},
+  booktitle = {Typed {{Lambda Calculi}} and {{Applications}}},
+  author = {Berger, Martin and Honda, Kohei and Yoshida, Nobuko},
+  editor = {Goos, Gerhard and Hartmanis, Juris and {van Leeuwen}, Jan and Abramsky, Samson},
+  year = {2001},
+  volume = {2044},
+  pages = {29--45},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/3-540-45413-6_7},
+  urldate = {2022-11-12},
+  abstract = {We present a type discipline for the {$\pi$}-calculus which precisely captures the notion of sequential functional computation as a specific class of name passing interactive behaviour. The typed calculus allows direct interpretation of both call-by-name and call-by-value sequential functions. The precision of the representation is demonstrated by way of a fully abstract encoding of PCF. The result shows how a typed {$\pi$}-calculus can be used as a descriptive tool for a significant class of programming languages without losing the latter's semantic properties. Close correspondence with games semantics and process-theoretic reasoning techniques are together used to establish full abstraction.},
+  isbn = {978-3-540-41960-0 978-3-540-45413-7},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/XCKDUP3A/Berger et al. - 2001 - Sequentiality and the π-Calculus.pdf}
+}
+
+@article{bernardyLinearHaskellPractical2018,
+  title = {Linear {{Haskell}}: Practical Linearity in a Higher-Order Polymorphic Language},
+  shorttitle = {Linear {{Haskell}}},
+  author = {Bernardy, Jean-Philippe and Boespflug, Mathieu and Newton, Ryan R. and Jones, Simon Peyton and Spiwack, Arnaud},
+  year = {2018},
+  month = jan,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {2},
+  number = {POPL},
+  eprint = {1710.09756},
+  primaryclass = {cs},
+  pages = {1--29},
+  issn = {2475-1421},
+  doi = {10.1145/3158093},
+  urldate = {2023-02-24},
+  abstract = {Linear type systems have a long and storied history, but not a clear path forward to integrate with existing languages such as OCaml or Haskell. In this paper, we study a linear type system designed with two crucial properties in mind: backwards-compatibility and code reuse across linear and non-linear users of a library. Only then can the benefits of linear types permeate conventional functional programming. Rather than bifurcate types into linear and non-linear counterparts, we instead attach linearity to function arrows. Linear functions can receive inputs from linearly-bound values, but can also operate over unrestricted, regular values. To demonstrate the efficacy of our linear type system - both how easy it can be integrated in an existing language implementation and how streamlined it makes it to write programs with linear types - we implemented our type system in GHC, the leading Haskell compiler, and demonstrate two kinds of applications of linear types: mutable data with pure interfaces; and enforcing protocols in I/O-performing functions.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Programming Languages},
+  file = {/home/alex/Zotero/storage/SH3GKSDT/Bernardy et al_2018_Linear Haskell.pdf;/home/alex/Zotero/storage/TT4VEZVP/1710.html}
+}
+
+@inproceedings{bhatLambdaUltimateSSA2022,
+  title = {Lambda the Ultimate {{SSA}}: Optimizing Functional Programs in {{SSA}}},
+  shorttitle = {Lambda the Ultimate {{SSA}}},
+  booktitle = {Proceedings of the 20th {{IEEE}}/{{ACM International Symposium}} on {{Code Generation}} and {{Optimization}}},
+  author = {Bhat, Siddharth and Grosser, Tobias},
+  year = {2022},
+  month = may,
+  series = {{{CGO}} '22},
+  pages = {168--178},
+  publisher = {IEEE Press},
+  address = {Virtual Event, Republic of Korea},
+  doi = {10.1109/CGO53902.2022.9741279},
+  urldate = {2023-03-23},
+  abstract = {Static Single Assignment (SSA) is the workhorse of modern optimizing compilers for imperative programming languages. However, functional languages have been slow to adopt SSA and prefer to use intermediate representations based on minimal lambda calculi due to SSA's inability to express higher-order constructs. We exploit a new SSA construct --- regions --- in order to express functional optimizations via classical SSA-based reasoning. Region optimization currently relies on ad-hoc analyses and transformations on imperative programs. These ad-hoc transformations are sufficient for imperative languages as regions are used in a limited fashion. In contrast, we use regions pervasively to model sub-expressions in our functional IR. This motivates us to systematize region optimizations. We extend classical SSA reasoning to regions for functional-style analyses and transformations. We implement a new SSA+regions based backend for LEAN4, a theorem prover that implements a purely functional, dependently typed programming language. Our backend is feature-complete and handles all constructs of LEAN4's functional intermediate representation {$\lambda$}rc within the SSA framework. We evaluate our proposed region optimizations by optimizing {$\lambda$}rc within an SSA+regions based framework implemented in MLIR and demonstrating performance parity with the current LEAN4 backend. We believe our work will pave the way for a unified optimization framework capable of representing, analyzing, and optimizing both functional and imperative languages.},
+  isbn = {978-1-6654-0584-3},
+  keywords = {functional programming,Lean,MLIR,optimizing compilers},
+  file = {/home/alex/Zotero/storage/KF7IJ5N6/Bhat_Grosser_2022_Lambda the ultimate SSA.pdf}
+}
+
+@misc{bhatLambdaUltimateSSA2022a,
+  title = {Lambda the {{Ultimate SSA}}: {{Optimizing Functional Programs}} in {{SSA}}},
+  shorttitle = {Lambda the {{Ultimate SSA}}},
+  author = {Bhat, Siddharth and Grosser, Tobias},
+  year = {2022},
+  month = jan,
+  number = {arXiv:2201.07272},
+  eprint = {2201.07272},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2201.07272},
+  urldate = {2023-03-23},
+  abstract = {Static Single Assignment (SSA) is the workhorse of modern optimizing compilers for imperative programming languages. However, functional languages have been slow to adopt SSA and prefer to use intermediate representations based on minimal lambda calculi due to SSA's inability to express higher order constructs. We exploit a new SSA construct -- regions -- in order to express functional optimizations via classical SSA based reasoning. Region optimization currently relies on ad-hoc analyses and transformations on imperative programs. These ad-hoc transformations are sufficient for imperative languages as regions are used in a limited fashion. In contrast, we use regions pervasively to model sub-expressions in our functional IR. This motivates us to systematize region optimizations. We extend classical SSA reasoning to regions for functional-style analyses and transformations. We implement a new SSA+regions based backend for LEAN4, a theorem prover that implements a purely functional, dependently typed programming language. Our backend is feature-complete and handles all constructs of LEAN4's functional intermediate representation \{{\textbackslash}lambda\}rc within the SSA framework. We evaluate our proposed region optimizations by optimizing \{{\textbackslash}lambda\}rc within an SSA+regions based framework implemented in MLIR and demonstrating performance parity with the current LEAN4 backend. We believe our work will pave the way for a unified optimization framework capable of representing, analyzing, and optimizing both functional and imperative languages.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Programming Languages,D.3},
+  file = {/home/alex/Zotero/storage/QYU8QS64/Bhat_Grosser_2022_Lambda the Ultimate SSA.pdf;/home/alex/Zotero/storage/4Y7PG6E9/2201.html}
+}
+
+@article{bhatVerifyingPeepholeRewriting2024,
+  title = {Verifying {{Peephole Rewriting}} in {{SSA Compiler IRs}}},
+  author = {Bhat, Siddharth and Keizer, Alex and Hughes, Chris and Goens, Andr{\'e}s and Grosser, Tobias},
+  year = {2024},
+  journal = {LIPIcs, Volume 309, ITP 2024},
+  volume = {309},
+  pages = {9:1-9:20},
+  publisher = {Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  issn = {1868-8969},
+  doi = {10.4230/LIPICS.ITP.2024.9},
+  urldate = {2025-01-28},
+  abstract = {There is an increasing need for domain-specific reasoning in modern compilers. This has fueled the use of tailored intermediate representations (IRs) based on static single assignment (SSA), like in the MLIR compiler framework. Interactive theorem provers (ITPs) provide strong guarantees for the end-to-end verification of compilers (e.g., CompCert). However, modern compilers and their IRs evolve at a rate that makes proof engineering alongside them prohibitively expensive. Nevertheless, well-scoped push-button automated verification tools such as the Alive peephole verifier for LLVM-IR gained recognition in domains where SMT solvers offer efficient (semi) decision procedures. In this paper, we aim to combine the convenience of automation with the versatility of ITPs for verifying peephole rewrites across domain-specific IRs. We formalize a core calculus for SSA-based IRs that is generic over the IR and covers so-called regions (nested scoping used by many domain-specific IRs in the MLIR ecosystem). Our mechanization in the Lean proof assistant provides a user-friendly frontend for translating MLIR syntax into our calculus. We provide scaffolding for defining and verifying peephole rewrites, offering tactics to eliminate the abstraction overhead of our SSA calculus. We prove correctness theorems about peephole rewriting, as well as two classical program transformations. To evaluate our framework, we consider three use cases from the MLIR ecosystem that cover different levels of abstractions: (1) bitvector rewrites from LLVM, (2) structured control flow, and (3) fully homomorphic encryption. We envision that our mechanization provides a foundation for formally verified rewrites on new domain-specific IRs.},
+  collaborator = {Bertot, Yves and Kutsia, Temur and Norrish, Michael},
+  copyright = {Creative Commons Attribution 4.0 International license, info:eu-repo/semantics/openAccess},
+  isbn = {9783959773379},
+  langid = {english},
+  keywords = {compilers,Computing methodologies  Theorem proving algorithms,mechanization,MLIR,peephole rewrites,regions,semantics,Software and its engineering  Compilers,Software and its engineering  Semantics,SSA,Theory of computation  Rewrite systems}
+}
+
+@misc{biendarraDefiningCoDatatypes,
+  title = {Defining ({{Co}})Datatypes and {{Primitively}} ({{Co}})Recursive {{Functions}} in {{Isabelle}}/{{HOL}}},
+  author = {Biendarra, Julian and Blanchette, Jasmin and Desharnais, Martin and Panny, Lorenz and Popescu, Andrei and Traytel, Dmitriy},
+  abstract = {This tutorial describes the definitional package for datatypes and codatatypes, and for primitively recursive and corecursive functions, in Isabelle/HOL. The following commands are provided: datatype, datatype\_compat, primrec, codatatype, primcorec, primcorecursive, bnf, lift\_bnf, copy\_bnf, bnf\_axiomatization, print\_bnfs, and free\_constructors.},
+  howpublished = {\url{https://isabelle.in.tum.de/dist/doc/datatypes.pdf}},
+  langid = {english},
+  note = {Online Documentation},
+  file = {/home/alex/Zotero/storage/M7SHIHPQ/Biendarra et al_Deﬁning (Co)datatypes and Primitively (Co)recursive Functions in Isabelle-HOL.pdf}
 }
 
 @inproceedings{bizjakGuardedDependentType2016,
@@ -46,6 +384,24 @@
   langid = {english},
   keywords = {Applicative Functor,Clock Variable,Elimination Rule,Guarded Recursion,Modal Types,Type Isomorphism,Type Theory},
   file = {/home/alex/Zotero/storage/JI3W8VBG/Bizjak et al_2016_Guarded Dependent Type Theory with Coinductive Types.pdf;/home/alex/Zotero/storage/WK24KIF3/Bizjak et al. - 2016 - Guarded Dependent Type Theory with Coinductive Typ.pdf}
+}
+
+@article{blanchetteExtendingSledgehammerSMT2013,
+  title = {Extending {{Sledgehammer}} with {{SMT Solvers}}},
+  author = {Blanchette, Jasmin Christian and B{\"o}hme, Sascha and Paulson, Lawrence C.},
+  year = {2013},
+  month = jun,
+  journal = {Journal of Automated Reasoning},
+  volume = {51},
+  number = {1},
+  pages = {109--128},
+  issn = {1573-0670},
+  doi = {10.1007/s10817-013-9278-5},
+  urldate = {2024-07-10},
+  abstract = {Sledgehammer is a component of Isabelle/HOL that employs resolution-based first-order automatic theorem provers (ATPs) to discharge goals arising in interactive proofs. It heuristically selects relevant facts and, if an ATP is successful, produces a snippet that replays the proof in Isabelle. We extended Sledgehammer to invoke satisfiability modulo theories (SMT) solvers as well, exploiting its relevance filter and parallel architecture. The ATPs and SMT solvers nicely complement each other, and Isabelle users are now pleasantly surprised by SMT proofs for problems beyond the ATPs' reach.},
+  langid = {english},
+  keywords = {Automatic theorem provers,Interactive theorem provers,Isabelle/HOL,SMT solvers},
+  file = {/home/alex/Zotero/storage/RZUKSPMH/Blanchette et al. - 2013 - Extending Sledgehammer with SMT Solvers.pdf}
 }
 
 @incollection{blanchetteFriendsBenefitsImplementing2017,
@@ -85,6 +441,90 @@
   file = {/home/alex/Zotero/storage/J74TXVES/Blanchette et al_2017_Soundness and Completeness Proofs by Coinductive Methods.pdf}
 }
 
+@incollection{blanchetteTrulyModularCodatatypes2014,
+  title = {Truly {{Modular}} ({{Co}})Datatypes for {{Isabelle}}/{{HOL}}},
+  booktitle = {Interactive {{Theorem Proving}}},
+  author = {Blanchette, Jasmin Christian and H{\"o}lzl, Johannes and Lochbihler, Andreas and Panny, Lorenz and Popescu, Andrei and Traytel, Dmitriy},
+  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Kobsa, Alfred and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Terzopoulos, Demetri and Tygar, Doug and Weikum, Gerhard and Klein, Gerwin and Gamboa, Ruben},
+  year = {2014},
+  volume = {8558},
+  pages = {93--110},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-319-08970-6_7},
+  urldate = {2024-06-21},
+  isbn = {978-3-319-08969-0 978-3-319-08970-6}
+}
+
+@incollection{blanchetteUnifiedClassicalLogic2014,
+  title = {Unified {{Classical Logic Completeness}}},
+  booktitle = {Automated {{Reasoning}}},
+  author = {Blanchette, Jasmin Christian and Popescu, Andrei and Traytel, Dmitriy},
+  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Kobsa, Alfred and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Terzopoulos, Demetri and Tygar, Doug and Weikum, Gerhard and Demri, St{\'e}phane and Kapur, Deepak and Weidenbach, Christoph},
+  year = {2014},
+  volume = {8562},
+  pages = {46--60},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-319-08587-6_4},
+  urldate = {2024-06-21},
+  isbn = {978-3-319-08586-9 978-3-319-08587-6}
+}
+
+@misc{blotBitSequencesBit,
+  title = {Bit {{Sequences}} and {{Bit Sets Library}}},
+  author = {Blot, Arthur and Dagand, Pierre-Evariste and Lawall, Julia}
+}
+
+@incollection{bohmeReconstructionZ3sBitVector2011,
+  title = {Reconstruction of {{Z3}}'s {{Bit-Vector Proofs}} in {{HOL4}} and {{Isabelle}}/{{HOL}}},
+  booktitle = {Certified {{Programs}} and {{Proofs}}},
+  author = {B{\"o}hme, Sascha and Fox, Anthony C. J. and Sewell, Thomas and Weber, Tjark},
+  editor = {Jouannaud, Jean-Pierre and Shao, Zhong},
+  year = {2011},
+  volume = {7086},
+  pages = {183--198},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-25379-9_15},
+  urldate = {2024-07-02},
+  abstract = {The Satisfiability Modulo Theories (SMT) solver Z3 can generate proofs of unsatisfiability. We present independent reconstruction of unsatisfiability proofs for bit-vector theories in the theorem provers HOL4 and Isabelle/HOL. Our work shows that LCF-style proof reconstruction for the theory of fixed-size bit-vectors, although difficult because Z3's proofs provide limited detail, is often possible. We thereby obtain high correctness assurances for Z3's results, and increase the degree of proof automation for bit-vector problems in HOL4 and Isabelle/HOL.},
+  copyright = {http://www.springer.com/tdm},
+  isbn = {978-3-642-25378-2 978-3-642-25379-9},
+  langid = {english},
+  keywords = {Isabelle/HOL},
+  file = {/home/alex/Zotero/storage/PPCRU77D/Böhme et al. - 2011 - Reconstruction of Z3’s Bit-Vector Proofs in HOL4 a.pdf}
+}
+
+@article{bonsangueSoundCompleteAxiomatizations2013,
+  title = {Sound and Complete Axiomatizations of Coalgebraic Language Equivalence},
+  author = {Bonsangue, Marcello M. and Milius, Stefan and Silva, Alexandra},
+  year = {2013},
+  month = feb,
+  journal = {ACM Transactions on Computational Logic},
+  volume = {14},
+  number = {1},
+  eprint = {1104.2803},
+  primaryclass = {cs, math},
+  pages = {1--52},
+  issn = {1529-3785, 1557-945X},
+  doi = {10.1145/2422085.2422092},
+  urldate = {2022-10-29},
+  abstract = {Coalgebras provide a uniform framework to study dynamical systems, including several types of automata. In this paper, we make use of the coalgebraic view on systems to investigate, in a uniform way, under which conditions calculi that are sound and complete with respect to behavioral equivalence can be extended to a coarser coalgebraic language equivalence, which arises from a generalised powerset construction that determinises coalgebras. We show that soundness and completeness are established by proving that expressions modulo axioms of a calculus form the rational fixpoint of the given type functor. Our main result is that the rational fixpoint of the functor \$FT\$, where \$T\$ is a monad describing the branching of the systems (e.g. non-determinism, weights, probability etc.), has as a quotient the rational fixpoint of the "determinised" type functor \${\textbackslash}bar F\$, a lifting of \$F\$ to the category of \$T\$-algebras. We apply our framework to the concrete example of weighted automata, for which we present a new sound and complete calculus for weighted language equivalence. As a special case, we obtain non-deterministic automata, where we recover Rabinovich's sound and complete calculus for language equivalence.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Coalgebra,Computer Science - Logic in Computer Science,Mathematics - Category Theory},
+  file = {/home/alex/Zotero/storage/BQQAIIXU/Bonsangue et al. - 2013 - Sound and complete axiomatizations of coalgebraic .pdf}
+}
+
+@article{bovingTamingBitvectorBestiary,
+  title = {Taming the {{Bitvector Bestiary}}},
+  author = {B{\"o}ving, Henrik and Bhat, Siddharth and Keizer, Alex and Cicolini, Luisa and Frenot, Leon and Mohamed, Abdalrhman M and Stefanesco, Leo and Khan, Harun and Barrett, Clark and Grosser, Tobias},
+  journal = {Submitted to PLDI},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/4V7W38KE/Taming the Bitvector Bestiary.pdf}
+}
+
 @inproceedings{brummayerFuzzingDeltadebuggingSMT2009,
   title = {Fuzzing and Delta-Debugging {{SMT}} Solvers},
   booktitle = {Proceedings of the 7th {{International Workshop}} on {{Satisfiability Modulo Theories}}},
@@ -99,7 +539,39 @@
   urldate = {2024-06-05},
   abstract = {SMT solvers are widely used as core engines in many applications. Therefore, robustness and correctness are essential criteria. Current testing techniques used by developers of SMT solvers do not satisfy the high demand for correct and robust solvers, as our testing experiments show. To improve this situation, we propose to complement traditional testing techniques with grammar-based blackbox fuzz testing, combined with delta-debugging. We demonstrate the effectiveness of our approach and report on critical bugs and incorrect results which we found in current state-of-the-art SMT solvers for bit-vectors and arrays.},
   isbn = {978-1-60558-484-3},
+  keywords = {SMT solvers},
   file = {/home/alex/Zotero/storage/WE39XV8J/Brummayer_Biere_2009_Fuzzing and delta-debugging SMT solvers.pdf}
+}
+
+@incollection{cairesSessionTypesIntuitionistic2010,
+  title = {Session {{Types}} as {{Intuitionistic Linear Propositions}}},
+  booktitle = {{{CONCUR}} 2010 - {{Concurrency Theory}}},
+  author = {Caires, Lu{\'i}s and Pfenning, Frank},
+  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Doug and Vardi, Moshe Y. and Weikum, Gerhard and Gastin, Paul and Laroussinie, Fran{\c c}ois},
+  year = {2010},
+  volume = {6269},
+  pages = {222--236},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-15375-4_16},
+  urldate = {2023-01-15},
+  abstract = {Several type disciplines for {$\pi$}-calculi have been proposed in which linearity plays a key role, even if their precise relationship with pure linear logic is still not well understood. In this paper, we introduce a type system for the {$\pi$}calculus that exactly corresponds to the standard sequent calculus proof system for dual intuitionistic linear logic. Our type system is based on a new interpretation of linear propositions as session types, and provides the first purely logical account of all (both shared and linear) features of session types. We show that our type discipline is useful from a programming perspective, and ensures session fidelity, absence of deadlocks, and a tight operational correspondence between {$\pi$}-calculus reductions and cut elimination steps.},
+  isbn = {978-3-642-15374-7 978-3-642-15375-4},
+  langid = {english},
+  keywords = {Session Types},
+  file = {/home/alex/Zotero/storage/2MSI9EWR/Caires_Pfenning_2010_Session Types as Intuitionistic Linear Propositions.pdf;/home/alex/Zotero/storage/N26LPXYE/Caires_Pfenning_2010_Session Types as Intuitionistic Linear Propositions.pdf}
+}
+
+@mastersthesis{carneiroTypeTheoryLean,
+  title = {The {{Type Theory}} of {{Lean}}},
+  author = {Carneiro, Mario},
+  abstract = {This thesis is a presentation of dependent type theory with inductive types, a hierarchy of universes, with an impredicative universe of propositions, proof irrelevance, and subsingleton elimination, along with axioms for propositional extensionality, quotient types, and the axiom of choice. This theory is notable for being the axiomatic framework of the Lean theorem prover. The axiom system is given here in complete detail, including ``optional'' features of the type system such as let binders and definitions. We provide a reduction of the theory to a finitely axiomatized fragment utilizing a fixed set of inductive types (the W-type plus a few others), to ease the study of this framework. The metatheory of this theory (which we will call Lean) is studied. In particular, we prove unique typing of the definitional equality, and use this to construct the expected set-theoretic model, from which we derive consistency of Lean relative to ZFC + \{there are n inaccessible cardinals {\textbar} n {$<$} {$\omega$}\} (a relatively weak large cardinal assumption). As Lean supports models of ZFC with n inaccessible cardinals, this is optimal. We also show a number of negative results, where the theory is less nice than we would like. In particular, type checking is undecidable, and the type checking as implemented by the Lean theorem prover is a decidable non-transitive underapproximation of the typing judgment. Non- transitivity also leads to lack of subject reduction, and the reduction relation does not satisfy the Church-Rosser property, so reduction to a normal form does not produce a decision procedure for definitional equality. However, a modified reduction relation allows us to restore the Church-Rosser property at the expense of guaranteed termination, so that unique typing is shown to hold.},
+  file = {/home/alex/Zotero/storage/B55X8VQ7/main.pdf}
+}
+
+@misc{chajedBedrockBitvectorsLibrary,
+  title = {Bedrock {{Bitvectors Library}}},
+  author = {Chajed, Ted and Chen, Haogang and Chlipala, Adam and Choi, Joonwon and Erbsen, Andres and Gross, Jason and Gruetter, Samuel and Kaashoek, Frans and Konradi, Alex and Malecha, Gregory and Oe, Duckki and Vijayaraghavan, Murali and Zeldovich, Nickolai and Ziegler, Daniel}
 }
 
 @article{chevalFormalDefinitionsProofs,
@@ -108,6 +580,118 @@
   abstract = {Partial functions are a key concept in programming. Without partiality a programming language has limited expressiveness - it is not Turing-complete, hence, some programs cannot be written. In functional programming languages, partiality mostly originates from the non-termination of recursive functions. Corecursive functions are another source of partiality: here, the issue is not non-termination, but the inability to produce arbitrary large, finite approximations of a theoretically infinite output.},
   langid = {english},
   file = {/home/alex/Zotero/storage/AZKSL3EL/Cheval et al. - Formal Definitions and Proofs for Partial (Co)Recu.pdf}
+}
+
+@book{chlipalaCertifiedProgrammingDependent2013,
+  title = {Certified {{Programming}} with {{Dependent Types}}: {{A Pragmatic Introduction}} to the {{Coq Proof Assistant}}},
+  shorttitle = {Certified {{Programming}} with {{Dependent Types}}},
+  author = {Chlipala, Adam},
+  year = {2013},
+  month = dec,
+  publisher = {The MIT Press},
+  doi = {10.7551/mitpress/9153.001.0001},
+  urldate = {2024-07-12},
+  abstract = {A handbook to the Coq software for writing and checking mathematical proofs, with a practical engineering focus.             The technology of mechanized program verification can play a supporting role in many kinds of research projects in computer science, and related tools for formal proof-checking are seeing increasing adoption in mathematics and engineering. This book provides an introduction to the Coq software for writing and checking mathematical proofs. It takes a practical engineering focus throughout, emphasizing techniques that will help users to build, understand, and maintain large Coq developments and minimize the cost of code change over time.             Two topics, rarely discussed elsewhere, are covered in detail: effective dependently typed programming (making productive use of a feature at the heart of the Coq system) and construction of domain-specific proof tactics. Almost every subject covered is also relevant to interactive computer theorem proving in general, not just program verification, demonstrated through examples of verified programs applied in many different sorts of formalizations. The book develops a unique automated proof style and applies it throughout; even experienced Coq users may benefit from reading about basic Coq concepts from this novel perspective. The book also offers a library of tactics, or programs that find proofs, designed for use with examples in the book. Readers will acquire the necessary skills to reimplement these tactics in other settings by the end of the book. All of the code appearing in the book is freely available online.},
+  copyright = {https://creativecommons.org/licenses/by-nc-nd/4.0/},
+  isbn = {978-0-262-31787-0},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/HNTQHL9G/Chlipala - 2013 - Certified Programming with Dependent Types A Prag.pdf}
+}
+
+@unpublished{christiansenFunctionalProgrammingLean,
+  title = {Functional {{Programming}} in {{Lean}}},
+  author = {Christiansen, David Thrane},
+  urldate = {2022-11-25},
+  keywords = {Lean},
+  note = {\url{https://leanprover.github.io/functional_programming_in_lean/}. Online book},
+  file = {/home/alex/Zotero/storage/SY68LG8N/functional_programming_in_lean.html}
+}
+
+@article{cirsteaLogicsCoalgebraicSimulation2004,
+  title = {On {{Logics}} for {{Coalgebraic Simulation}}},
+  author = {C{\^i}rstea, Corina},
+  year = {2004},
+  month = dec,
+  journal = {Electronic Notes in Theoretical Computer Science},
+  volume = {106},
+  pages = {63--90},
+  issn = {15710661},
+  doi = {10.1016/j.entcs.2004.02.026},
+  urldate = {2023-01-15},
+  abstract = {We investigate logics for coalgebraic simulation from a compositional perspective. Specifically, we show that the expressiveness of an inductively-defined language for coalgebras w.r.t. a given notion of simulation comes as a consequence of an expressivity condition between the language constructor used to define the language for coalgebras, and the relator used to define the notion of simulation. This result can be instantiated to obtain Baltag's logics for coalgebraic simulation, as well as a logic which captures simulation on unlabelled probabilistic transition systems. Moreover, our approach is compositional w.r.t. coalgebraic types. This allows us to derive logics which capture other notions of simulation, including trace inclusion on labelled transition systems, and simulation on discrete Markov processes.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/H9F43PB9/Cîrstea - 2004 - On Logics for Coalgebraic Simulation.pdf}
+}
+
+@misc{cloustonFitchStyleModalLambda2018,
+  title = {Fitch-{{Style Modal Lambda Calculi}}},
+  author = {Clouston, Ranald},
+  year = {2018},
+  month = jan,
+  number = {arXiv:1710.08326},
+  eprint = {1710.08326},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  urldate = {2023-08-26},
+  abstract = {Fitch-style modal deduction, in which modalities are eliminated by opening a subordinate proof, and introduced by shutting one, were investigated in the 1990s as a basis for lambda calculi. We show that such calculi have good computational properties for a variety of intuitionistic modal logics. Semantics are given in cartesian closed categories equipped with an adjunction of endofunctors, with the necessity modality interpreted by the right adjoint. Where this functor is an idempotent comonad, a coherence result on the semantics allows us to present a calculus for intuitionistic S4 that is simpler than others in the literature. We show the calculi can be extended `a la tense logic with the left adjoint of necessity, and are then complete for the categorical semantics.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Logic in Computer Science},
+  file = {/home/alex/Zotero/storage/EVM9X673/Clouston - 2018 - Fitch-Style Modal Lambda Calculi.pdf}
+}
+
+@misc{ConorsStaringOut,
+  title = {Conor's {{Staring}} out the {{Window}}},
+  urldate = {2024-12-02},
+  howpublished = {http://strictlypositive.org/},
+  file = {/home/alex/Zotero/storage/MIKUQWVX/strictlypositive.org.html}
+}
+
+@phdthesis{coquandMetamathematicalInvestigationsCalculus1989,
+  type = {Report},
+  title = {Metamathematical Investigations of a Calculus of Constructions},
+  author = {Coquand, T.},
+  year = {1989},
+  urldate = {2023-01-10},
+  langid = {english},
+  school = {INRIA},
+  file = {/home/alex/Zotero/storage/2GZIKEXG/Coquand_1989_Metamathematical investigations of a calculus of constructions.pdf}
+}
+
+@article{cutlerCedarNewLanguage2024,
+  title = {Cedar: {{A New Language}} for {{Expressive}}, {{Fast}}, {{Safe}}, and {{Analyzable Authorization}}},
+  shorttitle = {Cedar},
+  author = {Cutler, Joseph W. and Disselkoen, Craig and Eline, Aaron and He, Shaobo and Headley, Kyle and Hicks, Michael and Hietala, Kesha and Ioannidis, Eleftherios and Kastner, John and Mamat, Anwar and McAdams, Darin and McCutchen, Matt and Rungta, Neha and Torlak, Emina and Wells, Andrew M.},
+  year = {2024},
+  month = apr,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {8},
+  number = {OOPSLA1},
+  pages = {670--697},
+  issn = {2475-1421},
+  doi = {10.1145/3649835},
+  urldate = {2024-07-10},
+  abstract = {Cedar is a new authorization policy language designed to be ergonomic, fast, safe, and analyzable. Rather than embed authorization logic in an application's code, developers can write that logic as Cedar policies and delegate access decisions to Cedar's evaluation engine. Cedar's simple and intuitive syntax supports common authorization use-cases with readable policies, naturally leveraging concepts from role-based, attribute-based, and relation-based access control models. Cedar's policy structure enables access requests to be decided quickly. Cedar's policy validator leverages optional typing to help policy writers avoid mistakes, but not get in their way. Cedar's design has been finely balanced to allow for a sound and complete logical encoding, which enables precise policy analysis, e.g., to ensure that when refactoring a set of policies, the authorized   permissions do not change. We have modeled Cedar in the Lean programming language, and used Lean's proof assistant to prove important properties of Cedar's design. We have implemented Cedar in Rust, and released it open-source. Comparing Cedar to two open-source languages, OpenFGA and Rego, we find (subjectively) that Cedar has equally or more readable policies, but (objectively) performs far better.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/2BEC5KNZ/Cutler et al. - 2024 - Cedar A New Language for Expressive, Fast, Safe, .pdf}
+}
+
+@article{dawsonIsabelleTheoriesMachine2009,
+  title = {Isabelle {{Theories}} for {{Machine Words}}},
+  author = {Dawson, Jeremy},
+  year = {2009},
+  month = sep,
+  journal = {Electronic Notes in Theoretical Computer Science},
+  volume = {250},
+  number = {1},
+  pages = {55--70},
+  issn = {15710661},
+  doi = {10.1016/j.entcs.2009.08.005},
+  urldate = {2024-07-02},
+  abstract = {We describe a collection of Isabelle theories which facilitate reasoning about machine words. For each possible word length, the words of that length form a type, and most of our work consists of generic theorems which can be applied to any such type. We develop the relationships between these words and integers (signed and unsigned), lists of booleans and functions from index to value, noting how these relationships are similar to those between an abstract type and its representing set. We discuss how we used Isabelle's bin type, before and after it was changed from a datatype to an abstract type, and the techniques we used to retain, as nearly as possible, the convenience of primitive recursive definitions. We describe other useful techniques, such as encoding the word length in the type.},
+  copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/USWBNIYD/Dawson - 2009 - Isabelle Theories for Machine Words.pdf}
 }
 
 @inproceedings{demouraLeanTheoremProver2015,
@@ -127,11 +711,94 @@
   file = {/home/alex/Zotero/storage/GLLTAUIJ/de Moura et al_2015_The Lean Theorem Prover (System Description).pdf}
 }
 
+@phdthesis{devriesMakingUniquenessTyping,
+  title = {Making {{Uniqueness Typing Less Unique}}},
+  author = {{de Vries}, Edsko},
+  urldate = {2023-03-23},
+  abstract = {The PhD thesis contains expanded versions of the three papers mentioned below (Uniqueness Typing Redefined, Equality Based Uniqueness Typing and Uniqueness Typing Simplified) and an in-depth discussion of avenues for future work, as well as a detailed introduction to uniqueness typing and substructural logics in general (including a comparison to Haskell's monadic approach) and a survey of related work in the area.},
+  keywords = {_tablet,Uniqueness Types},
+  file = {/home/alex/Zotero/storage/YWFDGCH8/de Vries_Making Uniqueness Typing Less Unique.pdf}
+}
+
+@phdthesis{drossHighLevelFunctionalProperties2015,
+  type = {Report},
+  title = {High-{{Level Functional Properties}} of {{Bit-Level Programs}}: {{Formal Specifications}} and {{Automated Proofs}}},
+  shorttitle = {High-{{Level Functional Properties}} of {{Bit-Level Programs}}},
+  author = {Dross, Claire and Fumex, Cl{\'e}ment and Gerlach, Jens and March{\'e}, Claude},
+  year = {2015},
+  month = dec,
+  pages = {52},
+  urldate = {2024-07-10},
+  abstract = {In a computer program, basic functionalities may be implemented using bit-wise operations. This can be motivated by the need to be close to the underlying architecture, or the need of efficiency, both in term of time and memory space. If one wants to formally specify the expected behavior of such a low-level program, it is desirable that the specification should be at a more abstract level. Formally proving that a low-level code conforms to a higher-level specification is challenging, because of the gap between the different levels of abstraction. Our approach to address this challenge is to design a rich formal theory of fixed-sized bit-vectors, which on the one hand allows a user to write abstract specifications close to the human---or mathematical---level of thinking, while on the other hand permits a close connection to decision procedures and tools for bit-vectors, as they exist in the context of the Satisfiability Modulo Theory framework. This approach is implemented in the Why3 environment for deductive program verification, and also in its front-end environment SPARK for the development of safety-critical Ada programs. We report on several case studies used to validate our approach experimentally.},
+  langid = {english},
+  school = {Inria Saclay},
+  file = {/home/alex/Zotero/storage/KFGLP2YS/Dross et al. - 2015 - High-Level Functional Properties of Bit-Level Prog.pdf}
+}
+
+@misc{dupratLibraryCoqBoolBVector,
+  title = {Library {{Coq}}.{{Bool}}.{{BVector}}},
+  author = {Duprat, Jean},
+  urldate = {2024-09-06},
+  file = {/home/alex/Zotero/storage/2CPWM8EW/Coq.Bool.Bvector.html}
+}
+
+@article{ekiciVerifyingBitvectorInvertibility2019,
+  title = {Verifying {{Bit-vector Invertibility Conditions}} in {{Coq}} ({{Extended Abstract}})},
+  author = {Ekici, Burak and Viswanathan, Arjun and Zohar, Yoni and Barrett, Clark and Tinelli, Cesare},
+  year = {2019},
+  month = aug,
+  journal = {Electronic Proceedings in Theoretical Computer Science},
+  volume = {301},
+  pages = {18--26},
+  issn = {2075-2180},
+  doi = {10.4204/EPTCS.301.4},
+  urldate = {2024-07-11},
+  langid = {english},
+  keywords = {Coq,SMT solvers,SmtCoq},
+  file = {/home/alex/Zotero/storage/FHKXN2XU/Ekici et al. - 2019 - Verifying Bit-vector Invertibility Conditions in C.pdf}
+}
+
 @article{eldridgeMLIRHardwareCompiler,
   title = {{{MLIR}} as {{Hardware Compiler Infrastructure}}},
   author = {Eldridge, Schuyler and Barua, Prithayan and Chapyzhenka, Aliaksei and Izraelevitz, Adam and Koenig, Jack and Lattner, Chris and Lenharth, Andrew and Leontiev, George and Schuiki, Fabian and Sunder, Ram and Young, Andrew and Xia, Richard},
   langid = {english},
   file = {/home/alex/Zotero/storage/2926Z9MR/Eldridge et al. - MLIR as Hardware Compiler Infrastructure.pdf}
+}
+
+@book{esparzaAutomataTheoryAlgorithmic2023,
+  title = {Automata Theory: An Algorithmic Approach},
+  shorttitle = {Automata Theory},
+  author = {Esparza, Javier and Blondin, Michael},
+  year = {2023},
+  publisher = {The MIT Press},
+  address = {Cambridge, Massachusetts London, England},
+  abstract = {"The book presents automata theory from a fresh viewpoint inspired by its main modern application: program verification"--},
+  isbn = {978-0-262-04863-7},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/I9APEKDL/book_authors.pdf}
+}
+
+@article{forsterCertifyingExtractionTime2019,
+  title = {A {{Certifying Extraction}} with {{Time Bounds}} from {{Coq}} to {{Call-By-Value Lambda Calculus}}},
+  author = {Forster, Yannick and Kunze, Fabian},
+  year = {2019},
+  pages = {19 pages},
+  publisher = {Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany},
+  doi = {10.4230/LIPICS.ITP.2019.17},
+  urldate = {2022-10-30},
+  abstract = {A broad class of data types, including arbitrary nestings of inductive types, coinductive types, and quotients, can be represented as quotients of polynomial functors. This provides perspicuous ways of constructing them and reasoning about them in an interactive theorem prover.},
+  collaborator = {Wagner, Michael},
+  copyright = {Creative Commons Attribution 3.0 Unported license (CC-BY 3.0)},
+  langid = {english},
+  keywords = {_tablet,000 Computer science knowledge general works,Computer Science},
+  file = {/home/alex/Zotero/storage/RXEVNDD8/Forster_Kunze_2019_A Certifying Extraction with Time Bounds from Coq to Call-By-Value Lambda.pdf}
+}
+
+@article{FrexDependentlytypedAlgebraic2023,
+  title = {Frex: Dependently-Typed Algebraic Simplification},
+  year = {2023},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/UB5W57RH/2023 - Frex dependently-typed algebraic simplification.pdf}
 }
 
 @article{furerQuotientsBoundedNatural2022,
@@ -148,10 +815,91 @@
   doi = {10.46298/lmcs-18(1:23)2022},
   urldate = {2022-10-30},
   abstract = {The functorial structure of type constructors is the foundation for many definition and proof principles in higher-order logic (HOL). For example, inductive and coinductive datatypes can be built modularly from bounded natural functors (BNFs), a class of well-behaved type constructors. Composition, fixpoints, and---under certain conditions---subtypes are known to preserve the BNF structure. In this article, we tackle the preservation question for quotients, the last important principle for introducing new types in HOL. We identify sufficient conditions under which a quotient inherits the BNF structure from its underlying type. Surprisingly, lifting the structure in the obvious manner fails for some quotients, a problem that also affects the quotients of polynomial functors used in the Lean proof assistant. We provide a strictly more general lifting scheme that supports such problematic quotients. We extend the Isabelle/HOL proof assistant with a command that automates the registration of a quotient type as a BNF, reducing the proof burden on the user from the full set of BNF axioms to our inheritance conditions. We demonstrate the command's usefulness through several case studies.},
-  archiveprefix = {arxiv},
+  archiveprefix = {arXiv},
   langid = {english},
   keywords = {Computer Science - Logic in Computer Science,Computer Science - Programming Languages},
   file = {/home/alex/Zotero/storage/NHZZBL8R/Fürer et al_2022_Quotients of Bounded Natural Functors.pdf}
+}
+
+@inproceedings{gambinoWellfoundedTreesDependent2004,
+  title = {Wellfounded {{Trees}} and {{Dependent Polynomial Functors}}},
+  booktitle = {Types for {{Proofs}} and {{Programs}}},
+  author = {Gambino, Nicola and Hyland, Martin},
+  editor = {Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Dough and Vardi, Moshe Y. and Weikum, Gerhard and Berardi, Stefano and Coppo, Mario and Damiani, Ferruccio},
+  year = {2004},
+  volume = {3085},
+  pages = {210--225},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-540-24849-1_14},
+  urldate = {2024-06-26},
+  abstract = {We set out to study the consequences of the assumption of types of wellfounded trees in dependent type theories. We do so by investigating the categorical notion of wellfounded tree introduced in [16]. Our main result shows that wellfounded trees allow us to define initial algebras for a wide class of endofunctors on locally cartesian closed categories.},
+  isbn = {978-3-540-22164-7 978-3-540-24849-1},
+  langid = {english},
+  keywords = {Forgetful Functor,Left Adjoint,Monoidal Category,Natural Transformation,Type Theory},
+  file = {/home/alex/Zotero/storage/7ESZMYZE/Gambino and Hyland - 2004 - Wellfounded Trees and Dependent Polynomial Functor.pdf;/home/alex/Zotero/storage/PX6238VA/Gambino and Hyland - 2004 - Wellfounded Trees and Dependent Polynomial Functor.pdf}
+}
+
+@incollection{garavelEquivalenceChecking402022,
+  title = {Equivalence {{Checking}} 40 {{Years After}}: {{A Review}} of {{Bisimulation Tools}}},
+  shorttitle = {Equivalence {{Checking}} 40 {{Years After}}},
+  booktitle = {A {{Journey}} from {{Process Algebra}} via {{Timed Automata}} to {{Model Learning}}},
+  author = {Garavel, Hubert and Lang, Fr{\'e}d{\'e}ric},
+  editor = {Jansen, Nils and Stoelinga, Mari{\"e}lle and Van Den Bos, Petra},
+  year = {2022},
+  volume = {13560},
+  pages = {213--265},
+  publisher = {Springer Nature Switzerland},
+  address = {Cham},
+  doi = {10.1007/978-3-031-15629-8_13},
+  urldate = {2024-03-07},
+  abstract = {Equivalence checking is a formal verification approach that consists in proving that two programs or models are related modulo some equivalence relation, or that one is included in the other modulo some preorder relation. In the case of concurrent systems, which are often represented using labelled transition systems, the relations used for equivalence checking are bisimulations and their simulation preorders. In the case of probabilistic or stochastic systems, which are usually represented using Markov chains, the relations used for equivalence checking are lumpability, probabilistic and stochastic equivalences, and their associated preorders. The present article provides a synthetic overview of 40 years of research in the design of algorithms and software tools for equivalence checking.},
+  isbn = {978-3-031-15628-1 978-3-031-15629-8},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/VTLIKC2A/Garavel and Lang - 2022 - Equivalence Checking 40 Years After A Review of B.pdf}
+}
+
+@article{gayDualitySessionTypes2020,
+  title = {Duality of {{Session Types}}: {{The Final Cut}}},
+  shorttitle = {Duality of {{Session Types}}},
+  author = {Gay, Simon J. and Thiemann, Peter and Vasconcelos, Vasco T.},
+  year = {2020},
+  month = apr,
+  journal = {Electronic Proceedings in Theoretical Computer Science},
+  volume = {314},
+  pages = {23--33},
+  issn = {2075-2180},
+  doi = {10.4204/EPTCS.314.3},
+  urldate = {2022-10-29},
+  langid = {english},
+  keywords = {Session Types},
+  file = {/home/alex/Zotero/storage/LDUDG8QZ/Gay et al. - 2020 - Duality of Session Types The Final Cut.pdf}
+}
+
+@article{gaySubtypingSessionTypes2005,
+  title = {Subtyping for Session Types in the Pi Calculus},
+  author = {Gay, Simon and Hole, Malcolm},
+  year = {2005},
+  month = nov,
+  journal = {Acta Informatica},
+  volume = {42},
+  number = {2-3},
+  pages = {191--225},
+  issn = {0001-5903, 1432-0525},
+  doi = {10.1007/s00236-005-0177-z},
+  urldate = {2022-10-29},
+  abstract = {Extending the pi calculus with the session types proposed by Honda et al. allows high-level specifications of structured patterns of communication, such as client-server protocols, to be expressed as types and verified by static typechecking. We define a notion of subtyping for session types, which allows protocol specifications to be extended in order to describe richer behaviour; for example, an implemented server can be refined without invalidating type-correctness of an overall system. We formalize the syntax, operational semantics and typing rules of an extended pi calculus, prove that typability guarantees absence of run-time communication errors, and show that the typing rules can be transformed into a practical typechecking algorithm.},
+  langid = {english},
+  keywords = {Session Types},
+  file = {/home/alex/Zotero/storage/NZE8MDSV/Gay and Hole - 2005 - Subtyping for session types in the pi calculus.pdf}
+}
+
+@article{gibbonsEssenceIteratorPattern,
+  title = {The {{Essence}} of the {{Iterator Pattern}}},
+  author = {Gibbons, Jeremy and Building, Wolfson and Road, Parks},
+  abstract = {The ITERATOR pattern gives a clean interface for element-by-element access to a collection, independent of the collection's shape. Imperative iterations using the pattern have two simultaneous aspects: mapping and accumulating. Various existing functional models of iteration capture one or other of these aspects, but not both simultaneously. We argue that McBride and Paterson's applicative functors, and in particular the corresponding traverse operator, do exactly this, and therefore capture the essence of the ITERATOR pattern. Moreover, they do so in a way that nicely supports modular programming. We present some axioms for traversal, discuss modularity concerns, and illustrate with a simple example, the wordcount problem.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/7GLKBI7H/Gibbons et al. - The Essence of the Iterator Pattern.pdf}
 }
 
 @inproceedings{gimenezApplicationCoinductiveTypes1996,
@@ -182,12 +930,241 @@
   file = {/home/alex/Zotero/storage/MBC5B6UI/Giménez_1998_A Tutorial on Recursive Types in Coq.pdf}
 }
 
+@phdthesis{girardInterpretationFonctionelleElimination1972,
+  title = {Interpr{\'e}tation Fonctionelle et {\'E}limination Des Coupures de l'arithm{\'e}tique d'ordre Sup{\'e}rieur},
+  author = {Girard, J.},
+  year = {1972},
+  address = {Paris},
+  school = {Universit{\'e} Paris}
+}
+
+@incollection{giuntiLinearAccountSession2010,
+  title = {A {{Linear Account}} of {{Session Types}} in the {{Pi Calculus}}},
+  booktitle = {{{CONCUR}} 2010 - {{Concurrency Theory}}},
+  author = {Giunti, Marco and Vasconcelos, Vasco T.},
+  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Doug and Vardi, Moshe Y. and Weikum, Gerhard and Gastin, Paul and Laroussinie, Fran{\c c}ois},
+  year = {2010},
+  volume = {6269},
+  pages = {432--446},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-15375-4_30},
+  urldate = {2022-10-29},
+  abstract = {We present a reconstruction of session types in a conventional pi calculus where types are qualified as linear or unrestricted. Linearly typed communication channels are guaranteed to occur in exactly one thread, possibly multiple times. We equip types with a constructor that denotes the two ends of a same communication channel. In order to assess the flexibility of the new type system, we provide three distinct encodings (from the linear lambda calculus, from the linear pi calculus, and from the pi calculus with polarized variables) into our system. For each language we present operational and typing correspondences, showing that our system effectively subsumes the linear pi calculus as well as foregoing works on session types.},
+  isbn = {978-3-642-15374-7 978-3-642-15375-4},
+  langid = {english},
+  keywords = {Session Types},
+  file = {/home/alex/Zotero/storage/D65QEZX4/Giunti and Vasconcelos - 2010 - A Linear Account of Session Types in the Pi Calcul.pdf}
+}
+
+@article{giuntiLinearitySessionTypes2016,
+  title = {Linearity, Session Types and the {{Pi}} Calculus},
+  author = {Giunti, Marco and Vasconcelos, Vasco Thudichum},
+  year = {2016},
+  month = feb,
+  journal = {Mathematical Structures in Computer Science},
+  volume = {26},
+  number = {2},
+  pages = {206--237},
+  issn = {0960-1295, 1469-8072},
+  doi = {10.1017/S0960129514000176},
+  urldate = {2023-01-15},
+  abstract = {We present a type system based on session types that works on a conventional pi calculus. Types are equipped with a constructor that describes the two ends of a single communication channel, this being the only type available for describing the behaviour of channels. Session types, in turn, describe the behaviour of each individual channel end, as usual. A novel notion of typing context split allows for typing processes not typable with extant type systems. We show that our system guarantees that typed processes do not engage in races for linear resources. We assess the expressiveness of the type system by providing three distinct encodings -- from the pi calculus with polarized variables, from the pi calculus with accept and request primitives, and from the linear pi calculus -- into our system. For each language we present operational and typing correspondences, showing that our system effectively subsumes foregoing works on linear and session types. In the case of the linear pi calculus we also provide a completeness result.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/IRILNJFI/Giunti and Vasconcelos - 2016 - Linearity, session types and the Pi calculus.pdf}
+}
+
+@book{gordonEdinburghLCFMechanised1979,
+  title = {Edinburgh {{LCF}}: A Mechanised Logic of Computation},
+  shorttitle = {Edinburgh {{LCF}}},
+  author = {Gordon, Michael J. C. and Milner, R. and Wadsworth, Christopher P.},
+  year = {1979},
+  series = {Lecture Notes in Computer Science},
+  number = {78},
+  publisher = {Springer-Verlag},
+  address = {Berlin ; New York},
+  isbn = {978-0-387-09724-4},
+  lccn = {QA9.59 .G67},
+  keywords = {Computable functions,Data processing,Edinburgh LCF (Computer system)}
+}
+
+@incollection{gorinSimulationsBisimulationsCoalgebraic2013,
+  title = {Simulations and {{Bisimulations}} for {{Coalgebraic Modal Logics}}},
+  booktitle = {Algebra and {{Coalgebra}} in {{Computer Science}}},
+  author = {Gor{\'i}n, Daniel and Schr{\"o}der, Lutz},
+  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Doug and Vardi, Moshe Y. and Weikum, Gerhard and Heckel, Reiko and Milius, Stefan},
+  year = {2013},
+  volume = {8089},
+  pages = {253--266},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-40206-7_19},
+  urldate = {2022-10-29},
+  abstract = {Simulations serve as a proof tool to compare the behaviour of reactive systems. We define a notion of {$\Lambda$}-simulation for coalgebraic modal logics, parametric in the choice of a set {$\Lambda$} of monotone predicate liftings for a functor T . That is, we obtain a generic notion of simulation that can be flexibly instantiated to a large variety of systems and logics, in particular in settings that semantically go beyond the classical relational setup, such as probabilistic, game-based, or neighbourhood-based systems. We show that this notion is adequate in several ways: i) {$\Lambda$}-simulations preserve truth of positive formulas, ii) for {$\Lambda$} a separating set of monotone predicate liftings, the associated notion of {$\Lambda$}-bisimulation corresponds to T -behavioural equivalence (moreover, this correspondence extends to the respective finite-lookahead counterparts), and iii) {$\Lambda$}-bisimulations remain sound when taken up to difunctional closure. In essence, we arrive at a modular notion of equivalence that, when used with a separating set of monotone predicate liftings, coincides with T -behavioural equivalence regardless of whether T preserves weak pullbacks. That is, for finitary set-based coalgebras, {$\Lambda$}-bisimulation works under strictly more general assumptions than T -bisimulation in the sense of Aczel and Mendler.},
+  isbn = {978-3-642-40205-0 978-3-642-40206-7},
+  langid = {english},
+  keywords = {Coalgebra,Modal Logic},
+  file = {/home/alex/Zotero/storage/AKGQEUGF/Gorín and Schröder - 2013 - Simulations and Bisimulations for Coalgebraic Moda.pdf}
+}
+
+@phdthesis{gourdinFormalValidationIntraProcedural2023,
+  title = {Formal {{Validation}} of {{Intra-Procedural Transformations}} by {{Defensive Symbolic Simulation}}},
+  author = {Gourdin, L{\'e}o},
+  year = {2023},
+  month = dec,
+  urldate = {2025-01-14},
+  abstract = {Compilers are highly complex software systems and may, therefore, contain bugs. These bugs can result in errors during the compilation process, or, much more annoyingly, in the generation of incorrect code. Bugs that subtly alter the semantics of generated programs are often very insidious and challenging to trace. In certain applications, particularly in embedded, safety-critical systems subject to stringent regulations and requirements (e.g., avionics, trains, etc.), eliminating these bugs is of paramount importance.Although most of these bugs are typically found in optimization passes, disabling optimizations is not a viable option in many applications. In fact, simply turning off optimizations is insufficient to guarantee bug-free code. Regulatory standards often necessitate the use of simple, predictable processors, heavily reliant on the compiler for performance.An alternative solution is to employ a certified compiler, mechanically proven correct in a proof assistant. Such a compiler ensures that the generated assembly code faithfully preserves the source code's semantics. CompCert belongs to this category, and stands as the first formally verified C compiler widely used in the industry. However, proving the correctness of intricate optimizations remains a challenge. This is why certified compilers, including CompCert, produce code that is significantly less performant compared to mainstream compilers like GCC or LLVM.Translation validation offers a technique where only the result of an optimization is verified, rather than proving the correctness of its implementation. The optimization algorithm, referred to as an oracle, remains untrusted. Nevertheless, its results are always subjected to validation by a proven validator designed to reject any errors.In this thesis, we delve into the concept of guided, defensive translation validation. The principle is to allow oracles to guide the validator by providing hints that reduce the search space, thereby minimizing the complexity of the validation process. Specifically, we propose a formally verified symbolic interpreter capable of validating an entire class of transformations. Our tool requests program invariants from oracles as hints to drive the symbolic simulation of both the original and optimized code. The proven simulation test defensively validates the applied optimizations, ensuring consistency with the unoptimized code.We have successfully validated several new transformations using this approach, including some that had never been formally verified before, thanks to the communication between oracles and their validator. Notably, we verify a strength-reduction optimization targeting 64-bit RISC-V architectures, which show promise in the context of safety-critical embedded systems. In addition to strength-reduction, our symbolic simulation framework also supports partial redundancy elimination, dead code elimination, code motion, scheduling, and weak software pipelining with renaming.We have integrated our validation mechanism into a fork of CompCert through the development of a new intermediate language called Block Transfer Language, BTL. Translations to and from BTL are also defensively validated, accomplished with a separate, formally verified checker capable of validating code duplication and factorization as control-flow graph morphisms. To rigorously assess the impact of our optimizations and the overhead introduced by their validation, we conducted multiple experimental measurements of both compilation time and runtime performance. Platform specific optimizations were tested on both AArch64 and RISC-V architectures. Results show a significant improvement of the runtime performance while maintaining a reasonable compilation time.In the future, this same method could potentially be applied to validate other transformations, such as the automatic insertion of security countermeasures. Our designs appear to be applicable beyond CompCert.},
+  langid = {english},
+  school = {Universit{\'e} Grenoble Alpes [2020-....]},
+  file = {/home/alex/Zotero/storage/QKYTUP94/Gourdin - 2023 - Formal Validation of Intra-Procedural Transformations by Defensive Symbolic Simulation.pdf}
+}
+
+@inproceedings{gratzerMultimodalDependentType2020,
+  title = {Multimodal {{Dependent Type Theory}}},
+  booktitle = {Proceedings of the 35th {{Annual ACM}}/{{IEEE Symposium}} on {{Logic}} in {{Computer Science}}},
+  author = {Gratzer, Daniel and Kavvos, G. A. and Nuyts, Andreas and Birkedal, Lars},
+  year = {2020},
+  month = jul,
+  pages = {492--506},
+  publisher = {ACM},
+  address = {Saarbr{\"u}cken Germany},
+  doi = {10.1145/3373718.3394736},
+  urldate = {2023-08-27},
+  abstract = {We introduce MTT, a dependent type theory which supports multiple modalities. MTT is parametrized by a mode theory which specifies a collection of modes, modalities, and transformations between them. We show that different choices of mode theory allow us to use the same type theory to compute and reason in many modal situations, including guarded recursion, axiomatic cohesion, and parametric quantification. We reproduce examples from prior work in guarded recursion and axiomatic cohesion --- demonstrating that MTT constitutes a simple and usable syntax whose instantiations intuitively correspond to previous handcrafted modal type theories. In some cases, instantiating MTT to a particular situation unearths a previously unknown type theory that improves upon prior systems. Finally, we investigate the metatheory of MTT. We prove the consistency of MTT and establish canonicity through an extension of recent type-theoretic gluing techniques. These results hold irrespective of the choice of mode theory, and thus apply to a wide variety of modal situations.},
+  isbn = {978-1-4503-7104-9},
+  langid = {english},
+  keywords = {Categorical semantics,Dependent Types,Guarded Recursion,Modal Types},
+  file = {/home/alex/Zotero/storage/F64JDK37/Gratzer et al. - 2020 - Multimodal Dependent Type Theory.pdf}
+}
+
+@inproceedings{hermansHedyGradualLanguage2020,
+  title = {Hedy: {{A Gradual Language}} for {{Programming Education}}},
+  shorttitle = {Hedy},
+  booktitle = {Proceedings of the 2020 {{ACM Conference}} on {{International Computing Education Research}}},
+  author = {Hermans, Felienne},
+  year = {2020},
+  month = aug,
+  pages = {259--270},
+  publisher = {ACM},
+  address = {Virtual Event New Zealand},
+  doi = {10.1145/3372782.3406262},
+  urldate = {2024-06-21},
+  abstract = {One of the aspects of programming that learners often struggle with is the syntax of programming languages: remembering the right commands to use and combining those into a working program. Prior research demonstrated that students submit source code with syntax errors in 73\% of cases and even the best students do so in 50\% of cases. An analysis of 37 million compilations by 250.000 students found that the most common error was a syntax error, which occurred in almost 800.000 compilations. It was also found that Java and Perl are not easier to understand than a programming language with randomly generated keywords, stressing the difficulties that novices face in understanding syntax.},
+  isbn = {978-1-4503-7092-9},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/Z2IS3R3U/Hermans - 2020 - Hedy A Gradual Language for Programming Education.pdf}
+}
+
+@misc{HttpsArxivorgPdf,
+  title = {{{https://arxiv.org/pdf/1908.09478}}},
+  urldate = {2024-09-06},
+  howpublished = {https://arxiv.org/pdf/1908.09478}
+}
+
+@misc{HttpsDlacmorgDoi,
+  title = {{{https://dl.acm.org/doi/pdf/10.1145/3674646}}},
+  urldate = {2025-01-20},
+  howpublished = {https://dl.acm.org/doi/pdf/10.1145/3674646},
+  file = {/home/alex/Zotero/storage/FH3NEWEH/3674646.pdf}
+}
+
+@misc{HttpsInriahalscienceFile,
+  title = {{{https://inria.hal.science/file/index/docid/639130/filename/cpp11.pdf}}},
+  urldate = {2024-07-02},
+  howpublished = {https://inria.hal.science/file/index/docid/639130/filename/cpp11.pdf}
+}
+
+@misc{HttpsPlvmpiswsorgPaco,
+  title = {{{https://plv.mpi-sws.org/paco/ppcp.pdf}}},
+  urldate = {2024-05-27},
+  howpublished = {https://plv.mpi-sws.org/paco/ppcp.pdf}
+}
+
+@misc{HttpsPpipdkiteduUploads,
+  title = {{{https://pp.ipd.kit.edu/uploads/publikationen/huisinga23masterarbeit.pdf}}},
+  urldate = {2024-04-02},
+  howpublished = {https://pp.ipd.kit.edu/uploads/publikationen/huisinga23masterarbeit.pdf}
+}
+
+@misc{HttpsTheorystanfordeduBarrett,
+  title = {{{https://theory.stanford.edu/{\textasciitilde}barrett/pubs/EVZ+19.pdf}}},
+  urldate = {2024-07-11},
+  howpublished = {https://theory.stanford.edu/{\textasciitilde}barrett/pubs/EVZ+19.pdf}
+}
+
+@misc{HttpsWwwcsleacukPeople,
+  title = {{{https://www.cs.le.ac.uk/people/ngambino/Publications/gambino-hyland.pdf}}},
+  urldate = {2024-06-26},
+  howpublished = {https://www.cs.le.ac.uk/people/ngambino/Publications/gambino-hyland.pdf}
+}
+
+@article{hughesSimulationsCoalgebra2004,
+  title = {Simulations in Coalgebra},
+  author = {Hughes, Jesse and Jacobs, Bart},
+  year = {2004},
+  month = oct,
+  journal = {Theoretical Computer Science},
+  volume = {327},
+  number = {1-2},
+  pages = {71--108},
+  issn = {03043975},
+  doi = {10.1016/j.tcs.2004.07.022},
+  urldate = {2022-10-29},
+  abstract = {A new approach to simulations is proposed within the theory of coalgebras by taking a notion of order on a functor as primitive. Such an order forms a basic building block for a ``lax relation lifting'', or ``relator'' as used by other authors. Simulations appear as coalgebras of this lifted functor, and similarity as greatest simulation. Two-way similarity is then similarity in both directions. In general, it is different from bisimilarity (in the usual coalgebraic sense), but a sufficient condition is formulated (and illustrated) to ensure that bisimilarity and two-way similarity coincide. Also, suitable conditions are identified which ensures that similarity on a final coalgebra forms an (algebraic) dcpo structure. This involves a close investigation of the iterated applications F n(∅) and F n(1) of a functor F with an order to the initial algebras and final objects.},
+  langid = {english},
+  keywords = {Coalgebra},
+  file = {/home/alex/Zotero/storage/V3LHHBEE/Hughes and Jacobs - 2004 - Simulations in coalgebra.pdf}
+}
+
+@mastersthesis{huisingaStaticUniquenessAnalysis,
+  title = {Static {{Uniqueness Analysis}} for the {{Lean}} 4 {{Theorem Prover}}},
+  author = {Huisinga, Marc},
+  urldate = {2024-04-02},
+  school = {K},
+  keywords = {Lean,Uniqueness Types}
+}
+
 @article{hurPowerParameterizationCoinductive,
   title = {The {{Power}} of {{Parameterization}} in {{Coinductive Proof}}},
   author = {Hur, Chung-Kil and Neis, Georg and Dreyer, Derek and Vafeiadis, Viktor},
   abstract = {Coinduction is one of the most basic concepts in computer science. It is therefore surprising that the commonly-known lattice-theoretic accounts of the principles underlying coinductive proofs are lacking in two key respects: they do not support compositional reasoning (i.e., breaking proofs into separate pieces that can be developed in isolation), and they do not support incremental reasoning (i.e., developing proofs interactively by starting from the goal and generalizing the coinduction hypothesis repeatedly as necessary).},
   langid = {english},
   file = {/home/alex/Zotero/storage/RVJ785CB/Hur et al. - The Power of Parameterization in Coinductive Proof.pdf}
+}
+
+@article{huttelFoundationsSessionTypes2016,
+  title = {Foundations of {{Session Types}} and {{Behavioural Contracts}}},
+  author = {H{\"u}ttel, Hans and Lanese, Ivan and Vasconcelos, Vasco T. and Caires, Lu{\'i}s and Carbone, Marco and Deni{\'e}lou, Pierre-Malo and Mostrous, Dimitris and Padovani, Luca and Ravara, Ant{\'o}nio and Tuosto, Emilio and Vieira, Hugo Torres and Zavattaro, Gianluigi},
+  year = {2016},
+  month = jul,
+  journal = {ACM Computing Surveys},
+  volume = {49},
+  number = {1},
+  pages = {1--36},
+  issn = {0360-0300, 1557-7341},
+  doi = {10.1145/2873052},
+  urldate = {2022-10-29},
+  abstract = {Behavioural type systems, usually associated to concurrent or distributed computations, encompass concepts such as interfaces, communication protocols, and contracts, in addition to the traditional input/output operations. The behavioural type of a software component specifies its expected patterns of interaction using expressive type languages, so types can be used to determine automatically whether the component interacts correctly with other components. Two related important notions of behavioural types are those of session types and behavioural contracts. This article surveys the main accomplishments of the last 20 years within these two approaches.},
+  langid = {english},
+  keywords = {Session Types},
+  file = {/home/alex/Zotero/storage/PP8LT644/Hüttel et al. - 2016 - Foundations of Session Types and Behavioural Contr.pdf}
+}
+
+@inproceedings{jespersenSessionTypesRust2015,
+  title = {Session Types for {{Rust}}},
+  booktitle = {Proceedings of the 11th {{ACM SIGPLAN Workshop}} on {{Generic Programming}}},
+  author = {Jespersen, Thomas Bracht Laumann and Munksgaard, Philip and Larsen, Ken Friis},
+  year = {2015},
+  month = aug,
+  pages = {13--22},
+  publisher = {ACM},
+  address = {Vancouver BC Canada},
+  doi = {10.1145/2808098.2808100},
+  urldate = {2023-01-15},
+  abstract = {We present a library for specifying session types implemented in Rust, and discuss practical use cases through examples and demonstrate how session types may be used in a large-scale application. Specifically we adapt parts of the ad-hoc communication patterns in the Servo browser engine to use session typed channels. Session types provide a protocol abstraction, expanding on traditional typed communication channels, to ensure that communication takes place according to a specified protocol. Thus, the library allows us to provide compile-time guarantees of adherence to a specific protocol without incurring significant run-time penalties.},
+  isbn = {978-1-4503-3810-3},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/D9ZS8DQ5/Jespersen et al. - 2015 - Session types for Rust.pdf}
 }
 
 @inproceedings{jungHigherorderGhostState2016,
@@ -205,6 +1182,23 @@
   isbn = {978-1-4503-4219-3},
   langid = {english},
   file = {/home/alex/Zotero/storage/ENV2VECP/Jung et al. - 2016 - Higher-order ghost state.pdf}
+}
+
+@article{jungIrisGroundModular2018,
+  title = {Iris from the Ground up: {{A}} Modular Foundation for Higher-Order Concurrent Separation Logic},
+  shorttitle = {Iris from the Ground Up},
+  author = {Jung, Ralf and Krebbers, Robbert and Jourdan, Jacques-Henri and Bizjak, Ale{\v s} and Birkedal, Lars and Dreyer, Derek},
+  year = {2018},
+  journal = {Journal of Functional Programming},
+  volume = {28},
+  pages = {e20},
+  issn = {0956-7968, 1469-7653},
+  doi = {10.1017/S0956796818000151},
+  urldate = {2022-11-05},
+  abstract = {Iris is a framework for higher-order concurrent separation logic, which has been implemented in the Coq proof assistant and deployed very effectively in a wide variety of verification projects. Iris was designed with the express goal of simplifying and consolidating the foundations of modern separation logics, but it has evolved over time, and the design and semantic foundations of Iris itself have yet to be fully written down and explained together properly in one place. Here, we attempt to fill this gap, presenting a reasonably complete picture of the latest version of Iris (version 3.1), from first principles and in one coherent narrative.},
+  langid = {english},
+  keywords = {Iris,Separation Logic},
+  file = {/home/alex/Zotero/storage/RD2TQYUH/Jung et al. - 2018 - Iris from the ground up A modular foundation for .pdf}
 }
 
 @inproceedings{jungIrisMonoidsInvariants2015,
@@ -225,6 +1219,19 @@
   file = {/home/alex/Zotero/storage/QMK68DNE/Jung et al. - 2015 - Iris Monoids and Invariants as an Orthogonal Basi.pdf}
 }
 
+@article{jungUnderstandingEvolvingRust2020,
+  title = {Understanding and Evolving the {{Rust}} Programming Language},
+  author = {Jung, Ralf},
+  year = {2020},
+  publisher = {Universit{\"a}t des Saarlandes},
+  doi = {10.22028/D291-31946},
+  urldate = {2022-10-29},
+  collaborator = {Universit{\"a}t Des Saarlandes and Universit{\"a}t Des Saarlandes},
+  langid = {english},
+  keywords = {Iris,PL Theory},
+  file = {/home/alex/Zotero/storage/XP7UYIQ3/Jung - Understanding and Evolving the Rust Programming La.pdf}
+}
+
 @article{kastnerCompCertPracticalExperience,
   title = {{{CompCert}}: {{Practical Experience}} on {{Integrating}} and {{Qualifying}} a {{Formally Verified Optimizing Compiler}}},
   author = {K{\"a}stner, Daniel and Barrho, J{\"o}rg and W{\"u}nsche, Ulrich and Schlickling, Marc and Schommer, Bernhard and Schmidt, Michael and Ferdinand, Christian and Leroy, Xavier and Blazy, Sandrine},
@@ -233,18 +1240,101 @@
   file = {/home/alex/Zotero/storage/R7MQXT3S/Kästner et al. - CompCert Practical Experience on Integrating and .pdf}
 }
 
-@phdthesis{keizerImplementingDefinitionalCo,
+@phdthesis{keizerImplementingDefinitionalCodatatype,
   title = {Implementing a Definitional (Co)Datatype Package in {{Lean}} 4, Based on Quotients of Polynomial Functors},
   author = {Keizer, Alex Christian},
   address = {Amsterdam},
-  school = {University of Amsterdam}
+  school = {University of Amsterdam},
+  file = {/home/alex/Zotero/storage/24JR94EN/Keizer - MSc Thesis (Afstudeerscriptie).pdf}
 }
 
-@article{keizerMScThesisAfstudeerscriptie,
-  title = {{{MSc Thesis}} ({{Afstudeerscriptie}})},
-  author = {Keizer, Alex C},
+@article{keizerImplementingPCFIdris,
+  title = {Implementing {{PCF}} in {{Idris}}},
+  author = {Keizer, Alex and Kirn, Jeremy and Lemal, Simon},
+  abstract = {PCF is a small extension of the simply typed lambda calculus that can be thought of as a basic programming language. We give a brief introduction to PCF, including its small-step reduction rules, and then give the details of two of our implementations of PCF in Idris, a dependently typed programming language similar to Haskell. The second implementation more heavily utilizes the dependent types of Idris.},
   langid = {english},
-  file = {/home/alex/Zotero/storage/24JR94EN/Keizer - MSc Thesis (Afstudeerscriptie).pdf}
+  file = {/home/alex/Zotero/storage/MPIMQ3MH/Keizer et al. - Implementing PCF in Idris.pdf}
+}
+
+@article{keuchelVerifiedSymbolicExecution2022,
+  title = {Verified Symbolic Execution with {{Kripke}} Specification Monads (and No Meta-Programming)},
+  author = {Keuchel, Steven and Huyghebaert, Sander and Lukyanov, Georgy and Devriese, Dominique},
+  year = {2022},
+  month = aug,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {6},
+  number = {ICFP},
+  pages = {194--224},
+  issn = {2475-1421},
+  doi = {10.1145/3547628},
+  urldate = {2025-01-14},
+  abstract = {Verifying soundness of symbolic execution-based program verifiers is a   significant challenge. This is especially true if the resulting tool needs to be   usable outside of the proof assistant, in which case we cannot rely on shallowly   embedded assertion logics and meta-programming. The tool needs to manipulate   deeply embedded assertions, and it is crucial for efficiency to eagerly prune   unreachable paths and simplify intermediate assertions in a way that can be   justified towards the soundness proof. Only a few such tools exist in the   literature, and their soundness proofs are intricate and hard to generalize or   reuse. We contribute a novel, systematic approach for the construction and   soundness proof of such a symbolic execution-based verifier. We first implement   a shallow verification condition generator as an object language interpreter in   a specification monad, using an abstract interface featuring angelic and demonic   nondeterminism. Next, we build a symbolic executor by implementing a similar   interpreter, in a symbolic specification monad. This symbolic monad lives in a   universe that is Kripke-indexed by variables in scope and a path condition.   Finally, we reduce the soundness of the symbolic execution to the soundness of   the shallow execution by relating both executors using a Kripke logical   relation. We report on the practical application of these techniques in   Katamaran, a tool for verifying security guarantees offered by instruction set   architectures (ISAs). The tool is fully verified by combining our symbolic   execution machinery with a soundness proof of the shallow verification   conditions against an axiomatized separation logic, and an Iris-based   implementation of the axioms, proven sound against the operational semantics.   Based on our experience with Katamaran, we can report good results on   practicality and efficiency of the tool, demonstrating practical viability of   our symbolic execution approach.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/3FM5FDJS/Keuchel et al. - 2022 - Verified symbolic execution with Kripke specification monads (and no meta-programming).pdf}
+}
+
+@article{klinBialgebraicMethodsModal2009,
+  title = {Bialgebraic Methods and Modal Logic in Structural Operational Semantics},
+  author = {Klin, Bartek},
+  year = {2009},
+  month = feb,
+  journal = {Information and Computation},
+  volume = {207},
+  number = {2},
+  pages = {237--257},
+  issn = {08905401},
+  doi = {10.1016/j.ic.2007.10.006},
+  urldate = {2022-10-29},
+  abstract = {Bialgebraic semantics, invented a decade ago by Turi and Plotkin, is an approach to formal reasoning about well-behaved structural operational semantics (SOS). An extension of algebraic and coalgebraic methods, it abstracts from concrete notions of syntax and system behaviour, thus treating various kinds of operational descriptions in a uniform fashion.},
+  langid = {english},
+  keywords = {Coalgebra,Modal Logic},
+  file = {/home/alex/Zotero/storage/HHL4DCFK/Klin - 2009 - Bialgebraic methods and modal logic in structural .pdf}
+}
+
+@article{klinCoalgebraicTraceSemantics2017,
+  title = {Coalgebraic Trace Semantics via Forgetful Logics},
+  author = {Klin, Bartek and Rot, Jurriaan},
+  editor = {Varacca, Daniele},
+  year = {2017},
+  month = apr,
+  journal = {Logical Methods in Computer Science},
+  volume = {12},
+  number = {4},
+  pages = {10},
+  issn = {18605974},
+  doi = {10.2168/LMCS-12(4:10)2016},
+  urldate = {2022-10-29},
+  abstract = {We use modal logic as a framework for coalgebraic trace semantics, and show the flexibility of the approach with concrete examples such as the language semantics of weighted, alternating and tree automata, and the trace semantics of generative probabilistic systems. We provide a sufficient condition under which a logical semantics coincides with the trace semantics obtained via a given determinization construction. Finally, we consider a condition that guarantees the existence of a canonical determinization procedure that is correct with respect to a given logical semantics. That procedure is closely related to Brzozowski's minimization algorithm.},
+  langid = {english},
+  keywords = {Coalgebra},
+  file = {/home/alex/Zotero/storage/3AY4LDII/Klin and Rot - 2017 - Coalgebraic trace semantics via forgetful logics.pdf}
+}
+
+@article{koenigImprovedInterfaceInteractive,
+  title = {{An Improved Interface for Interactive Proofs in Separation Logic}},
+  author = {K{\"o}nig, Lars},
+  pages = {78},
+  langid = {ngerman},
+  keywords = {Iris,Lean,Separation Logic},
+  file = {/home/alex/Zotero/storage/WFLX8S2F/König - An Improved Interface for Interactive Proofs in Se.pdf}
+}
+
+@inproceedings{kumarCakeMLVerifiedImplementation2014,
+  title = {{{CakeML}}: A Verified Implementation of {{ML}}},
+  shorttitle = {{{CakeML}}},
+  booktitle = {Proceedings of the 41st {{ACM SIGPLAN-SIGACT Symposium}} on {{Principles}} of {{Programming Languages}}},
+  author = {Kumar, Ramana and Myreen, Magnus O. and Norrish, Michael and Owens, Scott},
+  year = {2014},
+  month = jan,
+  pages = {179--191},
+  publisher = {ACM},
+  address = {San Diego California USA},
+  doi = {10.1145/2535838.2535841},
+  urldate = {2025-01-23},
+  abstract = {We have developed and mechanically verified an ML system called CakeML, which supports a substantial subset of Standard ML. CakeML is implemented as an interactive read-eval-print loop (REPL) in x86-64 machine code. Our correctness theorem ensures that this REPL implementation prints only those results permitted by the semantics of CakeML. Our verification effort touches on a breadth of topics including lexing, parsing, type checking, incremental and dynamic compilation, garbage collection, arbitraryprecision arithmetic, and compiler bootstrapping.},
+  isbn = {978-1-4503-2544-8},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/BQPWXF2C/Kumar et al. - 2014 - CakeML a verified implementation of ML.pdf}
 }
 
 @misc{lattnerMLIRCompilerInfrastructure2020,
@@ -260,9 +1350,88 @@
   doi = {10.48550/arXiv.2002.11054},
   urldate = {2023-03-22},
   abstract = {This work presents MLIR, a novel approach to building reusable and extensible compiler infrastructure. MLIR aims to address software fragmentation, improve compilation for heterogeneous hardware, significantly reduce the cost of building domain specific compilers, and aid in connecting existing compilers together. MLIR facilitates the design and implementation of code generators, translators and optimizers at different levels of abstraction and also across application domains, hardware targets and execution environments. The contribution of this work includes (1) discussion of MLIR as a research artifact, built for extension and evolution, and identifying the challenges and opportunities posed by this novel design point in design, semantics, optimization specification, system, and engineering. (2) evaluation of MLIR as a generalized infrastructure that reduces the cost of building compilers-describing diverse use-cases to show research and educational opportunities for future programming languages, compilers, execution environments, and computer architecture. The paper also presents the rationale for MLIR, its original design principles, structures and semantics.},
-  archiveprefix = {arxiv},
+  archiveprefix = {arXiv},
   keywords = {Computer Science - Machine Learning,Computer Science - Programming Languages,MLIR},
   file = {/home/alex/Zotero/storage/VH4NVMLW/Lattner et al_2020_MLIR.pdf;/home/alex/Zotero/storage/TL7J6TIX/2002.html}
+}
+
+@incollection{leeAliveInLeanVerifiedLLVM2019,
+  title = {{{AliveInLean}}: {{A Verified LLVM Peephole Optimization Verifier}}},
+  shorttitle = {{{AliveInLean}}},
+  booktitle = {Computer {{Aided Verification}}},
+  author = {Lee, Juneyoung and Hur, Chung-Kil and Lopes, Nuno P.},
+  editor = {Dillig, Isil and Tasiran, Serdar},
+  year = {2019},
+  volume = {11562},
+  pages = {445--455},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-030-25543-5_25},
+  urldate = {2025-01-30},
+  isbn = {978-3-030-25542-8 978-3-030-25543-5},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/NZMMSNSV/Lee et al. - 2019 - AliveInLean A Verified LLVM Peephole Optimization Verifier.pdf}
+}
+
+@article{leeReconcilingHighlevelOptimizations2018,
+  title = {Reconciling High-Level Optimizations and Low-Level Code in {{LLVM}}},
+  author = {Lee, Juneyoung and Hur, Chung-Kil and Jung, Ralf and Liu, Zhengyang and Regehr, John and Lopes, Nuno P.},
+  year = {2018},
+  month = oct,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {2},
+  number = {OOPSLA},
+  pages = {1--28},
+  issn = {2475-1421},
+  doi = {10.1145/3276495},
+  urldate = {2025-01-30},
+  abstract = {LLVM miscompiles certain programs in C, C++, and Rust that use low-level language features such as raw pointers in Rust or conversion between integers and pointers in C or C++. The problem is that it is difficult for the compiler to implement aggressive, high-level memory optimizations while also respecting the guarantees made by the programming languages to low-level programs. A deeper problem is that the memory model for LLVM's intermediate representation (IR) is informal and the semantics of corner cases are not always clear to all compiler developers. We developed a novel memory model for LLVM IR and formalized it. The new model requires a handful of problematic IR-level optimizations to be removed, but it also supports the addition of new optimizations that were not previously legal. We have implemented the new model and shown that it fixes known memory-model-related miscompilations without impacting the quality of generated code.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/QEQH6VIE/Lee et al. - 2018 - Reconciling high-level optimizations and low-level code in LLVM.pdf}
+}
+
+@article{leeReconcilingHighlevelOptimizations2018a,
+  title = {Reconciling High-Level Optimizations and Low-Level Code in {{LLVM}}},
+  author = {Lee, Juneyoung and Hur, Chung-Kil and Jung, Ralf and Liu, Zhengyang and Regehr, John and Lopes, Nuno P.},
+  year = {2018},
+  month = oct,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {2},
+  number = {OOPSLA},
+  pages = {1--28},
+  issn = {2475-1421},
+  doi = {10.1145/3276495},
+  urldate = {2025-01-30},
+  abstract = {LLVM miscompiles certain programs in C, C++, and Rust that use low-level language features such as raw pointers in Rust or conversion between integers and pointers in C or C++. The problem is that it is difficult for the compiler to implement aggressive, high-level memory optimizations while also respecting the guarantees made by the programming languages to low-level programs. A deeper problem is that the memory model for LLVM's intermediate representation (IR) is informal and the semantics of corner cases are not always clear to all compiler developers. We developed a novel memory model for LLVM IR and formalized it. The new model requires a handful of problematic IR-level optimizations to be removed, but it also supports the addition of new optimizations that were not previously legal. We have implemented the new model and shown that it fixes known memory-model-related miscompilations without impacting the quality of generated code.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/9HEB2JWV/Lee et al. - 2018 - Reconciling high-level optimizations and low-level code in LLVM.pdf}
+}
+
+@article{leijenTypeDirectedCompilation,
+  title = {({{Type Directed Compilation}} of {{Row-typed Algebraic Effects}})},
+  author = {Leijen, Daan},
+  abstract = {Algebraic effect handlers, are recently gaining in popularity as a purely functional approach to modeling effects. In this article, we give an end-to-end overview of practical algebraic effects in the context of a compiled implementation in the Koka language. In particular, we show how algebraic effects generalize over common constructs like exception handling, state, iterators and async-await. We give an effective type inference algorithm based on extensible effect rows using scoped labels, and a direct operational semantics. Finally, we show an efficient compilation scheme to common runtime platforms (such as JavaScript, the JVM, or .NET) using a type directed selective CPS translation.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/TPWQLZMB/Leijen - (Type Directed Compilation of Row-typed Algebraic .pdf}
+}
+
+@incollection{leinoBasisVerifyingMultithreaded2009,
+  title = {A {{Basis}} for {{Verifying Multi-threaded Programs}}},
+  booktitle = {Programming {{Languages}} and {{Systems}}},
+  author = {Leino, K. Rustan M. and M{\"u}ller, Peter},
+  editor = {Castagna, Giuseppe},
+  year = {2009},
+  volume = {5502},
+  pages = {378--393},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-00590-9_27},
+  urldate = {2022-11-05},
+  abstract = {Advanced multi-threaded programs apply concurrency concepts in sophisticated ways. For instance, they use fine-grained locking to increase parallelism and change locking orders dynamically when data structures are being reorganized. This paper presents a sound and modular verification methodology that can handle advanced concurrency patterns in multi-threaded, object-based programs. The methodology is based on implicit dynamic frames and uses fractional permissions to support fine-grained locking. It supports concepts such as multi-object monitor invariants, thread-local and shared objects, thread pre- and postconditions, and deadlock prevention with a dynamically changeable locking order. The paper prescribes the generation of verification conditions in first-order logic, well-suited for scrutiny by off-the-shelf SMT solvers. A verifier for the methodology has been implemented for an experimental language, and has been used to verify several challenging examples including hand-over-hand locking for linked lists and a lock re-ordering algorithm.},
+  isbn = {978-3-642-00589-3 978-3-642-00590-9},
+  langid = {english},
+  keywords = {Formal Verification},
+  file = {/home/alex/Zotero/storage/YF8DULPD/Leino and Müller - 2009 - A Basis for Verifying Multi-threaded Programs.pdf}
 }
 
 @article{leroyCompCertFormallyVerified,
@@ -271,6 +1440,23 @@
   abstract = {CompCert is the first commercially available optimizing compiler that is formally verified, using machineassisted mathematical proofs, to be exempt from miscompilation. The executable code it produces is proved to behave exactly as specified by the semantics of the source C program. This article gives an overview of the design of CompCert and its proof concept and then focuses on aspects relevant for industrial application. We briefly summarize practical experience and give an overview of recent CompCert development aiming at industrial usage. CompCert's intended use is the compilation of life-critical and mission-critical software meeting high levels of assurance. In this context tool qualification is of paramount importance. We summarize the confidence argument of CompCert and give an overview of relevant qualification strategies.},
   langid = {english},
   file = {/home/alex/Zotero/storage/RM3MG3JB/Leroy et al. - CompCert - A Formally Verified Optimizing Compiler.pdf}
+}
+
+@misc{lindnerProofProducingSymbolicExecution2023,
+  title = {Proof-{{Producing Symbolic Execution}} for {{Binary Code Verification}}},
+  author = {Lindner, Andreas and Guanciale, Roberto and Dam, Mads},
+  year = {2023},
+  month = apr,
+  number = {arXiv:2304.08848},
+  eprint = {2304.08848},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2304.08848},
+  urldate = {2025-01-14},
+  abstract = {We propose a proof-producing symbolic execution for verification of machine-level programs. The analysis is based on a set of core inference rules that are designed to give control over the tradeoff between preservation of precision and the introduction of overapproximation to make the application to real world code useful and tractable. We integrate our symbolic execution in a binary analysis platform that features a low-level intermediate language enabling the application of analyses to many different processor architectures. The overall framework is implemented in the theorem prover HOL4 to be able to obtain highly trustworthy verification results. We demonstrate our approach to establish sound execution time bounds for a control loop program implemented for an ARM Cortex-M0 processor.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Cryptography and Security,Computer Science - Logic in Computer Science,Computer Science - Programming Languages},
+  file = {/home/alex/Zotero/storage/IRSAD4FC/Lindner et al. - 2023 - Proof-Producing Symbolic Execution for Binary Code Verification.pdf;/home/alex/Zotero/storage/NQCFTZHM/2304.html}
 }
 
 @inproceedings{lopesAlive2BoundedTranslation2021,
@@ -292,12 +1478,465 @@
   file = {/home/alex/Zotero/storage/A5P997CM/Lopes et al_2021_Alive2.pdf}
 }
 
-@unpublished{paulinoMetaprogrammingLean,
+@misc{maillardDijkstraMonadsAll2019,
+  title = {Dijkstra {{Monads}} for {{All}}},
+  author = {Maillard, Kenji and Ahman, Danel and Atkey, Robert and Martinez, Guido and Hritcu, Catalin and Rivas, Exequiel and Tanter, {\'E}ric},
+  year = {2019},
+  month = jun,
+  number = {arXiv:1903.01237},
+  eprint = {1903.01237},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  urldate = {2024-03-15},
+  abstract = {This paper proposes a general semantic framework for verifying programs with arbitrary monadic side-effects using Dijkstra monads, which we define as monad-like structures indexed by a specification monad. We prove that any monad morphism between a computational monad and a specification monad gives rise to a Dijkstra monad, which provides great flexibility for obtaining Dijkstra monads tailored to the verification task at hand. We moreover show that a large variety of specification monads can be obtained by applying monad transformers to various base specification monads, including predicate transformers and Hoare-style pre- and postconditions. For defining correct monad transformers, we propose a language inspired by Moggi's monadic metalanguage that is parameterized by a dependent type theory. We also develop a notion of algebraic operations for Dijkstra monads, and start to investigate two ways of also accommodating effect handlers. We implement our framework in both Coq and F*, and illustrate that it supports a wide variety of verification styles for effects such as exceptions, nondeterminism, state, input-output, and general recursion.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Programming Languages},
+  file = {/home/alex/Zotero/storage/I3URFCAG/Maillard et al. - 2019 - Dijkstra Monads for All.pdf}
+}
+
+@inproceedings{mansurDetectingCriticalBugs2020,
+  title = {Detecting Critical Bugs in {{SMT}} Solvers Using Blackbox Mutational Fuzzing},
+  booktitle = {Proceedings of the 28th {{ACM Joint Meeting}} on {{European Software Engineering Conference}} and {{Symposium}} on the {{Foundations}} of {{Software Engineering}}},
+  author = {Mansur, Muhammad Numair and Christakis, Maria and W{\"u}stholz, Valentin and Zhang, Fuyuan},
+  year = {2020},
+  month = nov,
+  pages = {701--712},
+  publisher = {ACM},
+  address = {Virtual Event USA},
+  doi = {10.1145/3368089.3409763},
+  urldate = {2025-01-13},
+  isbn = {978-1-4503-7043-1},
+  langid = {english},
+  keywords = {SMT solvers},
+  file = {/home/alex/Zotero/storage/DTDFWN9R/Mansur et al. - 2020 - Detecting critical bugs in SMT solvers using blackbox mutational fuzzing.pdf}
+}
+
+@incollection{marshallLinearityUniquenessEntente2022,
+  title = {Linearity and {{Uniqueness}}: {{An Entente Cordiale}}},
+  shorttitle = {Linearity and {{Uniqueness}}},
+  booktitle = {Programming {{Languages}} and {{Systems}}},
+  author = {Marshall, Daniel and Vollmer, Michael and Orchard, Dominic},
+  editor = {Sergey, Ilya},
+  year = {2022},
+  volume = {13240},
+  pages = {346--375},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-030-99336-8_13},
+  urldate = {2023-03-23},
+  abstract = {Substructural type systems are growing in popularity because they allow for a resourceful interpretation of data which can be used to rule out various software bugs. Indeed, substructurality is finally taking hold in modern programming; Haskell now has linear types roughly based on Girard's linear logic but integrated via graded function arrows, Clean has uniqueness types designed to ensure that values have at most a single reference to them, and Rust has an intricate ownership system for guaranteeing memory safety. But despite this broad range of resourceful type systems, there is comparatively little understanding of their relative strengths and weaknesses or whether their underlying frameworks can be unified. There is often confusion about whether linearity and uniqueness are essentially the same, or are instead `dual' to one another, or somewhere in between. This paper formalises the relationship between these two well-studied but rarely contrasted ideas, building on two distinct bodies of literature, showing that it is possible and advantageous to have both linear and unique types in the same type system. We study the guarantees of the resulting system and provide a practical implementation in the graded modal setting of the Granule language, adding a third kind of modality alongside coeffect and effect modalities. We then demonstrate via a benchmark that our implementation benefits from expected efficiency gains enabled by adding uniqueness to a language that already has a linear basis.},
+  isbn = {978-3-030-99335-1 978-3-030-99336-8},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/ACAB68CG/Marshall et al. - 2022 - Linearity and Uniqueness An Entente Cordiale.pdf}
+}
+
+@article{martiLaxExtensionsCoalgebra2015,
+  title = {Lax Extensions of Coalgebra Functors and Their Logic},
+  author = {Marti, Johannes and Venema, Yde},
+  year = {2015},
+  month = aug,
+  journal = {Journal of Computer and System Sciences},
+  volume = {81},
+  number = {5},
+  pages = {880--900},
+  issn = {00220000},
+  doi = {10.1016/j.jcss.2014.12.006},
+  urldate = {2023-01-15},
+  abstract = {We discuss the use of relation lifting in the theory of set-based coalgebra and coalgebraic logic. On the one hand we prove that the neighborhood functor does not extend to a relation lifting of which the associated notion of bisimilarity coincides with behavioral equivalence. On the other hand we argue that relation liftings may be of use for many other functors that do not preserve weak pullbacks, such as the monotone neighborhood functor. We prove that for any relation lifting L that is a lax extension extending the coalgebra functor T and preserving diagonal relations, L-bisimilarity captures behavioral equivalence. We also show that a finitary T admits such an extension iff it has a separating set of finitary monotone predicate liftings. Finally, we present the coalgebraic logic, based on a cover modality, for an arbitrary lax extension.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/RET4BARN/Marti and Venema - 2015 - Lax extensions of coalgebra functors and their log.pdf}
+}
+
+@book{martinIntroductionLanguagesTheory2011,
+  title = {Introduction to Languages and the Theory of Computation},
+  author = {Martin, John C.},
+  year = {2011},
+  edition = {4th ed},
+  publisher = {McGraw-Hill},
+  address = {New York, NY},
+  isbn = {978-0-07-319146-1},
+  langid = {english},
+  lccn = {QA267.5.S4 M29 2011},
+  keywords = {Computable functions,Sequential machine theory},
+  file = {/home/alex/Zotero/storage/L2DCW5K3/Martin - 2011 - Introduction to languages and the theory of comput.pdf}
+}
+
+@article{maurerCompilingContinuations,
+  title = {Compiling without Continuations},
+  author = {Maurer, Luke and Downen, Paul and Ariola, Zena M and Jones, Simon Peyton},
+  abstract = {Many fields of study in compilers give rise to the concept of a join point---a place where different execution paths come together. While they have often been treated by representing them as functions or continuations, we believe it is time to study them in their own right. We show that adding them to a direct-style functional intermediate language allows new optimizations to be performed, including a functional version of loop-invariant code motion. Finally, we report on recent work on the Glasgow Haskell Compiler which added join points to the Core language.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/KAKWEAUD/Maurer et al. - Compiling without continuations.pdf}
+}
+
+@incollection{mcbrideTuringCompletenessTotallyFree2015,
+  title = {Turing-{{Completeness Totally Free}}},
+  booktitle = {Mathematics of {{Program Construction}}},
+  author = {McBride, Conor},
+  editor = {Hinze, Ralf and Voigtl{\"a}nder, Janis},
+  year = {2015},
+  volume = {9129},
+  pages = {257--275},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-319-19797-5_13},
+  urldate = {2024-05-30},
+  abstract = {In this paper, I show that general recursive definitions can be represented in the free monad which supports the `effect' of making a recursive call, without saying how these calls should be executed. Diverse semantics can be given within a total framework by suitable monad morphisms. The Bove-Capretta construction of the domain of a general recursive function can be presented datatype-generically as an instance of this technique. The paper is literate Agda, but its key ideas are more broadly transferable.},
+  isbn = {978-3-319-19796-8 978-3-319-19797-5},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/6NBFQ8RJ/McBride - 2015 - Turing-Completeness Totally Free.pdf}
+}
+
+@misc{michaeltMichaeltMartinlof2022,
+  title = {Michaelt/Martin-Lof},
+  author = {{michaelt}},
+  year = {2022},
+  month = dec,
+  urldate = {2023-01-10},
+  abstract = {papers of Per Martin L{\"o}f}
+}
+
+@article{michellandAbstractInterpretersMonadic2024,
+  title = {Abstract {{Interpreters}}: {{A Monadic Approach}} to {{Modular Verification}}},
+  shorttitle = {Abstract {{Interpreters}}},
+  author = {Michelland, S{\'e}bastien and Zakowski, Yannick and Gonnord, Laure},
+  year = {2024},
+  month = aug,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {8},
+  number = {ICFP},
+  pages = {602--629},
+  issn = {2475-1421},
+  doi = {10.1145/3674646},
+  urldate = {2025-01-20},
+  abstract = {S{\'E}BASTIEN MICHELLAND, Universit{\'e} Grenoble-Alpes, Grenoble INP, LCIS, France YANNICK ZAKOWSKI, Inria - ENS de Lyon - CNRS - UCBL1 - LIP - UMR 5668, France LAURE GONNORD, Universit{\'e} Grenoble-Alpes, Grenoble INP, LCIS, France We argue that monadic interpreters built as layers of handlers stacked atop the free monad, as advocated notably by the ITree library, also constitute a promising way to implement and verify abstract interpreters in dependently-typed theories such as the one underlying the Coq proof assistant. The approach enables both code reuse across projects and modular proofs of soundness of the resulting interpreters. We provide generic abstract control flow combinators proven correct once and for all against their concrete counterpart. We demonstrate how to relate concrete handlers implementing effects to abstract variants of these handlers, essentially capturing the traditional soundness of transfer functions in the context of monadic interpreters. Finally, we provide generic results to lift soundness statements via the interpretation of stateful and failure effects. We formalize all the aforementioned combinators and theories into a Coq library, and demonstrate their benefits by implementing and proving correct two illustrative abstract interpreters respectively for a structured imperative language and a toy assembly. CCS Concepts: {$\bullet$} Theory of computation {$\rightarrow$} Logic and verification; Denotational semantics; {$\bullet$} Software and its engineering {$\rightarrow$} Formal software verification.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/ZCH4T3UK/Michelland et al. - 2024 - Abstract Interpreters A Monadic Approach to Modular Verification.pdf}
+}
+
+@article{michellandAbstractInterpretersMonadic2024a,
+  title = {Abstract {{Interpreters}}: {{A Monadic Approach}} to {{Modular Verification}}},
+  shorttitle = {Abstract {{Interpreters}}},
+  author = {Michelland, S{\'e}bastien and Zakowski, Yannick and Gonnord, Laure},
+  year = {2024},
+  month = aug,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {8},
+  number = {ICFP},
+  pages = {602--629},
+  issn = {2475-1421},
+  doi = {10.1145/3674646},
+  urldate = {2025-01-20},
+  abstract = {We argue that monadic interpreters built as layers of interpretations stacked atop the free monad constitute a promising way to implement and verify abstract interpreters in dependently-typed theories such as the one underlying the Coq proof assistant.               The approach enables modular proofs of soundness of the resulting interpreters. We provide generic abstract control flow combinators proven correct once and for all against their concrete counterpart. We demonstrate how to relate concrete handlers implementing effects to abstract variants of these handlers, essentially capturing the traditional soundness of transfer functions in the context of monadic interpreters. Finally, we provide generic results to lift soundness statements via the interpretation of stateful and failure effects.             We formalize all the aforementioned combinators and theories in Coq, and demonstrate their benefits by implementing and proving correct two illustrative abstract interpreters for a structured imperative language and a toy assembly.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/69G6MGCS/Michelland et al. - 2024 - Abstract Interpreters A Monadic Approach to Modular Verification.pdf}
+}
+
+@book{milewskiCategoryTheoryProgrammers2019,
+  title = {Category {{Theory}} for {{Programmers}}},
+  author = {Milewski, Bartosz},
+  year = {2019},
+  publisher = {Lightning Source UK},
+  address = {Milton Keynes},
+  isbn = {978-0-464-24387-8},
+  langid = {english},
+  keywords = {Category Theory},
+  file = {/home/alex/Zotero/storage/MTC6KB9L/Milewski - Category Theory for Programmers.pdf}
+}
+
+@inproceedings{miliusSoundCompleteCalculus2010,
+  title = {A {{Sound}} and {{Complete Calculus}} for {{Finite Stream Circuits}}},
+  booktitle = {2010 25th {{Annual IEEE Symposium}} on {{Logic}} in {{Computer Science}}},
+  author = {Milius, Stefan},
+  year = {2010},
+  month = jul,
+  pages = {421--430},
+  publisher = {IEEE},
+  address = {Edinburgh, United Kingdom},
+  doi = {10.1109/LICS.2010.11},
+  urldate = {2022-10-29},
+  abstract = {Stream circuits are a convenient graphical way to represent streams (or stream functions) computed by finite dimensional linear systems. We present a sound and complete expression calculus that allows us to reason about the semantic equivalence of finite closed stream circuits. For our proof of the soundness and completeness we build on recent ideas of Bonsangue, Rutten and Silva. They have provided a ``Kleene theorem'' and a sound and complete expression calculus for coalgebras for endofunctors of the category of sets. The key ingredient of the soundness and completeness proof is a syntactic characterization of the final locally finite coalgebra. In the present paper we extend this approach to the category of real vector spaces. We also prove that a final locally finite (dimensional) coalgebra is, equivalently, an initial iterative algebra. This makes the connection to existing work on the semantics of recursive specifications.},
+  isbn = {978-1-4244-7588-9},
+  langid = {english},
+  keywords = {Category Theory},
+  file = {/home/alex/Zotero/storage/V7D7ZPIN/Milius - 2010 - A Sound and Complete Calculus for Finite Stream Ci.pdf}
+}
+
+@inproceedings{mullenVerifiedPeepholeOptimizations2016,
+  title = {Verified Peephole Optimizations for {{CompCert}}},
+  booktitle = {Proceedings of the 37th {{ACM SIGPLAN Conference}} on {{Programming Language Design}} and {{Implementation}}},
+  author = {Mullen, Eric and Zuniga, Daryl and Tatlock, Zachary and Grossman, Dan},
+  year = {2016},
+  month = jun,
+  pages = {448--461},
+  publisher = {ACM},
+  address = {Santa Barbara CA USA},
+  doi = {10.1145/2908080.2908109},
+  urldate = {2025-01-29},
+  isbn = {978-1-4503-4261-2},
+  langid = {english}
+}
+
+@inproceedings{nakataProofPearlFan2011,
+  title = {A {{Proof Pearl}} with the {{Fan Theorem}} and {{Bar Induction}}},
+  booktitle = {Programming {{Languages}} and {{Systems}}},
+  author = {Nakata, Keiko and Uustalu, Tarmo and Bezem, Marc},
+  editor = {Yang, Hongseok},
+  year = {2011},
+  volume = {7078},
+  pages = {353--368},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-25318-8_26},
+  urldate = {2023-01-16},
+  abstract = {We study temporal properties over infinite binary red-blue trees in the setting of constructive type theory. We consider several familiar path-based properties, typical to linear-time and branching-time temporal logics like LTL and CTL*, and the corresponding tree-based properties, in the spirit of the modal \$\#956;-calculus. We conduct a systematic study of the relationships of the path-based and tree-based versions of "eventually always blueness" and mixed inductive-coinductive "almost always blueness" and arrive at a diagram relating these properties to each other in terms of implications that hold either unconditionally or under specific assumptions (Weak Continuity for Numbers, the Fan Theorem, Lesser Principle of Omniscience, Bar Induction).    We have fully formalized our development with the Coq proof assistant.},
+  isbn = {978-3-642-25317-1 978-3-642-25318-8}
+}
+
+@article{negriProofTheoryModal,
+  title = {Proof Theory for Modal Logic},
+  author = {Negri, Sara},
+  abstract = {The axiomatic presentation of modal systems and the standard formulations of natural deduction and sequent calculus for modal logic are reviewed, together with the difficulties that emerge with these approaches. Generalizations of standard proof systems are then presented. These include, among others, display calculi, hypersequents, and labelled systems, with the latter surveyed from a closer perspective.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/AHMUS6E5/Negri - Proof theory for modal logic.pdf}
+}
+
+@inproceedings{niemetzBitWidthIndependentProofsSMT2019,
+  title = {Towards {{Bit-Width-Independent Proofs}} in {{SMT Solvers}}},
+  booktitle = {Automated {{Deduction}} -- {{CADE}} 27},
+  author = {Niemetz, Aina and Preiner, Mathias and Reynolds, Andrew and Zohar, Yoni and Barrett, Clark and Tinelli, Cesare},
+  editor = {Fontaine, Pascal},
+  year = {2019},
+  pages = {366--384},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-030-29436-6_22},
+  abstract = {Many SMT solvers implement efficient SAT-based procedures for solving fixed-size bit-vector formulas. These approaches, however, cannot be used directly to reason about bit-vectors of symbolic bit-width. To address this shortcoming, we propose a translation from bit-vector formulas with parametric bit-width to formulas in a logic supported by SMT solvers that includes non-linear integer arithmetic, uninterpreted functions, and universal quantification. While this logic is undecidable, this approach can still solve many formulas by capitalizing on advances in SMT solving for non-linear arithmetic and universally quantified formulas. We provide several case studies in which we have applied this approach with promising results, including the bit-width independent verification of invertibility conditions, compiler optimizations, and bit-vector rewrites.},
+  isbn = {978-3-030-29436-6},
+  langid = {english},
+  keywords = {Bitvectors,SMT solvers},
+  file = {/home/alex/Zotero/storage/59CA2SPB/Niemetz et al. - 2019 - Towards Bit-Width-Independent Proofs in SMT Solver.pdf}
+}
+
+@incollection{niemetzBitwuzla2023,
+  title = {Bitwuzla},
+  booktitle = {Computer {{Aided Verification}}},
+  author = {Niemetz, Aina and Preiner, Mathias},
+  editor = {Enea, Constantin and Lal, Akash},
+  year = {2023},
+  volume = {13965},
+  pages = {3--17},
+  publisher = {Springer Nature Switzerland},
+  address = {Cham},
+  doi = {10.1007/978-3-031-37703-7_1},
+  urldate = {2024-07-11},
+  abstract = {Abstract             Bitwuzla is a new SMT solver for the quantifier-free and quantified theories of fixed-size bit-vectors, arrays, floating-point arithmetic, and uninterpreted functions. This paper serves as a comprehensive system description of its architecture and components. We evaluate Bitwuzla's performance on all benchmarks of supported logics in SMT-LIB and provide a comparison against other state-of-the-art SMT solvers.},
+  isbn = {978-3-031-37702-0 978-3-031-37703-7},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/SSGS8VAQ/NiemetzP-CAV23.pdf}
+}
+
+@inbook{nordstromMartinLofTypeTheory2001,
+  title = {Martin-{{L{\"o}f}} 's Type Theory},
+  booktitle = {Handbook of {{Logic}} in {{Computer Science}}: {{Volume}} 5. {{Algebraic}} and {{Logical Structures}}},
+  author = {N{\"o}rdstrom, B. and Petersson, K.},
+  year = {2001},
+  month = jan,
+  publisher = {Oxford University Press},
+  doi = {10.1093/oso/9780198537816.003.0004},
+  urldate = {2022-11-05},
+  abstract = {The type theory described in this chapter has been developed by Martin-L{\"o}f with the original aim of being a clarification of constructive mathematics. Unlike most other formalizations of mathematics, type theory is not based on predicate logic. Instead, the logical constants are interpreted within type theory through the Curry-Howard correspondence between propositions and sets [Curry and Feys, 1958; Howard, 1980]: a proposition is interpreted as a set whose elements represent the proofs of the proposition. It is also possible to view a set as a problem description in a way similar to Kolmogorov's explanation of the intuitionistic propositional calculus [Kolmogorov, 1932]. In particular, a set can be seen as a specification of a programming problem; the elements of the set are then the programs that satisfy the specification. An advantage of using type theory for program construction is that it is possible to express both specifications and programs within the same formalism. Furthermore, the proof rules can be used to derive a correct program from a specification as well as to verify that a given program has a certain property. As a programming language, type theory is similar to typed functional languages such as ML [Gordon et al., 1979; Milner et al., 1990] and Haskell [Hudak et al, 1992], but a major difference is that the evaluation of a well-typed program always terminates. The notion of constructive proof is closely related to the notion of computer program. To prove a proposition ("x {\^I} A)(\$y{\^I}B)P(x,y) constructively means to give a function f which when applied to an element a in A gives an element b in B such that P(a, b) holds. So if the proposition ("x{\^I} A)(\$y{\^I}B)P(x,y) expresses a specification, then the function f obtained from the proof is a program satisfying the specification. A constructive proof could therefore itself be seen as a computer program and the process of computing the value of a program corresponds to the process of normalizing a proof. It is by this computational content of a constructive proof that type theory can be used as a programming language; and since the program is obtained from a proof of its specification, type theory can be used as a programming logic.},
+  collaborator = {N{\"o}rdstrom, B. and Petersson, K.},
+  isbn = {978-0-19-853781-6 978-0-19-191666-3},
+  langid = {english},
+  keywords = {Type Theory},
+  file = {/home/alex/Zotero/storage/4XMTZ2GU/Nördstrom and Petersson - 2001 - Martin-Löf ’s type theory.pdf}
+}
+
+@article{pattinsonIntroductionTheoryCoalgebras,
+  title = {An {{Introduction}} to the {{Theory}} of {{Coalgebras}}},
+  author = {Pattinson, Dirk},
+  pages = {105},
+  langid = {english},
+  keywords = {Coalgebra},
+  file = {/home/alex/Zotero/storage/JLGX2R2U/Pattinson - An Introduction to the Theory of Coalgebras.pdf}
+}
+
+@unpublished{paulinoMetaprogrammingLean4,
   title = {Metaprogramming in {{Lean}} 4},
   author = {Paulino, Arthur and Testa, Damiano and Ayers, Edward and B{\"o}ving, Henrik and Limperg, Jannis and Gadgil, Siddhartha and Bhat, Siddharth},
   langid = {english},
   note = {Online Book. \url{https://github.com/arthurpaulino/lean4-metaprogramming-book}},
   file = {/home/alex/Zotero/storage/STURDSJ9/Paulino et al_Metaprogramming in Lean 4.pdf}
+}
+
+@article{paulsonMechanisedProofGodels2015,
+  title = {A {{Mechanised Proof}} of {{G{\"o}del}}'s {{Incompleteness Theorems Using Nominal Isabelle}}},
+  author = {Paulson, Lawrence C.},
+  year = {2015},
+  month = jun,
+  journal = {Journal of Automated Reasoning},
+  volume = {55},
+  number = {1},
+  pages = {1--37},
+  issn = {0168-7433, 1573-0670},
+  doi = {10.1007/s10817-015-9322-8},
+  urldate = {2024-05-17},
+  abstract = {An Isabelle/HOL formalisation of G{\textasciidieresis}odel's two incompleteness theorems is presented. The work follows S{\textasciiacute}wierczkowski's detailed proof of the theorems using hereditarily finite (HF) set theory [32]. Avoiding the usual arithmetical encodings of syntax eliminates the necessity to formalise elementary number theory within an embedded logical calculus. The Isabelle formalisation uses two separate treatments of variable binding: the nominal package [34] is shown to scale to a development of this complexity, while de Bruijn indices [3] turn out to be ideal for coding syntax. Critical details of the Isabelle proof are described, in particular gaps and errors found in the literature.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/LNF7CMHF/Paulson - 2015 - A Mechanised Proof of Gödel’s Incompleteness Theor.pdf}
+}
+
+@inproceedings{plotkinLogicAlgebraicEffects2008,
+  title = {A {{Logic}} for {{Algebraic Effects}}},
+  booktitle = {2008 23rd {{Annual IEEE Symposium}} on {{Logic}} in {{Computer Science}}},
+  author = {Plotkin, Gordon and Pretnar, Matija},
+  year = {2008},
+  month = jun,
+  pages = {118--129},
+  publisher = {IEEE},
+  address = {Pittsburgh, PA, USA},
+  issn = {1043-6871},
+  doi = {10.1109/LICS.2008.45},
+  urldate = {2023-06-08},
+  abstract = {We present a logic for algebraic effects, based on the algebraic representation of computational effects by operations and equations. We begin with the a-calculus, a minimal calculus which separates values, effects, and computations and thereby canonises the order of evaluation. This is extended to obtain the logic, which is a classical firstorder multi-sorted logic with higher-order value and computation types, as in Levy's call-by-push-value, a principle of induction over computations, a free algebra principle, and predicate fixed points. This logic embraces Moggi's computational {$\lambda$}-calculus, and also, via definable modalities, Hennessy-Milner logic, and evaluation logic, though Hoare logic presents difficulties.},
+  isbn = {978-0-7695-3183-0},
+  langid = {english},
+  keywords = {_tablet},
+  file = {/home/alex/Zotero/storage/Q36XCHPL/Plotkin_Pretnar_2008_A Logic for Algebraic Effects.pdf}
+}
+
+@article{pomerantzINTRODUCTIONPADICNUMBERS,
+  title = {{{AN INTRODUCTION TO THE}} P-{{ADIC NUMBERS}}},
+  author = {Pomerantz, Alexa},
+  abstract = {This paper introduces the p-adic numbers with an emphasis on comparison to the real numbers. It is mostly self-contained, but some basic knowledge in number theory, analysis, topology, and geometry is assumed. We begin by defining the p-adic metric and using this metric to construct Qp and Zp. We then move on to sequences and series and writing p-adic expansions. Lastly, we discuss topology and geometry in Qp.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/CLBSPFHI/Pomerantz - AN INTRODUCTION TO THE p-ADIC NUMBERS.pdf}
+}
+
+@inproceedings{pousCoinductionAllWay2016,
+  title = {Coinduction {{All}} the {{Way Up}}},
+  booktitle = {Thirty-{{First Annual ACM}}/{{IEEE Symposium}} on {{Logic}} in {{Computer Science}} ({{LICS}} 2016)},
+  author = {Pous, Damien},
+  year = {2016},
+  month = jul,
+  publisher = {ACM},
+  address = {New York, United States},
+  doi = {10.1145/2933575.2934564},
+  urldate = {2023-07-13},
+  abstract = {We revisit coinductive proof principles from a lattice theoretic point of view. By associating to any monotone function a function which we call the companion, we give a new presentation of both Knaster-Tarski's seminal result, and of the more recent theory of enhancements of the coinductive proof method (up-to techniques). The resulting theory encompasses parametrised coinduction, as recently proposed by Hur et al., and second-order reasoning, i.e., the ability to reason coinductively about the enhancements themselves. It moreover resolves an historical peculiarity about up-to context techniques. Based on these results, we present an open-ended proof system allowing one to perform proofs on-the-fly and to neatly separate inductive and coinductive phases.},
+  keywords = {Coinduction,Complete lattices,Enhancements,GSOS,Parametrised coinduction},
+  file = {/home/alex/Zotero/storage/92BQBBJV/Pous_2016_Coinduction All the Way Up.pdf}
+}
+
+@inproceedings{pousSymbolicAlgorithmsLanguage2015,
+  title = {Symbolic {{Algorithms}} for {{Language Equivalence}} and {{Kleene Algebra}} with {{Tests}}},
+  booktitle = {Proceedings of the 42nd {{Annual ACM SIGPLAN-SIGACT Symposium}} on {{Principles}} of {{Programming Languages}}},
+  author = {Pous, Damien},
+  year = {2015},
+  month = jan,
+  pages = {357--368},
+  publisher = {ACM},
+  address = {Mumbai India},
+  doi = {10.1145/2676726.2677007},
+  urldate = {2025-01-20},
+  abstract = {We propose algorithms for checking language equivalence of finite automata over a large alphabet. We use symbolic automata, where the transition function is compactly represented using (multiterminal) binary decision diagrams (BDD). The key idea consists in computing a bisimulation by exploring reachable pairs symbolically, so as to avoid redundancies. This idea can be combined with already existing optimisations, and we show in particular a nice integration with the disjoint sets forest data-structure from Hopcroft and Karp's standard algorithm.},
+  isbn = {978-1-4503-3300-9},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/85EBQXEF/Pous - 2015 - Symbolic Algorithms for Language Equivalence and Kleene Algebra with Tests.pdf}
+}
+
+@article{pretnarIntroductionAlgebraicEffects2015,
+  title = {An {{Introduction}} to {{Algebraic Effects}} and {{Handlers}}. {{Invited}} Tutorial Paper},
+  author = {Pretnar, Matija},
+  year = {2015},
+  month = dec,
+  journal = {Electronic Notes in Theoretical Computer Science},
+  volume = {319},
+  pages = {19--35},
+  issn = {15710661},
+  doi = {10.1016/j.entcs.2015.12.003},
+  urldate = {2023-08-26},
+  abstract = {This paper is a tutorial on algebraic effects and handlers. In it, we explain what algebraic effects are, give ample examples to explain how handlers work, define an operational semantics and a type \& effect system, show how one can reason about effects, and give pointers for further reading.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/K4J875SP/Pretnar - 2015 - An Introduction to Algebraic Effects and Handlers..pdf}
+}
+
+@misc{ProgrammingLanguageFoundations,
+  title = {Programming {{Language Foundations}} in {{Agda}} -- {{Table}} of {{Contents}}},
+  urldate = {2022-12-08},
+  howpublished = {https://plfa.inf.ed.ac.uk/},
+  file = {/home/alex/Zotero/storage/W8TQZVFL/plfa.inf.ed.ac.uk.html}
+}
+
+@article{qinPrimroseSelectingContainer2023,
+  title = {Primrose: {{Selecting Container Data Types}} by {{Their Properties}}},
+  shorttitle = {Primrose},
+  author = {Qin, Xueying and O'Connor, Liam and Steuwer, Michel},
+  year = {2023},
+  month = feb,
+  journal = {The Art, Science, and Engineering of Programming},
+  volume = {7},
+  number = {3},
+  pages = {11},
+  issn = {2473-7321},
+  doi = {10.22152/programming-journal.org/2023/7/11},
+  urldate = {2024-04-03},
+  abstract = {Context Container data types are ubiquitous in computer programming, enabling developers to efficiently store and process collections of data with an easy-to-use programming interface. Many programming languages offer a variety of container implementations in their standard libraries based on data structures offering different capabilities and performance characteristics.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/PGIBFPI4/Qin et al. - 2023 - Primrose Selecting Container Data Types by Their .pdf}
+}
+
+@article{qinShoggothFormalFoundation2024,
+  title = {Shoggoth: {{A Formal Foundation}} for {{Strategic Rewriting}}},
+  shorttitle = {Shoggoth},
+  author = {Qin, Xueying and O'Connor, Liam and Van Glabbeek, Rob and H{\"o}fner, Peter and Kammar, Ohad and Steuwer, Michel},
+  year = {2024},
+  month = jan,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {8},
+  number = {POPL},
+  pages = {61--89},
+  issn = {2475-1421},
+  doi = {10.1145/3633211},
+  urldate = {2024-04-03},
+  abstract = {XUEYING QIN, University of Edinburgh, UK LIAM O'CONNOR, University of Edinburgh, UK ROB VAN GLABBEEK, University of Edinburgh, UK and UNSW, Australia PETER H{\"O}FNER, Australian National University, Australia OHAD KAMMAR, University of Edinburgh, UK MICHEL STEUWER, Technische Universit{\"a}t Berlin, Germany and University of Edinburgh, UK Rewriting is a versatile and powerful technique used in many domains. Strategic rewriting allows programmers to control the application of rewrite rules by composing individual rewrite rules into complex rewrite strategies. These strategies are semantically complex, as they may be nondeterministic, they may raise errors that trigger backtracking, and they may not terminate. Given such semantic complexity, it is necessary to establish a formal understanding of rewrite strategies and to enable reasoning about them in order to answer questions like: How do we know that a rewrite strategy terminates? How do we know that a rewrite strategy does not fail because we compose two incompatible rewrites? How do we know that a desired property holds after applying a rewrite strategy? In this paper, we introduce Shoggoth: a formal foundation for understanding, analysing and reasoning about strategic rewriting that is capable of answering these questions. We provide a denotational semantics of System S, a core language for strategic rewriting, and prove its equivalence to our big-step operational semantics, which extends existing work by explicitly accounting for divergence. We further define a location-based weakest precondition calculus to enable formal reasoning about rewriting strategies, and we prove this calculus sound with respect to the denotational semantics. We show how this calculus can be used in practice to reason about properties of rewriting strategies, including termination, that they are well-composed, and that desired postconditions hold. The semantics and calculus are formalised in Isabelle/HOL and all proofs are mechanised. CCS Concepts: {$\bullet$} Theory of computation {$\rightarrow$} Denotational semantics; Operational semantics; Axiomatic semantics; Hoare logic; Pre- and post-conditions; Rewrite systems.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/C668Z7EH/Qin et al. - 2024 - Shoggoth A Formal Foundation for Strategic Rewrit.pdf}
+}
+
+@article{reidTrustworthySpecificationsARM,
+  title = {Trustworthy {{Specifications}} of {{ARM R}} {\copyright} V8-{{A}} and v8-{{M System Level Architecture}}},
+  author = {Reid, Alastair},
+  abstract = {Processor specifications are of critical importance for verifying programs, compilers, operating systems/hypervisors, and, of course, for verifying microprocessors themselves. But to be useful, the scope of these specifications must be sufficient for the task, the specification must be applicable to processors of interest and the specification must be trustworthy.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/A7NPK5DI/Reid - Trustworthy Speciﬁcations of ARM R © v8-A and v8-M System Level Architecture.pdf}
+}
+
+@misc{RemsprojectIsla2024,
+  title = {Rems-Project/Isla},
+  year = {2024},
+  month = dec,
+  urldate = {2024-12-17},
+  abstract = {Symbolic execution tool for Sail ISA specifications},
+  howpublished = {REMS}
+}
+
+@article{reynoldsDecisionProcedureCodatatypes2017,
+  title = {A {{Decision Procedure}} for ({{Co}})Datatypes in {{SMT Solvers}}},
+  author = {Reynolds, Andrew and Blanchette, Jasmin Christian},
+  year = {2017},
+  month = mar,
+  journal = {Journal of Automated Reasoning},
+  volume = {58},
+  number = {3},
+  pages = {341--362},
+  issn = {0168-7433, 1573-0670},
+  doi = {10.1007/s10817-016-9372-6},
+  urldate = {2024-06-21},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/IZVUPL2G/Reynolds_Blanchette_2017_A Decision Procedure for (Co)datatypes in SMT Solvers.pdf}
 }
 
 @inproceedings{ruttenAutomataCoinductionExercise1998,
@@ -316,6 +1955,82 @@
   file = {/home/alex/Zotero/storage/BPG295JC/Rutten_1998_Automata and coinduction (an exercise in coalgebra).pdf}
 }
 
+@book{ruttenMethodCoalgebraExercises2019,
+  title = {The {{Method}} of {{Coalgebra}}: Exercises in Coinduction},
+  shorttitle = {The {{Method}} of {{Coalgebra}}},
+  author = {Rutten, Jan},
+  year = {2019},
+  month = feb,
+  publisher = {Centrum Wiskunde \& Informatica, Amsterdam (CWI), The Netherlands},
+  isbn = {978-90-6196-568-8},
+  langid = {english},
+  keywords = {Coalgebra},
+  annotation = {OCLC: 8089214886},
+  file = {/home/alex/Zotero/storage/WVUAXUBL/Rutten - 2019 - The Method of Coalgebra exercises in coinduction.pdf}
+}
+
+@incollection{sacchiniLinearSizedTypes2014,
+  title = {Linear {{Sized Types}} in the {{Calculus}} of {{Constructions}}},
+  booktitle = {Functional and {{Logic Programming}}},
+  author = {Sacchini, Jorge Luis},
+  editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Kobsa, Alfred and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Terzopoulos, Demetri and Tygar, Doug and Weikum, Gerhard and Codish, Michael and Sumii, Eijiro},
+  year = {2014},
+  volume = {8475},
+  pages = {169--185},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-319-07151-0_11},
+  urldate = {2023-01-15},
+  isbn = {978-3-319-07150-3 978-3-319-07151-0},
+  file = {/home/alex/Zotero/storage/EDACIHKU/Sacchini_2014_Linear Sized Types in the Calculus of Constructions.pdf}
+}
+
+@inproceedings{sammlerIslarisVerificationMachine2022,
+  title = {Islaris: Verification of Machine Code against Authoritative {{ISA}} Semantics},
+  shorttitle = {Islaris},
+  booktitle = {Proceedings of the 43rd {{ACM SIGPLAN International Conference}} on {{Programming Language Design}} and {{Implementation}}},
+  author = {Sammler, Michael and Hammond, Angus and Lepigre, Rodolphe and Campbell, Brian and {Pichon-Pharabod}, Jean and Dreyer, Derek and Garg, Deepak and Sewell, Peter},
+  year = {2022},
+  month = jun,
+  pages = {825--840},
+  publisher = {ACM},
+  address = {San Diego CA USA},
+  doi = {10.1145/3519939.3523434},
+  urldate = {2024-12-17},
+  abstract = {Recent years have seen great advances towards verifying large-scale systems code. However, these verifications are usually based on hand-written assembly or machine-code semantics for the underlying architecture that only cover a small part of the instruction set architecture (ISA). In contrast, other recent work has used Sail to establish formal models for large real-world architectures, including Armv8A and RISC-V, that are comprehensive (complete enough to boot an operating system or hypervisor) and authoritative (automatically derived from the Arm internal model and validated against the Arm validation suite, and adopted as the official formal specification by RISC-V International, respectively). But the scale and complexity of these models makes them challenging to use as a basis for verification. In this paper, we propose Islaris, the first system to support verification of machine code above these complete and authoritative real-world ISA specifications. Islaris uses a novel combination of SMT-solver-based symbolic execution (the Isla symbolic executor) and automated reasoning in a foundational program logic (a new separation logic we derive using Iris in Coq). We show that this approach can handle Armv8-A and RISC-V machine code exercising a wide range of systems features, including installing and calling exception vectors, code parametric on a relocation address offset (from the production pKVM hypervisor); unaligned access faults; memory-mapped IO; and compiled C code using inline assembly and function pointers.},
+  isbn = {978-1-4503-9265-5},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/K34WB8X3/Sammler et al. - 2022 - Islaris verification of machine code against authoritative ISA semantics.pdf}
+}
+
+@inproceedings{sammlerRefinedCAutomatingFoundational2021,
+  title = {{{RefinedC}}: Automating the Foundational Verification of {{C}} Code with Refined Ownership Types},
+  shorttitle = {{{RefinedC}}},
+  booktitle = {Proceedings of the 42nd {{ACM SIGPLAN International Conference}} on {{Programming Language Design}} and {{Implementation}}},
+  author = {Sammler, Michael and Lepigre, Rodolphe and Krebbers, Robbert and Memarian, Kayvan and Dreyer, Derek and Garg, Deepak},
+  year = {2021},
+  month = jun,
+  pages = {158--174},
+  publisher = {ACM},
+  address = {Virtual Canada},
+  doi = {10.1145/3453483.3454036},
+  urldate = {2022-11-05},
+  abstract = {Given the central role that C continues to play in systems software, and the difficulty of wr iting sa fe an d co rrect C code, it remains a grand challenge to develop effective formal methods for verifying C programs. In this paper, we propose a new approach to this problem: a type system we call RefinedC, which combines ownership types (for modular reasoning about shared state and concurrency) with refinement types (for encoding precise invariants on C data types and Hoare-style specifications for C functions).},
+  isbn = {978-1-4503-8391-2},
+  langid = {english},
+  keywords = {Formal Verification,RefinedC},
+  file = {/home/alex/Zotero/storage/BV4EIQKY/Sammler et al. - 2021 - RefinedC automating the foundational verification.pdf}
+}
+
+@article{sangiorgiCalculusTheoryMobile,
+  title = {The -Calculus: {{A Theory}} of {{Mobile Processes}}},
+  author = {Sangiorgi, D and Walker, D},
+  pages = {7},
+  langid = {english},
+  keywords = {Process Algebra},
+  file = {/home/alex/Zotero/storage/DSRD8ZXC/Sangiorgi and Walker - The -calculus A Theory of Mobile Processes.pdf}
+}
+
 @book{sangiorgiIntroductionBisimulationCoinduction2011,
   title = {Introduction to {{Bisimulation}} and {{Coinduction}}},
   author = {Sangiorgi, Davide},
@@ -328,12 +2043,158 @@
   keywords = {Computers / General,Computers / Languages / General,Computers / Networking / General,Mathematics / Logic}
 }
 
+@article{sattlerRelatingIndexedWTypes,
+  title = {On {{Relating Indexed W-Types}} with {{Ordinary Ones}}},
+  author = {Sattler, Christian},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/RFHXWSTH/Sattler - On Relating Indexed W-Types with Ordinary Ones.pdf}
+}
+
+@misc{selingerLectureNotesLambda2013,
+  title = {Lecture Notes on the Lambda Calculus},
+  author = {Selinger, Peter},
+  year = {2013},
+  month = dec,
+  number = {arXiv:0804.3434},
+  eprint = {0804.3434},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  urldate = {2022-10-29},
+  abstract = {This is a set of lecture notes that developed out of courses on the lambda calculus that I taught at the University of Ottawa in 2001 and at Dalhousie University in 2007 and 2013. Topics covered in these notes include the untyped lambda calculus, the Church-Rosser theorem, combinatory algebras, the simply-typed lambda calculus, the Curry-Howard isomorphism, weak and strong normalization, polymorphism, type inference, denotational semantics, complete partial orders, and the language PCF.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Logic in Computer Science,Lambda Calculus},
+  file = {/home/alex/Zotero/storage/3RIKRH4K/Selinger - 2013 - Lecture notes on the lambda calculus.pdf}
+}
+
+@incollection{senizerguesEquivalenceProblemDeterministic1997,
+  title = {The Equivalence Problem for Deterministic Pushdown Automata Is Decidable},
+  booktitle = {Automata, {{Languages}} and {{Programming}}},
+  author = {S{\'e}nizergues, G{\'e}raud},
+  editor = {Goos, Gerhard and Hartmanis, Juris and Leeuwen, Jan and Degano, Pierpaolo and Gorrieri, Roberto and {Marchetti-Spaccamela}, Alberto},
+  year = {1997},
+  volume = {1256},
+  pages = {671--681},
+  publisher = {Springer Berlin Heidelberg},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/3-540-63165-8_221},
+  urldate = {2022-10-29},
+  isbn = {978-3-540-63165-1 978-3-540-69194-5},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/M4AZVQI6/Sénizergues - 1997 - The equivalence problem for deterministic pushdown.pdf}
+}
+
+@article{sheardTypesHardwareDescription,
+  title = {Types and {{Hardware Description Languages}}.},
+  author = {Sheard, Tim},
+  abstract = {Hardware description systems could benefit from advances in programming language design. Recent research, in the area of rich type systems suggests hardware description languages could use types to (1) structure, (2) guarantee correctness, and (3) track properties of hardware descriptions. In this paper, we use the language {\textohm}mega to illustrate these points.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/LNS78NT5/Sheard - Types and Hardware Description Languages..pdf}
+}
+
+@incollection{shiCoqQFBVScalableCertified2021,
+  title = {{{CoqQFBV}}: {{A Scalable Certified SMT Quantifier-Free Bit-Vector Solver}}},
+  shorttitle = {{{CoqQFBV}}},
+  booktitle = {Computer {{Aided Verification}}},
+  author = {Shi, Xiaomu and Fu, Yu-Fu and Liu, Jiaxiang and Tsai, Ming-Hsien and Wang, Bow-Yaw and Yang, Bo-Yin},
+  year = {2021},
+  volume = {12760},
+  pages = {149--171},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-030-81688-9_7},
+  urldate = {2024-07-02},
+  abstract = {We present a certified SMT QF BV solver CoqQFBV built from a verified bit blasting algorithm, Kissat, and the verified SAT certificate checker GratChk in this paper. Our verified bit blasting algorithm supports the full QF BV logic of SMT-LIB; it is specified and formally verified in the proof assistant Coq. We compare CoqQFBV with CVC4, Bitwuzla, and Boolector on benchmarks from the QF BV division of the single query track in the 2020 SMT Competition, and realworld cryptographic program verification problems. CoqQFBV surprisingly solves more program verification problems with certification than the 2020 SMT QF BV division winner Bitwuzla without certification.},
+  isbn = {978-3-030-81687-2 978-3-030-81688-9},
+  langid = {english},
+  keywords = {Bitvectors,Coq,SMT solvers},
+  file = {/home/alex/Zotero/storage/J4T57UZE/Shi et al. - 2021 - CoqQFBV A Scalable Certified SMT Quantifier-Free .pdf}
+}
+
+@misc{shulmanSemanticsMultimodalAdjoint2023,
+  title = {Semantics of Multimodal Adjoint Type Theory},
+  author = {Shulman, Michael},
+  year = {2023},
+  month = jun,
+  number = {arXiv:2303.02572},
+  eprint = {2303.02572},
+  primaryclass = {cs, math},
+  publisher = {arXiv},
+  urldate = {2023-08-26},
+  abstract = {We show that contrary to appearances, Multimodal Type Theory (MTT) over a 2-category M can be interpreted in any M-shaped diagram of categories having, and functors preserving, M-sized limits, without the need for extra left adjoints. This is achieved by a construction called ``co-dextrification'' that co-freely adds left adjoints to any such diagram, which can then be used to interpret the ``context lock'' functors of MTT. Furthermore, if any of the functors in the diagram have right adjoints, these can also be internalized in type theory as negative modalities in the style of FitchTT. We introduce the name Multimodal Adjoint Type Theory (MATT) for the resulting combined general modal type theory. In particular, we can interpret MATT in any finite diagram of toposes and geometric morphisms, with positive modalities for inverse image functors and negative modalities for direct image functors.},
+  archiveprefix = {arXiv},
+  langid = {english},
+  keywords = {Computer Science - Logic in Computer Science,Mathematics - Category Theory},
+  file = {/home/alex/Zotero/storage/X3ZPNA72/Shulman - 2023 - Semantics of multimodal adjoint type theory.pdf}
+}
+
+@article{simnerARMv8ASystemSemantics,
+  title = {{{ARMv8-A}} System Semantics: Instruction Fetch in Relaxed Architectures (Extended Version)?},
+  author = {Simner, Ben and Flur, Shaked and Pulte, Christopher and Armstrong, Alasdair and Maranget, Luc and Sewell, Peter},
+  abstract = {Computing relies on architecture specifications to decouple hardware and software development. Historically these have been prose documents, with all the problems that entails, but research over the last ten years has developed rigorous and executable-as-test-oracle specifications of mainstream architecture instruction sets and ``user-mode'' concurrency, clarifying architectures and bringing them into the scope of programming-language semantics and verification. However, the system semantics, of instruction-fetch and cache maintenance, exceptions and interrupts, and address translation, remains obscure, leaving us without a solid foundation for verification of security-critical systems software.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/6WRQ2WX2/Simner et al. - ARMv8-A system semantics instruction fetch in relaxed architectures (extended version).pdf}
+}
+
+@article{smolkaGuardedKleeneAlgebra2020,
+  title = {Guarded {{Kleene}} Algebra with Tests: Verification of Uninterpreted Programs in Nearly Linear Time},
+  shorttitle = {Guarded {{Kleene}} Algebra with Tests},
+  author = {Smolka, Steffen and Foster, Nate and Hsu, Justin and Kapp{\'e}, Tobias and Kozen, Dexter and Silva, Alexandra},
+  year = {2020},
+  month = jan,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {4},
+  number = {POPL},
+  pages = {1--28},
+  issn = {2475-1421},
+  doi = {10.1145/3371129},
+  urldate = {2025-01-30},
+  abstract = {Guarded Kleene Algebra with Tests (GKAT) is a variation on Kleene Algebra with Tests (KAT) that arises by restricting the union (+) and iteration (*) operations from KAT to predicate-guarded versions. We develop the (co)algebraic theory of GKAT and show how it can be efficiently used to reason about imperative programs. In contrast to KAT, whose equational theory is PSPACE-complete, we show that the equational theory of GKAT is (almost) linear time. We also provide a full Kleene theorem and prove completeness for an analogue of Salomaa's axiomatization of Kleene Algebra.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/XAMUNGF3/Smolka et al. - 2020 - Guarded Kleene algebra with tests verification of uninterpreted programs in nearly linear time.pdf}
+}
+
+@misc{SMTBitVectors,
+  title = {{{SMT}} - {{Bit Vectors}}},
+  journal = {SMT - Bit Vectors},
+  urldate = {2024-05-14},
+  howpublished = {https://www21.in.tum.de/teaching/sar/SS20/7.pdf},
+  file = {/home/alex/Zotero/storage/3CRUA5IG/7.pdf}
+}
+
 @article{sozeauCorrectCompleteType,
   title = {Correct and {{Complete Type Checking}} and {{Certified Erasure}} for {{Coq}}, in {{Coq}}},
   author = {Sozeau, Matthieu and Forster, Yannick and {Lennon-Bertrand}, Meven and Nielsen, Jakob Botsch and Tabareau, Nicolas and Winterhalter, Th{\'e}o},
   abstract = {Coq is built around a well-delimited kernel that performs type checking for definitions in a variant of the Calculus of Inductive Constructions (CIC). Although the metatheory of CIC is very stable and reliable, the correctness of its implementation in Coq is less clear. Indeed, implementing an efficient type checker for CIC is a rather complex task, and many parts of the code rely on implicit invariants which can easily be broken by further evolution of the code. Therefore, on average, one critical bug has been found every year in Coq. This paper presents the first implementation of a type checker for the kernel of Coq (without the module system, template polymorphism and {$H$}-conversion), which is proven sound and complete in Coq with respect to its formal specification. Note that because of G{\"o}del's second incompleteness theorem, there is no hope to prove completely the soundness of the specification of Coq inside Coq (in particular strong normalization), but it is possible to prove the correctness and completeness of the implementation assuming soundness of the specification, thus moving from a trusted code base (TCB) to a trusted theory base (TTB) paradigm. Our work is based on the MetaCoq project which provides meta-programming facilities to work with terms and declarations at the level of the kernel. We verify a relatively efficient type checker based on the specification of the typing relation of the Polymorphic, Cumulative Calculus of Inductive Constructions (PCUIC) at the basis of Coq. It is worth mentioning that during the verification process, we have found a source of incompleteness in Coq's official type checker, which has then been fixed in Coq 8.14 thanks to our work. In addition to the kernel implementation, another essential feature of Coq is the so-called extraction mechanism: the production of executable code in functional languages from Coq definitions. We present a verified version of this subtle type and proof erasure step, therefore enabling the verified extraction of a safe type checker for Coq in the future. CCS Concepts: {$\bullet$} Theory of computation {$\rightarrow$} Type theory.},
   langid = {english},
   file = {/home/alex/Zotero/storage/W6DX4XDL/Sozeau et al. - Correct and Complete Type Checking and Certified E.pdf}
+}
+
+@article{statonRelatingCoalgebraicNotions,
+  title = {Relating Coalgebraic Notions of Bisimulation},
+  author = {Staton, Sam},
+  pages = {15},
+  abstract = {A labelled transition system can be understood as a coalgebra for a particular endofunctor on the category of sets. Generalizing, we are led to consider coalgebras for arbitrary endofunctors on arbitrary categories.},
+  langid = {english},
+  keywords = {Coalgebra},
+  file = {/home/alex/Zotero/storage/DNWWVDDT/Staton - Relating coalgebraic notions of bisimulation.pdf}
+}
+
+@article{stumpSMTProofChecking2013,
+  title = {{{SMT}} Proof Checking Using a Logical Framework},
+  author = {Stump, Aaron and Oe, Duckki and Reynolds, Andrew and Hadarean, Liana and Tinelli, Cesare},
+  year = {2013},
+  month = feb,
+  journal = {Formal Methods in System Design},
+  volume = {42},
+  number = {1},
+  pages = {91--118},
+  issn = {1572-8102},
+  doi = {10.1007/s10703-012-0163-3},
+  urldate = {2024-09-06},
+  abstract = {Producing and checking proofs from SMT solvers is currently the most feasible method for achieving high confidence in the correctness of solver results. The diversity of solvers and relative complexity of SMT over, say, SAT means that flexibility, as well as performance, is a critical characteristic of a proof-checking solution for SMT. This paper describes such a solution, based on a Logical Framework with Side Conditions (LFSC). We describe the framework and show how it can be applied for flexible proof production and checking for two different SMT solvers, clsat and cvc3. We also report empirical results showing good performance relative to solver execution time.},
+  langid = {english},
+  keywords = {Coq,Edinburgh logical framework,LFSC,Proof checking,Satisfiability modulo theories}
 }
 
 @inproceedings{themathlibcommunityLeanMathematicalLibrary2020,
@@ -353,6 +2214,24 @@
   file = {/home/alex/Zotero/storage/X5R7F6YP/The mathlib Community_2020_The lean mathematical library.pdf}
 }
 
+@article{thiemannLabeldependentSessionTypes2020,
+  title = {Label-Dependent Session Types},
+  author = {Thiemann, Peter and Vasconcelos, Vasco T.},
+  year = {2020},
+  month = jan,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {4},
+  number = {POPL},
+  pages = {1--29},
+  issn = {2475-1421},
+  doi = {10.1145/3371135},
+  urldate = {2022-10-29},
+  abstract = {PETER THIEMANN, University of Freiburg, Germany VASCO T. VASCONCELOS, University of Lisbon, Portugal Session types have emerged as a typing discipline for communication protocols. Existing calculi with session types come equipped with many different primitives that combine communication with the introduction or elimination of the transmitted value. We present a foundational session type calculus with a lightweight operational semantics. It fully decouples communication from the introduction and elimination of data and thus features a single communication reduction, which acts as a rendezvous between senders and receivers. We achieve this decoupling by introducing label-dependent session types, a minimalist value-dependent session type system with subtyping. 67 The system is sufficiently powerful to simulate existing functional session type systems. Compared to such systems, label-dependent session types place fewer restrictions on the code. We further introduce primitive recursion over natural numbers at the type level, thus allowing to describe protocols whose behaviour depends on numbers exchanged in messages. An algorithmic type checking system is introduced and proved equivalent to its declarative counterpart. The new calculus showcases a novel lightweight integration of dependent types and linear typing, with has uses beyond session type systems. CCS Concepts: {$\cdot$} Theory of computation {$\rightarrow$} Type theory; Type structures; {$\cdot$} Software and its engineering {$\rightarrow$} Concurrent programming structures.},
+  langid = {english},
+  keywords = {Session Types},
+  file = {/home/alex/Zotero/storage/HR53J249/Thiemann and Vasconcelos - 2020 - Label-dependent session types.pdf}
+}
+
 @mastersthesis{traytelCategoryTheoryBased,
   title = {A Category Theory Based (Co)Datatype Package for {{Isabelle}}/{{HOL}}},
   author = {Traytel, Dmytro},
@@ -360,6 +2239,26 @@
   langid = {english},
   school = {TU M{\"u}nchen},
   file = {/home/alex/Zotero/storage/AQIK6MRC/Traytel - A category theory based (co)datatype package for I}
+}
+
+@inproceedings{trifunovskiInteractiveProofAssistant2017,
+  title = {An {{Interactive Proof Assistant}} for {{Linear Logic}}},
+  author = {Trifunovski, Maksim},
+  year = {2017},
+  publisher = {Wesleyan University},
+  address = {Middletown, CT},
+  doi = {10.14418/wes01.1.1339},
+  urldate = {2023-01-15},
+  abstract = {Building formal proofs is made easier by tools called proof assistants. In this thesis we present the process of building a proof assistant for propositional intuitionistic linear logic. Linear logic is a refinement of classical and intuitionistic logic which puts its main focus on the role of its formulas as resources. While the consumption of formulas as if they are resources is a big advantage of linear logic that other logics do not offer, it is also a burden when trying to build proofs. Resource allocation in rules like Tensor Right is a difficult task since we need to predict where resources are going to be used by the rest of the proof before building it. Previous work by Hodas and Miller presents a way of using Input-Output contexts to work around this issue. But because we are building a proof-assistant and not an automated theorem prover, we need to allow the user to be able to switch between goals at any time, and be able to construct the proof in any order they want, so we cannot solve the problem with such contexts. We tackle this problem by allowing unbounded context growth when moving up the proof derivation tree, and instead allowing terms to only use variables from a given resources multiset which is a subset of the whole context. These subsets then have to satisfy a given set of equations that make them suitable for simulating context splittings and changes. In order to allow for incremental proof construction we use meta variables to stand for incomplete terms and modal contexts to store said variables, which builds on previous work by Nanevski et al. We define two sequent calculi, a base one, and one that represents the implementation. We present a cut admissibility proof that v proves that our base sequent calculus is consistent, as well as a theorem which shows that every proof in the implementation calculus, has a proof in the base calculus as well.},
+  file = {/home/alex/Zotero/storage/2W2UK2WU/Trifunovski_2017_An Interactive Proof Assistant for Linear Logic.pdf}
+}
+
+@article{turnerTotalFunctionalProgramming,
+  title = {Total {{Functional Programming}}},
+  author = {Turner, D A},
+  abstract = {The driving idea of functional programming is to make programming more closely related to mathematics. A program in a functional language such as Haskell or Miranda consists of equations which are both computation rules and a basis for simple algebraic reasoning about the functions and data structures they define. The existing model of functional programming, although elegant and powerful, is compromised to a greater extent than is commonly recognised by the presence of partial functions. We consider a simple discipline of total functional programming designed to exclude the possibility of non-termination. Among other things this requires a type distinction between data, which is finite, and codata, which is potentially infinite.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/9UNEZK2Y/Turner - Total Functional Programming.pdf}
 }
 
 @article{ullrichNotationsHygienicMacro2022,
@@ -378,6 +2277,95 @@
   langid = {english},
   keywords = {Computer Science - Programming Languages},
   file = {/home/alex/Zotero/storage/VQABD6ES/Ullrich_de Moura_2022_Beyond Notations.pdf}
+}
+
+@article{uustaluDualSubstitutionRedecoration2002,
+  title = {The Dual of Substitution Is Redecoration},
+  author = {Uustalu, Tarmo and Vene, Varmo},
+  year = {2002},
+  journal = {Trends in Functional Programming 3},
+  pages = {99--110},
+  urldate = {2022-11-28},
+  abstract = {It is well known that type constructors of incomplete trees (trees with variables) carry the structure of a monad with substitution as the extension operation. Less known are the facts that the same is true of type constructors of incomplete cotrees (=non-wellfounded trees) and that the corresponding monads exhibit a special structure. We wish to draw attention to the dual facts which are as meaningful for functional programming: type constructors of decorated cotrees carry the structure of a comonad with redecoration as the coextension operation, and so do---even more interestingly---type constructors of decorated trees.}
+}
+
+@article{vasconcelosFundamentalsSessionTypes2012,
+  title = {Fundamentals of Session Types},
+  author = {Vasconcelos, Vasco T.},
+  year = {2012},
+  month = aug,
+  journal = {Information and Computation},
+  volume = {217},
+  pages = {52--70},
+  issn = {08905401},
+  doi = {10.1016/j.ic.2012.05.002},
+  urldate = {2022-10-29},
+  abstract = {We present a reconstruction of session types in a linear pi calculus where types are qualified as linear or unrestricted. Linearly qualified communication channels are guaranteed to occur in exactly one thread, possibly multiple times; unrestricted (or shared) channels may appear in an unbounded number of threads. In our language each channel is characterized by two distinct variables, one used for reading, the other for writing; scope restriction binds together two variables, thus establishing the correspondence between the two ends of the same channel. This mechanism allows a precise control of resources via a conventional linear type system. Furthermore, the uniform treatment of linear and shared channels leads to a surprisingly simply theory which, in addition, extends typability when compared to traditional systems for session types. We build the language gradually, starting from simple input/output, then adding recursive types, replication and finally choice. We also present an algorithmic type checking system.},
+  langid = {english},
+  keywords = {Session Types},
+  file = {/home/alex/Zotero/storage/CM9ER7CG/Vasconcelos - 2012 - Fundamentals of session types.pdf}
+}
+
+@incollection{vazouMonadsEffectsBack2016,
+  title = {From {{Monads}} to {{Effects}} and {{Back}}},
+  booktitle = {Practical {{Aspects}} of {{Declarative Languages}}},
+  author = {Vazou, Niki and Leijen, Daan},
+  editor = {Gavanelli, Marco and Reppy, John},
+  year = {2016},
+  volume = {9585},
+  pages = {169--186},
+  publisher = {Springer International Publishing},
+  address = {Cham},
+  doi = {10.1007/978-3-319-28228-2_11},
+  urldate = {2023-08-26},
+  abstract = {The combination of monads and effects leads to a clean and easy to reason about programming paradigm. Monadic programming is easy to reason about, but can be cumbersome, as it requires explicit lifting and binding. In this paper, we combine monads and effects within a single programming paradigm: we use monads to define the semantics of effect types, and then, use the effects to program with those monads. We implemented an extension to the effect type system of Koka [15] with user defined effects. We use a type-directed translation to automatically lift effectful into monadic programs, by inserting bind- and unit operations.},
+  isbn = {978-3-319-28227-5 978-3-319-28228-2},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/BICIXKZU/Vazou and Leijen - 2016 - From Monads to Effects and Back.pdf}
+}
+
+@article{venemaCoalgebraModalLogic,
+  title = {Coalgebra and {{Modal Logic}}: An Introduction},
+  author = {Venema, Yde},
+  pages = {83},
+  abstract = {These notes give a first introduction to the theory of universal coalgebra and coalgebraic modal logic.},
+  langid = {english},
+  keywords = {Coalgebra,Modal Logic},
+  file = {/home/alex/Zotero/storage/RECHJV4D/Venema - Coalgebra and Modal Logic an introduction.pdf}
+}
+
+@inproceedings{wissmannInitialAlgebrasUnchained2024,
+  title = {Initial {{Algebras Unchained}} - {{A Novel Initial Algebra Construction Formalized}} in {{Agda}}},
+  booktitle = {Proceedings of the 39th {{Annual ACM}}/{{IEEE Symposium}} on {{Logic}} in {{Computer Science}}},
+  author = {Wi{\ss}mann, Thorsten and Milius, Stefan},
+  year = {2024},
+  month = jul,
+  pages = {1--14},
+  publisher = {ACM},
+  address = {Tallinn Estonia},
+  doi = {10.1145/3661814.3662105},
+  urldate = {2024-07-08},
+  abstract = {The initial algebra for an endofunctor {$F$} provides a recursion and induction scheme for data structures whose constructors are described by {$F$} . The initial-algebra construction by Ad{\'a}mek (1974) starts with the initial object (e.g. the empty set) and successively applies the functor until a fixed point is reached, an idea inspired by Kleene's fixed point theorem. Depending on the functor of interest, this may require transfinitely many steps indexed by ordinal numbers until termination. We provide a new initial algebra construction which is not based on an ordinal-indexed chain. Instead, our construction is loosely inspired by Pataraia's fixed point theorem and forms the colimit of all finite recursive coalgebras. This is reminiscent of the construction of the rational fixed point of an endofunctor that forms the colimit of all finite coalgebras. For our main correctness theorem, we assume the given endofunctor is accessible on a (weak form of) locally presentable category. Our proofs are constructive and fully formalized in Agda.},
+  isbn = {979-8-4007-0660-8},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/K25WVGKE/Wißmann and Milius - 2024 - Initial Algebras Unchained - A Novel Initial Algeb.pdf}
+}
+
+@inproceedings{wolperAutomatatheoreticApproachPresburger1995,
+  title = {An Automata-Theoretic Approach to {{Presburger}} Arithmetic Constraints},
+  booktitle = {Static {{Analysis}}},
+  author = {Wolper, Pierre and Boigelot, Bernard},
+  editor = {Mycroft, Alan},
+  year = {1995},
+  pages = {21--32},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/3-540-60360-3_30},
+  abstract = {This paper introduces a finite-automata based representation of Presburger arithmetic definable sets of integer vectors. The representation consists of concurrent automata operating on the binary encodings of the elements of the represented sets. This representation has several advantages. First, being automata-based it is operational in nature and hence leads directly to algorithms, for instance all usual operations on sets of integer vectors translate naturally to operations on automata. Second, the use of concurrent automata makes it compact. Third, it is insensitive to the representation size of integers. Our representation can be used whenever arithmetic constraints are needed. To illustrate its possibilities we show that it can handle integer programming optimally, and that it leads to a new original algorithm for the satisfiability of arithmetic inequalities.},
+  isbn = {978-3-540-45050-4},
+  langid = {english},
+  keywords = {Finite Automaton,Integer Programming Problem,Integer Vector,Number Component,Quantify Boolean Formula},
+  file = {/home/alex/Zotero/storage/HHTJT9J4/Wolper and Boigelot - 1995 - An automata-theoretic approach to Presburger arith.pdf}
 }
 
 @article{xiaInteractionTreesRepresenting2020,
@@ -414,4 +2402,88 @@
   isbn = {978-1-4503-0663-8},
   keywords = {automated testing,compiler defect,compiler testing,random program generation,random testing},
   file = {/home/alex/Zotero/storage/HWWTGYM3/Yang et al_2011_Finding and understanding bugs in C compilers.pdf}
+}
+
+@article{yanovskiGhostCellSeparatingPermissions2021,
+  title = {{{GhostCell}}: Separating Permissions from Data in {{Rust}}},
+  shorttitle = {{{GhostCell}}},
+  author = {Yanovski, Joshua and Dang, Hoang-Hai and Jung, Ralf and Dreyer, Derek},
+  year = {2021},
+  month = aug,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {5},
+  number = {ICFP},
+  pages = {1--30},
+  issn = {2475-1421},
+  doi = {10.1145/3473597},
+  urldate = {2022-11-05},
+  abstract = {JOSHUA YANOVSKI, MPI-SWS, Germany HOANG-HAI DANG, MPI-SWS, Germany RALF JUNG, MPI-SWS, Germany DEREK DREYER, MPI-SWS, Germany The Rust language offers a promising approach to safe systems programming based on the principle of aliasing XOR mutability: a value may be either aliased or mutable, but not both at the same time. However, to implement pointer-based data structures with internal sharing, such as graphs or doubly-linked lists, we need to be able to mutate aliased state. To support such data structures, Rust provides a number of APIs that offer so-called interior mutability: the ability to mutate data via method calls on a shared reference. Unfortunately, the existing APIs sacrifice flexibility, concurrent access, and/or performance, in exchange for safety. In this paper, we propose a new Rust API called GhostCell which avoids such sacrifices by separating permissions from data: it enables the user to safely synchronize access to a collection of data via a single permission. GhostCell repurposes an old trick from typed functional programming: branded types (as exemplified by Haskell's ST monad), which combine phantom types and rank-2 polymorphism to simulate a lightweight form of state-dependent types. We have formally proven the soundness of GhostCell by adapting and extending RustBelt, a semantic soundness proof for a representative subset of Rust, mechanized in Coq. CCS Concepts: {$\bullet$} Theory of computation {$\rightarrow$} Type structures; Separation logic.},
+  langid = {english},
+  keywords = {PL Theory,Rust},
+  file = {/home/alex/Zotero/storage/BDUCGI9S/Yanovski et al. - 2021 - GhostCell separating permissions from data in Rus.pdf}
+}
+
+@article{yoshidaStrongNormalisationPcalculus2004,
+  title = {Strong Normalisation in the {$\pi$}-Calculus},
+  author = {Yoshida, Nobuko and Berger, Martin and Honda, Kohei},
+  year = {2004},
+  month = jun,
+  journal = {Information and Computation},
+  volume = {191},
+  number = {2},
+  pages = {145--202},
+  issn = {08905401},
+  doi = {10.1016/j.ic.2003.08.004},
+  urldate = {2022-11-05},
+  abstract = {We introduce a typed -calculus where strong normalisation is ensured by typability. Strong normalisation is a useful property in many computational contexts, including distributed systems. In spite of its simplicity, our type discipline captures a wide class of converging name-passing interactive behaviour. The proof of strong normalisability combines methods from typed -calculi and linear logic with process-theoretic reasoning. It is adaptable to systems involving state, non-determinism, polymorphism, control and other extensions. Strong normalisation is shown to have significant consequences, including finite axiomatisation of weak bisimilarity, a fully abstract embedding of the simply typed -calculus with products and sums and basic liveness in interaction. Strong normalisability has been extensively studied as a fundamental property in functional calculi, term rewriting and logical systems. This work is one of the first steps to extend theories and proof methods for strong normalisability to the context of name-passing processes.},
+  langid = {english},
+  keywords = {Process Algebra},
+  file = {/home/alex/Zotero/storage/G4YRTY2D/Yoshida et al. - 2004 - Strong normalisation in the π-calculus.pdf}
+}
+
+@article{zakowskiModularCompositionalExecutable2021,
+  title = {Modular, Compositional, and Executable Formal Semantics for {{LLVM IR}}},
+  author = {Zakowski, Yannick and Beck, Calvin and Yoon, Irene and Zaichuk, Ilia and Zaliva, Vadim and Zdancewic, Steve},
+  year = {2021},
+  month = aug,
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {5},
+  number = {ICFP},
+  pages = {1--30},
+  issn = {2475-1421},
+  doi = {10.1145/3473572},
+  urldate = {2025-01-20},
+  abstract = {YANNICK ZAKOWSKI, Inria, France CALVIN BECK, University of Pennsylvania, USA IRENE YOON, University of Pennsylvania, USA ILIA ZAICHUK, Taras Shevchenko National University of Kyiv, Ukraine VADIM ZALIVA, Carnegie Mellon University, USA STEVE ZDANCEWIC, University of Pennsylvania, USA This paper presents a novel formal semantics, mechanized in Coq, for a large, sequential subset of the LLVM IR. In contrast to previous approaches, which use relationally-specified operational semantics, this new semantics is based on monadic interpretation of interaction trees, a structure that provides a more compositional approach to defining language semantics while retaining the ability to extract an executable interpreter. Our semantics handles many of the LLVM IR's non-trivial language features and is constructed modularly in terms of event handlers, including those that deal with nondeterminism in the specification. We show how this semantics admits compositional reasoning principles derived from the interaction trees equational theory of weak bisimulation, which we extend here to better deal with nondeterminism, and we use them to prove that the extracted reference interpreter faithfully refines the semantic model. We validate the correctness of the semantics by evaluating it on unit tests and LLVM IR programs generated by HELIX. CCS Concepts: {$\bullet$} Software and its engineering {$\rightarrow$} Semantics; Compilers; {$\bullet$} Theory of computation {$\rightarrow$} Program verification; Denotational semantics.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/TILLI365/Zakowski et al. - 2021 - Modular, compositional, and executable formal semantics for LLVM IR.pdf}
+}
+
+@article{zhaoFormalizingLLVMIntermediate2012,
+  title = {Formalizing the {{LLVM Intermediate Representation}} for {{Verified Program Transformations}}},
+  author = {Zhao, Jianzhou and Nagarakatte, Santosh and Martin, Milo M K and Zdancewic, Steve},
+  year = {2012},
+  month = jan,
+  abstract = {This paper presents Vellvm (verified LLVM), a framework for reasoning about programs expressed in LLVM's intermediate representation and transformations that operate on it. Vellvm provides a mechanized formal semantics of LLVM's intermediate representation, its type system, and properties of its SSA form. The framework is built using the Coq interactive theorem prover. It includes multiple operational semantics and proves relations among them to facilitate different reasoning styles and proof techniques.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/QS6XI4D4/Zhao et al. - Formalizing the LLVM Intermediate Representation for Veriﬁed Program Transformations.pdf}
+}
+
+@article{zhaoFormalVerificationSSABased,
+  title = {Formal {{Verification}} of {{SSA-Based Optimizations}} for {{LLVM}}},
+  author = {Zhao, Jianzhou and Nagarakatte, Santosh and Martin, Milo M K and Zdancewic, Steve},
+  abstract = {Modern compilers, such as LLVM and GCC, use a static single assignment (SSA) intermediate representation (IR) to simplify and enable many advanced optimizations. However, formally verifying the correctness of SSA-based optimizations is challenging because SSA properties depend on a function's entire control-flow graph.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/QG8YLAAB/Zhao et al. - Formal Veriﬁcation of SSA-Based Optimizations for LLVM.pdf}
+}
+
+@article{zoharBitPreciseReasoningIntBlasting,
+  title = {Bit-{{Precise Reasoning}} via {{Int-Blasting}}},
+  author = {Zohar, Yoni and Irfan, Ahmed and Mann, Makai and Niemetz, Aina and Notzli, Andres and Preiner, Mathias and Reynolds, Andrew and Barrett, Clark and Tinelli, Cesare},
+  abstract = {The state of the art for bit-precise reasoning in the context of Satisfiability Modulo Theories (SMT) is a SAT-based technique called bit-blasting where the input formula is first simplified and then translated to an equisatisfiable propositional formula. The main limitation of this technique is scalability, especially in the presence of large bit-widths and arithmetic operators. We introduce an alternative technique, which we call int-blasting, based on a translation to an extension of integer arithmetic rather than propositional logic. We present several translations, discuss their differences, and evaluate them on benchmarks that arise from the verification of rewrite rule candidates for bit-vector solving, as well as benchmarks from SMT-LIB. We also provide preliminary results on 35 benchmarks that arise from smart contract verification. The evaluation shows that this technique is particularly useful for benchmarks with large bit-widths and can solve benchmarks that the state of the art cannot.},
+  langid = {english},
+  file = {/home/alex/Zotero/storage/A6BS6QGX/Zohar et al. - Bit-Precise Reasoning via Int-Blasting.pdf}
+}
+
+@inproceedings{zotero-425,
+  type = {Inproceedings}
 }
